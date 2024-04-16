@@ -17,9 +17,10 @@ public class Peluqueria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_peluqueria")
-    private long idPeluqueria;
+    private int idPeluqueria;
     private String nombre;
     private String direccion;
+    @Column(name = "url_imagen")
     private String urlImagen;
 
     @ManyToMany
