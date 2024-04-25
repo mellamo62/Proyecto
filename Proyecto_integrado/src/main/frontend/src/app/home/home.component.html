@@ -1,8 +1,26 @@
 <header>
-  <nav class="nav">
-    <ul class="navbar">
-      <li class="nav-link"><img ngSrc="./assets/logo.PNG" alt="Logo" height="75" width="75"></li>
-      <li class="nav-link "><button [routerLink]="'/login'" class="btn btn-info"><img ngSrc="assets/avatar.webp" alt="Perfil" height="50" width="50"></button></li>
-    </ul>
+  <nav class="navbar navbar-expand-lg navbar-light bg-header">
+    <a class="navbar-brand logo" [routerLink]="['/principal']">
+      <img ngSrc="./assets/logo.PNG" alt="Logo" height="85" width="85">
+    </a>
+    <div class="collapse navbar-collapse">
+      <form class="form-inline my-2 my-lg-0 mx-auto search-box">
+        <div class="row">
+          <div class="col">
+            <input class="form-control mr-sm-2 searchBar" type="search" placeholder="Buscar" aria-label="Buscar">
+          </div>
+          <div class="col">
+            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+          </div>
+        </div>
+      </form>
+      <a [routerLink]="['/login']" class="nav-link perfil">
+        <img ngSrc="./assets/avatar.webp" class="imagenPerfil" alt="Perfil" height="85" width="85">
+      </a>
+    </div>
   </nav>
 </header>
+
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

@@ -1,0 +1,19 @@
+.bg-button-lateral{
+  background-color: #A2ECFC;
+  height: 20em;
+  margin-top: 6em;
+
+}
+.bg-button-central{
+  background-color: #94FFF0;
+  height: 33em;
+}
+.bloque{
+  margin-top: 10em;
+}
+
+.text-button{
+  text-decoration: none;
+  font-size: 2em;
+  color: #876CFF;
+}

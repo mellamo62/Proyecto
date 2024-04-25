@@ -1,0 +1,19 @@
+.logo{
+  margin-left: 6em;
+}
+
+.perfil{
+  margin-right: 6em;
+}
+
+.imagenPerfil{
+  border-radius: 50%;
+}
+
+.searchBar{
+  width: 50em;
+}
+
+.bg-header{
+  background-color: #dee3ff;
+}
