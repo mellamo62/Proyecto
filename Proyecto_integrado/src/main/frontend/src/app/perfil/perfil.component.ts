@@ -22,9 +22,10 @@ export class PerfilComponent implements OnInit{
 
     this.clienteService.get(1).subscribe((data:Cliente) =>{
       this.cliente=data;
+      console.log(this.cliente)
     });
 
-    console.log(this.cliente)
+
   }
 
 }

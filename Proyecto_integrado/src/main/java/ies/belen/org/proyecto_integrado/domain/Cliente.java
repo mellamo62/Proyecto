@@ -5,6 +5,7 @@ import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
+import java.sql.Blob;
 import java.util.Set;
 
 @Entity
@@ -20,7 +21,10 @@ public class Cliente {
     private String usuario;
     private String nombre;
     private String apellidos;
-    private String urlImagen;
+    @Lob
+    @Column(columnDefinition = "MEDIUMBLOB")
+    private String image;
+//    private String urlImagen;
 
 //    @ManyToMany
 //    @JoinTable(
