@@ -5,8 +5,6 @@ import ies.belen.org.proyecto_integrado.exceptions.ClienteNotFoundException;
 import ies.belen.org.proyecto_integrado.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.List;
-
 @Service
 public class ClienteService {
 
@@ -26,7 +24,7 @@ public class ClienteService {
     }
 
     public Cliente replace(Long id, Cliente cliente){
-        return this.clienteRepository.findById(id).map(p->(id.equals(cliente.getIdPeluqueria()) ? this.clienteRepository.save(cliente) : null))
+        return this.clienteRepository.findById(id).map(p->(id.equals(cliente.getIdCliente()) ? this.clienteRepository.save(cliente) : null))
                 .orElseThrow(() -> new ClienteNotFoundException(id));
     }
 

@@ -23,13 +23,10 @@ public class Peluqueria {
     @Column(name = "url_imagen")
     private String urlImagen;
 
-    @ManyToMany
-    @JoinTable(
-            name = "citas",
-            joinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"),
-            inverseJoinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"))
-    Set<Cliente> clientes = new HashSet<>();
-
-
+//    @ManyToMany(mappedBy = "fechaCliente")
+//    Set<Peluqueria> citas;
+//
+//    @OneToMany(mappedBy = "peluqueria")
+//    Set<CitaFecha> fecha;
 
 }

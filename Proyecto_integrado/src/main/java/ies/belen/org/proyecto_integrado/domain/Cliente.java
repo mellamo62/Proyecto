@@ -1,13 +1,10 @@
 package ies.belen.org.proyecto_integrado.domain;
 
-import com.fasterxml.jackson.annotation.JsonFormat;
-import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
 
-import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -19,14 +16,20 @@ public class Cliente {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_cliente")
-    private long idPeluqueria;
+    private long idCliente;
+    private String usuario;
     private String nombre;
     private String apellidos;
     private String urlImagen;
 
-    @ManyToMany(
-            mappedBy = "clientes")
-    @JsonIgnore
-    Set<Peluqueria> peluquerias = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "citas",
+//            joinColumns = @JoinColumn(name = "id_peluqueria"),
+//            inverseJoinColumns = @JoinColumn(name = "id_cliente"))
+//    Set<Cliente> fechaCliente;
+//
+//    @OneToMany(mappedBy = "cliente")
+//    Set<CitaFecha> fecha;
 
 }

@@ -19,9 +19,12 @@ export class PerfilComponent implements OnInit{
   }
 
   ngOnInit() {
+
     this.clienteService.get(1).subscribe((data:Cliente) =>{
       this.cliente=data;
     });
+
+    console.log(this.cliente)
   }
 
 }
