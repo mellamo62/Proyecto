@@ -10,10 +10,8 @@ import org.springframework.http.ResponseEntity;
 import org.springframework.stereotype.Service;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.Base64;
 import java.util.Optional;
 
 @Service
@@ -45,8 +43,7 @@ public class ClienteService {
                 .orElseThrow(()->new ClienteNotFoundException(id));
     }
 
-    public Cliente addProduct(Cliente cliente, MultipartFile file) throws IOException {
-        cliente.setImage(Base64.getEncoder().encodeToString(file.getBytes()));
+    public Cliente addCliente(Cliente cliente) throws IOException {
         return clienteRepository.save(cliente);
     }
 

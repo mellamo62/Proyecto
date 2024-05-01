@@ -20,6 +20,7 @@ public class Peluqueria {
     @Column(name = "id_peluqueria")
     private int idPeluqueria;
     private String nombre;
+    private String descripcion;
     private String direccion;
 
     @Column(name = "url_imagen")

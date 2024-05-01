@@ -23,7 +23,7 @@ public class Cliente {
     private String apellidos;
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
-    private String image;
+    private byte[] image;
 //    private String urlImagen;
 
 //    @ManyToMany

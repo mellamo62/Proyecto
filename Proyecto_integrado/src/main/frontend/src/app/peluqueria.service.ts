@@ -1,14 +1,14 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
-import {Cliente} from "./cliente";
+import {Peluqueria} from "./peluqueria";
 
 @Injectable({
   providedIn: 'root'
 })
-export class ClientesService {
+export class PeluqueriaService {
 
-  private apiURL= "http://localhost:8080/clientes/";
+  private apiURL = "http://localhost:8080/peluquerias/";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -18,26 +18,18 @@ export class ClientesService {
 
   constructor(private httpClient: HttpClient) { }
 
-
-  get(id:number):Observable<Cliente>{
-    return this.httpClient.get<Cliente>(this.apiURL+id)
+  getAll(): Observable<Peluqueria[]> {
+    return this.httpClient.get<Peluqueria[]>(this.apiURL)
       .pipe(
         catchError(this.errorHandler)
       )
   }
 
-  create(cliente: Cliente) {
-    let formData = new FormData();
-    formData.append('usuario', cliente.usuario);
-    formData.append('nombre', cliente.nombre);
-    formData.append('apellidos', cliente.apellidos);
-    formData.append('image', cliente.image, cliente.image.name);
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-
-    return this.httpClient.post<Cliente>(this.apiURL, formData, this.httpOptions);
+  find(id: number): Observable<Peluqueria> {
+    return this.httpClient.get<Peluqueria>(this.apiURL + id)
+      .pipe(
+        catchError(this.errorHandler)
+      )
   }
 
   errorHandler(error: any) {
@@ -52,6 +44,4 @@ export class ClientesService {
 
     return throwError(() => errorMessage);
   }
-
-
 }

@@ -5,10 +5,8 @@ import ies.belen.org.proyecto_integrado.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-import org.springframework.web.multipart.MultipartFile;
 
 import java.io.IOException;
-import java.util.List;
 
 @Slf4j
 @RestController
@@ -42,11 +40,5 @@ public class ClienteController {
     @DeleteMapping("/{id}")
     public void deleteCliente(@PathVariable("id") Long id){
         this.clienteService.delete(id);
-    }
-
-    @PostMapping("/add")
-    public String addProduct(@ModelAttribute Cliente cliente, @RequestParam("imageFile") MultipartFile imageFile) throws IOException, IOException {
-        this.clienteService.addProduct(cliente, imageFile);
-        return "redirect:/";
     }
 }
