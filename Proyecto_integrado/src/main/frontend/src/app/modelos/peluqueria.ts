@@ -4,4 +4,5 @@ export interface Peluqueria{
   descripcion:string;
   direccion:string;
   urlImagen:any;
+  urlImagen2:any;
 }

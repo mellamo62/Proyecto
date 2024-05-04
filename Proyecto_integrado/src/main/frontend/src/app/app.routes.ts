@@ -12,6 +12,8 @@ export const routes: Routes = [
     children: [
       {path: 'peluquerias', component: PeluqueriasComponent},
       {path: 'peluquerias/:id', component:PeluqueriaComponent},
+      {path: 'peluquerias/nombre/:name', component: PeluqueriasComponent},
+      {path: 'peluquerias/fav/:fav', component: PeluqueriasComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'login', component: LoginComponent},
       {path: '', component: PrincipalComponent}

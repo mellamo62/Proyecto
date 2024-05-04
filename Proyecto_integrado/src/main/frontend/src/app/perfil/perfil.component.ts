@@ -1,7 +1,7 @@
 import {Component, OnInit} from '@angular/core';
 import {NgOptimizedImage} from "@angular/common";
 import {ClientesService} from "../clientes.service";
-import {Cliente} from "../cliente";
+import {Cliente} from "../modelos/cliente";
 import {FormControl, FormGroup, FormsModule, ReactiveFormsModule, Validators} from "@angular/forms";
 
 @Component({

@@ -26,6 +26,9 @@ public class Peluqueria {
     @Column(name = "url_imagen")
     private String urlImagen;
 
+    @Column(name = "url_imagen2")
+    private String urlImagen2;
+
 //    @ManyToMany(mappedBy = "fechaCliente")
 //    Set<Peluqueria> citas;
 //

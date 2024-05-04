@@ -7,10 +7,10 @@
       <form class="form-inline my-2 my-lg-0 mx-auto search-box">
         <div class="row">
           <div class="col">
-            <input class="form-control mr-sm-2 searchBar" type="search" placeholder="Buscar" aria-label="Buscar">
+            <input class="form-control mr-sm-2 searchBar" type="search" placeholder="Buscar" aria-label="Buscar" #filtro>
           </div>
           <div class="col">
-            <button class="btn btn-outline-dark" type="submit">Buscar</button>
+            <button class="btn btn-outline-dark" type="submit" (click)="routeSearch(filtro.value)">Buscar</button>
           </div>
         </div>
       </form>
