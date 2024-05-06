@@ -1,16 +1,15 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, RouterLink} from "@angular/router";
 import {PeluqueriaService} from "../peluqueria.service";
 import {Peluqueria} from "../modelos/peluqueria";
-import {PeluqueriasComponent} from "../peluquerias/peluquerias.component";
-import {NgIf, NgOptimizedImage} from "@angular/common";
+import {CommonModule} from "@angular/common";
 
 @Component({
   selector: 'app-peluqueria',
   standalone: true,
   imports: [
-    NgOptimizedImage,
-    NgIf
+    RouterLink,
+    CommonModule
   ],
   templateUrl: './peluqueria.component.html',
   styleUrl: './peluqueria.component.css'

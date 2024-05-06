@@ -1,15 +1,14 @@
 import {Component, Input, OnInit} from '@angular/core';
 import {PeluqueriaService} from "../peluqueria.service";
 import {Peluqueria} from "../modelos/peluqueria";
-import {NgForOf, NgOptimizedImage} from "@angular/common";
+import {CommonModule} from "@angular/common";
 import {ActivatedRoute, Router} from "@angular/router";
 
 @Component({
   selector: 'app-peluquerias',
   standalone: true,
   imports: [
-    NgForOf,
-    NgOptimizedImage
+    CommonModule
   ],
   templateUrl: './peluquerias.component.html',
   styleUrl: './peluquerias.component.css'

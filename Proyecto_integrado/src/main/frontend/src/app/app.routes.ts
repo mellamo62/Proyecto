@@ -5,6 +5,7 @@ import {PrincipalComponent} from "./principal/principal.component";
 import {PerfilComponent} from "./perfil/perfil.component";
 import {PeluqueriasComponent} from "./peluquerias/peluquerias.component";
 import {PeluqueriaComponent} from "./peluqueria/peluqueria.component";
+import {PedirCitaComponent} from "./pedir-cita/pedir-cita.component";
 
 export const routes: Routes = [
   {
@@ -14,6 +15,7 @@ export const routes: Routes = [
       {path: 'peluquerias/:id', component:PeluqueriaComponent},
       {path: 'peluquerias/nombre/:name', component: PeluqueriasComponent},
       {path: 'peluquerias/fav/:fav', component: PeluqueriasComponent},
+      {path: 'peluquerias/cita/:id', component: PedirCitaComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'login', component: LoginComponent},
       {path: '', component: PrincipalComponent}

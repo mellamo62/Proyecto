@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import {NgOptimizedImage} from "@angular/common";
+import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
 
@@ -7,7 +7,7 @@ import {FormsModule} from "@angular/forms";
   selector: 'app-home',
   standalone: true,
   imports: [
-    NgOptimizedImage,
+    CommonModule,
     RouterLink,
     RouterOutlet,
     FormsModule

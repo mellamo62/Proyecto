@@ -1,0 +1,4 @@
+<div class="container mt-5">
+  <p-calendar [style]="{'width':'100%'}" dateFormat="dd.mm.yy" [firstDayOfWeek]="1" [(ngModel)]="date" [inline]="true" [minDate]="minDateValue" (onSelect)="changeDay($event)" [disabledDays]="[0,6]"/>
+</div>
+
