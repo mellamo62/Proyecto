@@ -48,7 +48,7 @@ public class DBOperationRunner implements CommandLineRunner {
 
                 new Horarios(2, "10:00:00", peluqueria1),
 
-                new Horarios(2, "11:00:00", peluqueria1)
+                new Horarios(3, "11:00:00", peluqueria1)
         ));
 
 //        clienteRepository.saveAll(List.of(

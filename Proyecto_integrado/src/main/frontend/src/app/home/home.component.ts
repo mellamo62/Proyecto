@@ -10,7 +10,8 @@ import {FormsModule} from "@angular/forms";
     CommonModule,
     RouterLink,
     RouterOutlet,
-    FormsModule
+    FormsModule,
+    NgOptimizedImage
   ],
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'

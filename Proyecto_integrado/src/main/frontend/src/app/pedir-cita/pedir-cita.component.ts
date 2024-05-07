@@ -2,6 +2,8 @@ import { Component } from '@angular/core';
 import { CalendarModule } from 'primeng/calendar';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
+import {HorariosService} from "../horarios.service";
+import {ActivatedRoute} from "@angular/router";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -17,9 +19,16 @@ import {CommonModule} from "@angular/common";
 export class PedirCitaComponent {
   date: any;
   minDateValue: any;
+  id:number;
+  horario:any;
+  fechaFormateada:any;
 
-  constructor() {
+  constructor(
+    private route:ActivatedRoute,
+    private horariosService: HorariosService
+  ) {
     this.minDateValue = new Date();
+    this.id = this.route.snapshot.params['id'];
   }
 
   public changeDay(event:any){
@@ -29,9 +38,16 @@ export class PedirCitaComponent {
     const mes = (fechaSeleccionada.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
     const anio = fechaSeleccionada.getFullYear();
 
-    const fechaFormateada = `${dia}-${mes}-${anio}`;
+    this.fechaFormateada = `${dia}-${mes}-${anio}`;
+    this.horariosService.getOneByPeluqueria(this.id)
+      .subscribe(res=>{
+        console.log(res)
+        this.horario = res;
+      });
+  }
 
-    console.log('Fecha seleccionada:', fechaFormateada);
+  public check(){
+    console.log(this.fechaFormateada)
   }
 
 }

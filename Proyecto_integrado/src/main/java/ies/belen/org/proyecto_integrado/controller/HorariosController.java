@@ -1,15 +1,13 @@
 package ies.belen.org.proyecto_integrado.controller;
 
-import ies.belen.org.proyecto_integrado.domain.Cliente;
 import ies.belen.org.proyecto_integrado.domain.Horarios;
-import ies.belen.org.proyecto_integrado.domain.Peluqueria;
 import ies.belen.org.proyecto_integrado.service.HorariosService;
-import ies.belen.org.proyecto_integrado.service.PeluqueriaService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
@@ -25,6 +23,14 @@ public class HorariosController {
     @GetMapping({"","/"})
     public List<Horarios> all(){
         return this.horariosService.all();
+    }
+
+    @GetMapping("/one/{id}")
+    public List<Horarios> horariosByPeluqueria(@PathVariable("id") Long id){
+        List<Horarios> temp = this.horariosService.all().stream()
+                .filter(peluqueria -> peluqueria.getPeluqueria().getIdPeluqueria() == id)
+                .toList();
+        return temp;
     }
 
     @GetMapping("/{id}")

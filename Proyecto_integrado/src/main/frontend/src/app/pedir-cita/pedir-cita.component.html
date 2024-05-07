@@ -1,4 +1,12 @@
 <div class="container mt-5">
-  <p-calendar [style]="{'width':'100%'}" dateFormat="dd.mm.yy" [firstDayOfWeek]="1" [(ngModel)]="date" [inline]="true" [minDate]="minDateValue" (onSelect)="changeDay($event)" [disabledDays]="[0,6]"/>
+  <div class="row">
+    <p-calendar [style]="{'width':'100%'}" dateFormat="dd.mm.yy" [firstDayOfWeek]="1" [(ngModel)]="date" [inline]="true"
+                [minDate]="minDateValue" (onSelect)="changeDay($event)" [disabledDays]="[0,6]"/>
+  </div>
+  <div class="row">
+    <div style="margin-left: 5em; padding: 0.3em" *ngFor="let hora of horario">
+      <button class="btn btn-info text-white" (click)="check()">{{hora.hora}}</button>
+    </div>
+  </div>
 </div>
 
