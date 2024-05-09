@@ -6,6 +6,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
+import java.util.HashSet;
 import java.util.Set;
 
 @Entity
@@ -24,16 +25,15 @@ public class Cliente {
     @Lob
     @Column(columnDefinition = "MEDIUMBLOB")
     private byte[] image;
+
 //    private String urlImagen;
 
-//    @ManyToMany
-//    @JoinTable(
-//            name = "citas",
-//            joinColumns = @JoinColumn(name = "id_peluqueria"),
-//            inverseJoinColumns = @JoinColumn(name = "id_cliente"))
-//    Set<Cliente> fechaCliente;
-//
-//    @OneToMany(mappedBy = "cliente")
-//    Set<CitaFecha> fecha;
+
+    @ManyToMany
+    @JoinTable(
+            name = "citas",
+            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
+    Set<Peluqueria> peluquerias = new HashSet<>();
 
 }

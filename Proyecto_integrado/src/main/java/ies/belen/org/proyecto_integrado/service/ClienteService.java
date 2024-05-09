@@ -1,6 +1,7 @@
 package ies.belen.org.proyecto_integrado.service;
 
 import ies.belen.org.proyecto_integrado.domain.Cliente;
+import ies.belen.org.proyecto_integrado.domain.Peluqueria;
 import ies.belen.org.proyecto_integrado.exceptions.ClienteNotFoundException;
 import ies.belen.org.proyecto_integrado.repository.ClienteRepository;
 import org.springframework.http.HttpHeaders;
@@ -27,6 +28,12 @@ public class ClienteService {
         return this.clienteRepository.save(cliente);
     }
 
+    public Cliente cita(Cliente cliente, Peluqueria peluqueria){
+        cliente.getPeluquerias().add(peluqueria);
+        peluqueria.getClientes().add(cliente);
+        return this.clienteRepository.save(cliente);
+    }
+
     public Cliente one(Long id){
         return this.clienteRepository.findById(id)
                 .orElseThrow(() -> new ClienteNotFoundException(id));
@@ -42,11 +49,9 @@ public class ClienteService {
                 return p;})
                 .orElseThrow(()->new ClienteNotFoundException(id));
     }
-
-    public Cliente addCliente(Cliente cliente) throws IOException {
-        return clienteRepository.save(cliente);
+    public Optional<Cliente> getCliente(Long id){
+        return clienteRepository.findById(id);
     }
-
     //Get Image using product ID
     @GetMapping(value = "/{clienteId}/image")
     public ResponseEntity<byte[]> getClienteImage(@PathVariable Long clienteId) {
@@ -62,8 +67,6 @@ public class ClienteService {
         }
     }
 
-    public Optional<Cliente> getCliente(Long id){
-        return clienteRepository.findById(id);
-    }
+
 
 }

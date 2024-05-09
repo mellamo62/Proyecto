@@ -2,6 +2,8 @@ import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Cliente} from "./modelos/cliente";
+import {PeluqueriaService} from "./peluqueria.service";
+import {Peluqueria} from "./modelos/peluqueria";
 
 @Injectable({
   providedIn: 'root'
@@ -16,6 +18,18 @@ export class ClientesService {
     })
   };
 
+  create(cliente: Cliente) {
+    let formData = new FormData();
+    formData.append('usuario', cliente.usuario);
+    formData.append('nombre', cliente.nombre);
+    formData.append('apellidos', cliente.apellidos);
+    formData.append('image', cliente.image, cliente.image.name);
+
+
+
+    return this.httpClient.post<Cliente>(this.apiURL, formData, this.httpOptions);
+  }
+
   constructor(private httpClient: HttpClient) { }
 
 
@@ -26,19 +40,22 @@ export class ClientesService {
       )
   }
 
-  create(cliente: Cliente) {
-    let formData = new FormData();
-    formData.append('usuario', cliente.usuario);
-    formData.append('nombre', cliente.nombre);
-    formData.append('apellidos', cliente.apellidos);
-    formData.append('image', cliente.image, cliente.image.name);
-
+  createCita(peluqueria: Peluqueria, cliente: Cliente):Observable<any>{
+    let data = {
+      cliente: cliente,
+      peluqueria: peluqueria
+    }
     let headers = new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
+      'Content-Type': 'application/json'
     })
 
-    return this.httpClient.post<Cliente>(this.apiURL, formData, this.httpOptions);
+    return this.httpClient.post<any>(this.apiURL+"cita", data, {headers})
+      .pipe(
+        catchError(this.errorHandler)
+      );
   }
+
+
 
   errorHandler(error: any) {
 
@@ -52,6 +69,7 @@ export class ClientesService {
 
     return throwError(() => errorMessage);
   }
+
 
 
 }

@@ -19,6 +19,11 @@ public class PeluqueriaController {
         this.peluqueriaService = peluqueriaService;
     }
 
+    @PostMapping({"","/"})
+    public Peluqueria newPeluqueria(@RequestBody Peluqueria peluqueria){
+        return this.peluqueriaService.save(peluqueria);
+    }
+
     @GetMapping({"","/"})
     public List<Peluqueria> all(){
         return this.peluqueriaService.all();

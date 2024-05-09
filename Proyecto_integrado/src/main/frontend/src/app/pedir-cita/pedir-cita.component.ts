@@ -4,6 +4,9 @@ import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
 import {HorariosService} from "../horarios.service";
 import {ActivatedRoute} from "@angular/router";
+import {ClientesService} from "../clientes.service";
+import {Cliente} from "../modelos/cliente";
+import {Peluqueria} from "../modelos/peluqueria";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -25,7 +28,8 @@ export class PedirCitaComponent {
 
   constructor(
     private route:ActivatedRoute,
-    private horariosService: HorariosService
+    private horariosService: HorariosService,
+    private clientesService:ClientesService
   ) {
     this.minDateValue = new Date();
     this.id = this.route.snapshot.params['id'];
@@ -47,7 +51,27 @@ export class PedirCitaComponent {
   }
 
   public check(){
-    console.log(this.fechaFormateada)
+    // let cliente:Cliente ={
+    //   idCliente:2,
+    //   usuario:"crinisitian",
+    //   nombre:"Cristian",
+    //   apellidos: "Prieto Ortega",
+    //   url_image: "https://static.wikia.nocookie.net/theghosttrick/images/6/6c/SisselCat.png/revision/latest?cb=20110322224849"
+    // }
+    //
+    // let peluqueria:Peluqueria = {
+    //   idPeluqueria:1,
+    //   nombre: "Alonso",
+    //   descripcion:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.",
+    //   direccion:"29120 Alhaurín el Grande, Málaga",
+    //   urlImagen:"https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no",
+    //   urlImagen2:"https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no"
+    // }
+    // this.clientesService.createCita(peluqueria, cliente)
+    //   .subscribe(res=>{
+    //     console.log(res)
+    //   });
+
   }
 
 }

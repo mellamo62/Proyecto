@@ -23,7 +23,7 @@ export class PerfilComponent implements OnInit{
 
   private files:any = null;
 
-  public cliente:Cliente = {id:1,usuario:"", nombre:"", apellidos: "", image: ""};
+  public cliente:Cliente = {idCliente:1,usuario:"", nombre:"", apellidos: "", image: ""};
   constructor(public clienteService: ClientesService) {
   }
 
@@ -40,7 +40,7 @@ export class PerfilComponent implements OnInit{
   submit(){
     console.log(this.files);
     let data:Cliente = {
-      id:7,
+      idCliente:7,
       usuario: "mellamo",
       nombre:"mellamo",
       apellidos:"apellido",

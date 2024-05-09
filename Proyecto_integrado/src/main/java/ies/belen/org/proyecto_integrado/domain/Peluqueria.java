@@ -1,5 +1,6 @@
 package ies.belen.org.proyecto_integrado.domain;
 
+import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
@@ -29,8 +30,10 @@ public class Peluqueria {
     @Column(name = "url_imagen2")
     private String urlImagen2;
 
-//    @ManyToMany(mappedBy = "fechaCliente")
-//    Set<Peluqueria> citas;
+    @ManyToMany(
+            mappedBy = "peluquerias")
+    @JsonIgnore
+    Set<Cliente> clientes = new HashSet<>();
 //
 //    @OneToMany(mappedBy = "peluqueria")
 //    Set<CitaFecha> fecha;

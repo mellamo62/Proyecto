@@ -24,4 +24,8 @@ public class PeluqueriaService {
         return this.peluqueriaRepository.findById(id)
                 .orElseThrow(() -> new PeluqueriaNotFoundException(id));
     }
+
+    public Peluqueria save(Peluqueria peluqueria) {
+        return this.peluqueriaRepository.save(peluqueria);
+    }
 }

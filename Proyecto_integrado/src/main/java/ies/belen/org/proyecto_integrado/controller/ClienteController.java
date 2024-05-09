@@ -1,12 +1,12 @@
 package ies.belen.org.proyecto_integrado.controller;
 
 import ies.belen.org.proyecto_integrado.domain.Cliente;
+import ies.belen.org.proyecto_integrado.domain.Peluqueria;
+import ies.belen.org.proyecto_integrado.domain.RequestData;
 import ies.belen.org.proyecto_integrado.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
-
-import java.io.IOException;
 
 @Slf4j
 @RestController
@@ -33,6 +33,13 @@ public class ClienteController {
     @PutMapping("/{id}")
     public Cliente replaceCliente(@PathVariable("id") Long id, @RequestBody Cliente cliente){
         return this.clienteService.replace(id, cliente);
+    }
+
+    @PostMapping("/cita")
+    public Cliente newCita(@RequestBody RequestData requestData){
+        Cliente cliente = requestData.getCliente();
+        Peluqueria peluqueria = requestData.getPeluqueria();
+        return this.clienteService.cita(cliente, peluqueria);
     }
 
     @ResponseBody

@@ -18,6 +18,13 @@ export class PeluqueriaService {
 
   constructor(private httpClient: HttpClient) { }
 
+  create(peluqueria: Peluqueria): Observable<Peluqueria> {
+    return this.httpClient.post<Peluqueria>(this.apiURL, JSON.stringify(peluqueria), this.httpOptions)
+      .pipe(
+        catchError(this.errorHandler)
+      )
+  }
+
   getAll(): Observable<Peluqueria[]> {
     return this.httpClient.get<Peluqueria[]>(this.apiURL)
       .pipe(
