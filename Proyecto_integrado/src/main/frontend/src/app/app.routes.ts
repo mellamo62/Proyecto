@@ -8,14 +8,15 @@ import {PeluqueriaComponent} from "./peluqueria/peluqueria.component";
 import {PedirCitaComponent} from "./pedir-cita/pedir-cita.component";
 
 export const routes: Routes = [
+  {path: '', component: LoginComponent},
   {
-    path: '', component: HomeComponent,
+    path: 'home', component: HomeComponent,
     children: [
       {path: 'peluquerias', component: PeluqueriasComponent},
-      {path: 'peluquerias/:id', component:PeluqueriaComponent},
+      {path: 'peluquerias/:id', component: PeluqueriaComponent},
       {path: 'peluquerias/nombre/:name', component: PeluqueriasComponent},
       {path: 'peluquerias/fav/:fav', component: PeluqueriasComponent},
-      {path: 'peluquerias/cita/:id', component: PedirCitaComponent},
+      {path: 'peluquerias/cita/:idPeluqueria', component: PedirCitaComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'login', component: LoginComponent},
       {path: '', component: PrincipalComponent}

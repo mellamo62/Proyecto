@@ -32,7 +32,7 @@ export class PedirCitaComponent {
     private clientesService:ClientesService
   ) {
     this.minDateValue = new Date();
-    this.id = this.route.snapshot.params['id'];
+    this.id = this.route.snapshot.params['idPeluqueria'];
   }
 
   public changeDay(event:any){
@@ -71,6 +71,8 @@ export class PedirCitaComponent {
     //   .subscribe(res=>{
     //     console.log(res)
     //   });
+
+
 
   }
 

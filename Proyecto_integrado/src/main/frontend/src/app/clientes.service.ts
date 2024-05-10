@@ -55,7 +55,9 @@ export class ClientesService {
       );
   }
 
-
+  all(){
+    return this.httpClient.get<Cliente[]>(this.apiURL);
+  }
 
   errorHandler(error: any) {
 

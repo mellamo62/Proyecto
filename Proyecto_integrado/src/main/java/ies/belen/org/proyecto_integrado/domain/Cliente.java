@@ -29,11 +29,14 @@ public class Cliente {
 //    private String urlImagen;
 
 
-    @ManyToMany
-    @JoinTable(
-            name = "citas",
-            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
-            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
-    Set<Peluqueria> peluquerias = new HashSet<>();
+//    @ManyToMany
+//    @JoinTable(
+//            name = "citas",
+//            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
+//            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
+//    Set<Peluqueria> peluquerias = new HashSet<>();
+
+    @OneToMany(mappedBy = "cliente")
+    private Set<Citas> citas = new HashSet<>();
 
 }

@@ -13,6 +13,7 @@ import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
 
 import java.io.IOException;
+import java.util.List;
 import java.util.Optional;
 
 @Service
@@ -29,14 +30,19 @@ public class ClienteService {
     }
 
     public Cliente cita(Cliente cliente, Peluqueria peluqueria){
-        cliente.getPeluquerias().add(peluqueria);
-        peluqueria.getClientes().add(cliente);
-        return this.clienteRepository.save(cliente);
+//        cliente.getPeluquerias().add(peluqueria);
+//        peluqueria.getClientes().add(cliente);
+//        return this.clienteRepository.save(cliente);
+        return null;
     }
 
     public Cliente one(Long id){
         return this.clienteRepository.findById(id)
                 .orElseThrow(() -> new ClienteNotFoundException(id));
+    }
+
+    public List<Cliente> all(){
+        return this.clienteRepository.findAll();
     }
 
     public Cliente replace(Long id, Cliente cliente){

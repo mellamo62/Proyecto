@@ -30,12 +30,21 @@ public class Peluqueria {
     @Column(name = "url_imagen2")
     private String urlImagen2;
 
-    @ManyToMany(
-            mappedBy = "peluquerias")
-    @JsonIgnore
-    Set<Cliente> clientes = new HashSet<>();
+    public Peluqueria(int idPeluqueria, String nombre, String descripcion, String direccion, String urlImagen, String urlImagen2) {
+        this.idPeluqueria = idPeluqueria;
+        this.nombre = nombre;
+        this.descripcion = descripcion;
+        this.direccion = direccion;
+        this.urlImagen = urlImagen;
+        this.urlImagen2 = urlImagen2;
+    }
+
+    //    @ManyToMany(
+//            mappedBy = "peluquerias")
+//    @JsonIgnore
+//    Set<Cliente> clientes = new HashSet<>();
 //
-//    @OneToMany(mappedBy = "peluqueria")
-//    Set<CitaFecha> fecha;
+    @OneToMany(mappedBy = "peluqueria")
+    private Set<Citas> citas = new HashSet<>();
 
 }

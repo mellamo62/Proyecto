@@ -16,7 +16,7 @@ import {CommonModule} from "@angular/common";
 })
 export class PeluqueriaComponent implements OnInit{
 
-  id:number =0;
+  idPeluqueria:number =0;
   public peluqueria:Peluqueria;
   showTooltip: boolean = false;
 
@@ -27,8 +27,8 @@ export class PeluqueriaComponent implements OnInit{
   }
 
   ngOnInit() {
-    this.id = this.route.snapshot.params['id'];
-    this.peluqueriaService.find(this.id).subscribe(res => {
+    this.idPeluqueria = this.route.snapshot.params['id'];
+    this.peluqueriaService.find(this.idPeluqueria).subscribe(res => {
       this.peluqueria = res;
       console.log(this.peluqueria)
     })

@@ -35,21 +35,17 @@ export class PeluqueriasComponent implements OnInit {
     this.peluqueriaService.getAll().subscribe(res => {
       this.name = this.route.snapshot.params['name'];
       this.fav = this.route.snapshot.params['fav'];
-      console.log(this.name)
       if (this.name){
         this.peluquerias = res.filter(p => p.nombre.includes(this.name));
       }else if(this.fav >= 0){
-        console.log(this.fav)
       }else {
         this.peluquerias = res;
       }
-
-      console.log(this.peluquerias)
 
     })
   }
 
   routePeluqueria(id:any) {
-    this.router.navigate(['/peluquerias/' + id]);
+    this.router.navigate(['/home/peluquerias/' + id]);
   }
 }
