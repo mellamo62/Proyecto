@@ -25,4 +25,7 @@ public class Citas {
 
     @Column(name = "fecha")
     private Date fecha;
+
+    @Column(name = "hora")
+    private String hora;
 }

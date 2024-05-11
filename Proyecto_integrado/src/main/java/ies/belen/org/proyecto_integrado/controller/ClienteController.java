@@ -1,13 +1,16 @@
 package ies.belen.org.proyecto_integrado.controller;
 
+import ies.belen.org.proyecto_integrado.domain.Citas;
 import ies.belen.org.proyecto_integrado.domain.Cliente;
 import ies.belen.org.proyecto_integrado.domain.Peluqueria;
 import ies.belen.org.proyecto_integrado.domain.RequestData;
+import ies.belen.org.proyecto_integrado.repository.CitaRepository;
 import ies.belen.org.proyecto_integrado.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Slf4j
@@ -43,10 +46,8 @@ public class ClienteController {
     }
 
     @PostMapping("/cita")
-    public Cliente newCita(@RequestBody RequestData requestData){
-        Cliente cliente = requestData.getCliente();
-        Peluqueria peluqueria = requestData.getPeluqueria();
-        return this.clienteService.cita(cliente, peluqueria);
+    public Citas newCita(@RequestBody RequestData requestData) throws ParseException {
+        return this.clienteService.cita(requestData.getCliente(), requestData.getPeluqueria(), requestData.getFecha(), requestData.getHora());
     }
 
     @ResponseBody

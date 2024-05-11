@@ -4,6 +4,7 @@ import com.fasterxml.jackson.annotation.JsonIgnore;
 import jakarta.persistence.*;
 import lombok.AllArgsConstructor;
 import lombok.Data;
+import lombok.Lombok;
 import lombok.NoArgsConstructor;
 
 import java.sql.Blob;
@@ -19,7 +20,7 @@ public class Peluqueria {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name = "id_peluqueria")
-    private int idPeluqueria;
+    private Long idPeluqueria;
     private String nombre;
     private String descripcion;
     private String direccion;
@@ -30,7 +31,7 @@ public class Peluqueria {
     @Column(name = "url_imagen2")
     private String urlImagen2;
 
-    public Peluqueria(int idPeluqueria, String nombre, String descripcion, String direccion, String urlImagen, String urlImagen2) {
+    public Peluqueria(Long idPeluqueria, String nombre, String descripcion, String direccion, String urlImagen, String urlImagen2) {
         this.idPeluqueria = idPeluqueria;
         this.nombre = nombre;
         this.descripcion = descripcion;

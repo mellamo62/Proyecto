@@ -7,6 +7,9 @@ import {ActivatedRoute} from "@angular/router";
 import {ClientesService} from "../clientes.service";
 import {Cliente} from "../modelos/cliente";
 import {Peluqueria} from "../modelos/peluqueria";
+import {RequestData} from "../modelos/RequestData";
+import {CookieService} from "ngx-cookie-service";
+import {PeluqueriaService} from "../peluqueria.service";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -29,7 +32,9 @@ export class PedirCitaComponent {
   constructor(
     private route:ActivatedRoute,
     private horariosService: HorariosService,
-    private clientesService:ClientesService
+    private clientesService:ClientesService,
+    private peluqueriaService: PeluqueriaService,
+    private cookieService: CookieService
   ) {
     this.minDateValue = new Date();
     this.id = this.route.snapshot.params['idPeluqueria'];
@@ -50,27 +55,46 @@ export class PedirCitaComponent {
       });
   }
 
-  public check(){
-    // let cliente:Cliente ={
-    //   idCliente:2,
-    //   usuario:"crinisitian",
-    //   nombre:"Cristian",
-    //   apellidos: "Prieto Ortega",
-    //   url_image: "https://static.wikia.nocookie.net/theghosttrick/images/6/6c/SisselCat.png/revision/latest?cb=20110322224849"
-    // }
-    //
-    // let peluqueria:Peluqueria = {
-    //   idPeluqueria:1,
-    //   nombre: "Alonso",
-    //   descripcion:"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.",
-    //   direccion:"29120 Alhaurín el Grande, Málaga",
-    //   urlImagen:"https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no",
-    //   urlImagen2:"https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no"
-    // }
-    // this.clientesService.createCita(peluqueria, cliente)
-    //   .subscribe(res=>{
-    //     console.log(res)
-    //   });
+  public check(event:any){
+    let id = Number.parseInt(this.cookieService.get('usuario'));
+    let cliente:Cliente;
+    this.clientesService.get(id)
+      .subscribe(res=>{
+        cliente = res;
+      });
+
+    let idPeluqueria = this.route.snapshot.params['idPeluqueria'];
+
+    let peluqueria: Peluqueria;
+    this.peluqueriaService.find(idPeluqueria)
+      .subscribe(res=>{
+        peluqueria = res;
+      });
+
+    let hora:string;
+
+    this.horario.forEach((h: any)=>{
+      if (event.target.id == h.hora){
+        hora = h.hora;
+      }
+    })
+
+
+
+    setTimeout(()=>{
+      let cita:RequestData = {
+      cliente: cliente,
+      peluqueria: peluqueria,
+      fecha: this.fechaFormateada,
+      hora: hora
+    }
+      console.log(cita)
+      this.clientesService.createCita(cita)
+        .subscribe(res=>{
+          console.log(res)
+        });
+    },500)
+
 
 
 

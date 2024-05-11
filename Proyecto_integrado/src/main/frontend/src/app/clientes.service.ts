@@ -4,6 +4,7 @@ import {catchError, Observable, throwError} from "rxjs";
 import {Cliente} from "./modelos/cliente";
 import {PeluqueriaService} from "./peluqueria.service";
 import {Peluqueria} from "./modelos/peluqueria";
+import {RequestData} from "./modelos/RequestData";
 
 @Injectable({
   providedIn: 'root'
@@ -25,8 +26,6 @@ export class ClientesService {
     formData.append('apellidos', cliente.apellidos);
     formData.append('image', cliente.image, cliente.image.name);
 
-
-
     return this.httpClient.post<Cliente>(this.apiURL, formData, this.httpOptions);
   }
 
@@ -40,19 +39,13 @@ export class ClientesService {
       )
   }
 
-  createCita(peluqueria: Peluqueria, cliente: Cliente):Observable<any>{
-    let data = {
-      cliente: cliente,
-      peluqueria: peluqueria
-    }
+  createCita(info: RequestData){
+
     let headers = new HttpHeaders({
       'Content-Type': 'application/json'
     })
 
-    return this.httpClient.post<any>(this.apiURL+"cita", data, {headers})
-      .pipe(
-        catchError(this.errorHandler)
-      );
+    return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
   }
 
   all(){

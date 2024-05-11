@@ -38,7 +38,7 @@ export class LoginComponent {
         console.log(clientes)
         clientes.forEach(c => {
           if (this.loginForm.get('username')?.value == c.usuario) {
-            this.cookieService.set("usuario", c.usuario);
+            this.cookieService.set("usuario", c.idCliente.toString());
             this.router.navigate(['home']);
           }
         })
