@@ -18,17 +18,9 @@ import { CookieService } from 'ngx-cookie-service';
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent implements OnInit{
+export class HomeComponent{
 
-  constructor(private router: Router,
-              private service: PeluqueriaService,
-              private cookieService: CookieService) {
-  }
-
-  ngOnInit() {
-
-    console.log(this.cookieService.get('logeado'));
-
+  constructor(private router: Router) {
   }
 
   routeSearch(name:string){

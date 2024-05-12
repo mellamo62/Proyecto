@@ -26,11 +26,13 @@ import java.util.Optional;
 public class ClienteService {
 
     private final ClienteRepository clienteRepository;
+    private final PeluqueriaRepository peluqueriaRepository;
     private final CitaRepository citaRepository;
 
-    public ClienteService(ClienteRepository clienteRepository, CitaRepository citaRepository){
+    public ClienteService(ClienteRepository clienteRepository, CitaRepository citaRepository, PeluqueriaRepository peluqueriaRepository){
         this.clienteRepository = clienteRepository;
         this.citaRepository = citaRepository;
+        this.peluqueriaRepository = peluqueriaRepository;
     }
 
     public Cliente save(Cliente cliente){
@@ -46,6 +48,17 @@ public class ClienteService {
         cita.setFecha(fechaFormat);
         cita.setHora(hora);
         return citaRepository.save(cita);
+    }
+
+    public Cliente fav(Long idCliente, Long idPeluqueria){
+        Cliente cliente = this.clienteRepository.findById(idCliente).orElse(null);
+        Peluqueria peluqueria = this.peluqueriaRepository.findById(idPeluqueria).orElse(null);
+
+        assert cliente != null;
+        cliente.getPeluquerias().add(peluqueria);
+        assert peluqueria != null;
+        peluqueria.getClientes().add(cliente);
+        return this.clienteRepository.save(cliente);
     }
 
     public Cliente one(Long id){

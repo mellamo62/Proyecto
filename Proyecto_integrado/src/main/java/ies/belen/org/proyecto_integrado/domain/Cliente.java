@@ -20,6 +20,7 @@ public class Cliente {
     @Column(name = "id_cliente")
     private long idCliente;
     private String usuario;
+    private String password;
     private String nombre;
     private String apellidos;
 //    @Lob
@@ -38,12 +39,12 @@ public class Cliente {
         this.urlImagen = urlImagen;
     }
 
-    //    @ManyToMany
-//    @JoinTable(
-//            name = "citas",
-//            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
-//            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
-//    Set<Peluqueria> peluquerias = new HashSet<>();
+    @ManyToMany
+    @JoinTable(
+            name = "favs",
+            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
+            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
+    Set<Peluqueria> peluquerias = new HashSet<>();
 
     @OneToMany(mappedBy = "cliente")
     private Set<Citas> citas = new HashSet<>();

@@ -50,6 +50,11 @@ public class ClienteController {
         return this.clienteService.cita(requestData.getCliente(), requestData.getPeluqueria(), requestData.getFecha(), requestData.getHora());
     }
 
+    @PostMapping("/fav/{idCliente}/{idPeluqueria}")
+    public Cliente newFav(@PathVariable("idCliente") Long idCliente, @PathVariable("idPeluqueria") Long idPeluqueria){
+        return this.clienteService.fav(idCliente, idPeluqueria);
+    }
+
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")

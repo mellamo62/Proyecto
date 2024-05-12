@@ -40,11 +40,11 @@ public class Peluqueria {
         this.urlImagen2 = urlImagen2;
     }
 
-    //    @ManyToMany(
-//            mappedBy = "peluquerias")
-//    @JsonIgnore
-//    Set<Cliente> clientes = new HashSet<>();
-//
+    @ManyToMany(
+            mappedBy = "peluquerias")
+    @JsonIgnore
+    Set<Cliente> clientes = new HashSet<>();
+
     @OneToMany(mappedBy = "peluqueria")
     private Set<Citas> citas = new HashSet<>();
 

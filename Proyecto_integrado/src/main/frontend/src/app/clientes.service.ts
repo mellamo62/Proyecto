@@ -48,6 +48,14 @@ export class ClientesService {
     return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
   }
 
+  fav(idCliente: number, idPeluqueria:number){
+    let headers = new HttpHeaders({
+      'Content-Type': 'application/json'
+    })
+
+    return this.httpClient.post<Cliente>(this.apiURL+"fav/"+idCliente+"/"+idPeluqueria, null);
+  }
+
   all(){
     return this.httpClient.get<Cliente[]>(this.apiURL);
   }
