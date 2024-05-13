@@ -5,6 +5,7 @@ import {Cliente} from "./modelos/cliente";
 import {PeluqueriaService} from "./peluqueria.service";
 import {Peluqueria} from "./modelos/peluqueria";
 import {RequestData} from "./modelos/RequestData";
+import {RequestFileCliente} from "./modelos/RequestFileCliente";
 
 @Injectable({
   providedIn: 'root'
@@ -19,14 +20,11 @@ export class ClientesService {
     })
   };
 
-  create(cliente: Cliente) {
-    let formData = new FormData();
-    formData.append('usuario', cliente.usuario);
-    formData.append('nombre', cliente.nombre);
-    formData.append('apellidos', cliente.apellidos);
-    formData.append('image', cliente.image, cliente.image.name);
+  create(data:FormData, cliente:Cliente) {
 
-    return this.httpClient.post<Cliente>(this.apiURL, formData, this.httpOptions);
+    console.log(data)
+    // this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
+    return this.httpClient.post<any>(this.apiURL, cliente);
   }
 
   constructor(private httpClient: HttpClient) { }

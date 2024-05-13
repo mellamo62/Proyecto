@@ -8,12 +8,15 @@
       </form>
     </div>
     <div class="col-8">
-<!--      <div class="row">-->
-<!--        <a>{{cliente.nombre}} {{cliente.apellidos}}</a>-->
-<!--      </div>-->
-<!--      <div class="row">-->
-<!--        <a>{{cliente.usuario}}</a>-->
-<!--      </div>-->
+      <div class="row">
+        <a>{{cliente.nombre}} {{cliente.apellidos}}</a>
+      </div>
+      <div>
+        <img [src]="cliente.fotoPerfil" alt="foto de perfil">
+      </div>
+      <div class="row">
+        <a>{{cliente.usuario}}</a>
+      </div>
     </div>
   </div>
 </div>

@@ -23,28 +23,18 @@ public class Cliente {
     private String password;
     private String nombre;
     private String apellidos;
-//    @Lob
-//    @Column(columnDefinition = "MEDIUMBLOB")
-//    private byte[] image;
 
-    @Lob
-    @Column(length = 1000000000)
-    private String urlImagen;
+    private String fotoPerfil;
 
     public Cliente(long idCliente, String usuario, String nombre, String apellidos, String urlImagen) {
         this.idCliente = idCliente;
         this.usuario = usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
-        this.urlImagen = urlImagen;
     }
 
-    @ManyToMany
-    @JoinTable(
-            name = "favs",
-            joinColumns = @JoinColumn(name = "id_cliente", referencedColumnName = "id_cliente"),
-            inverseJoinColumns = @JoinColumn(name = "id_peluqueria", referencedColumnName = "id_peluqueria"))
-    Set<Peluqueria> peluquerias = new HashSet<>();
+    @OneToMany(mappedBy = "cliente")
+    private Set<Fav> favs = new HashSet<>();
 
     @OneToMany(mappedBy = "cliente")
     private Set<Citas> citas = new HashSet<>();

@@ -1,9 +1,6 @@
 package ies.belen.org.proyecto_integrado.controller;
 
-import ies.belen.org.proyecto_integrado.domain.Citas;
-import ies.belen.org.proyecto_integrado.domain.Cliente;
-import ies.belen.org.proyecto_integrado.domain.Peluqueria;
-import ies.belen.org.proyecto_integrado.domain.RequestData;
+import ies.belen.org.proyecto_integrado.domain.*;
 import ies.belen.org.proyecto_integrado.repository.CitaRepository;
 import ies.belen.org.proyecto_integrado.service.ClienteService;
 import lombok.extern.slf4j.Slf4j;
@@ -51,8 +48,13 @@ public class ClienteController {
     }
 
     @PostMapping("/fav/{idCliente}/{idPeluqueria}")
-    public Cliente newFav(@PathVariable("idCliente") Long idCliente, @PathVariable("idPeluqueria") Long idPeluqueria){
+    public Fav newFav(@PathVariable("idCliente") Long idCliente, @PathVariable("idPeluqueria") Long idPeluqueria){
         return this.clienteService.fav(idCliente, idPeluqueria);
+    }
+
+    @GetMapping("/fav/{idCliente}")
+    public List<Fav> getFav(@PathVariable("idCliente") Long id){
+        return this.clienteService.getFavCliente(id);
     }
 
     @ResponseBody

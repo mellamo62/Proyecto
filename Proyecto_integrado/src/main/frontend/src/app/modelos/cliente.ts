@@ -3,5 +3,5 @@ export interface Cliente{
   usuario:string;
   nombre:string;
   apellidos:string;
-  image:any;
+  fotoPerfil: string;
 }

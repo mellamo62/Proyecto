@@ -2,10 +2,12 @@ package ies.belen.org.proyecto_integrado.service;
 
 import ies.belen.org.proyecto_integrado.domain.Citas;
 import ies.belen.org.proyecto_integrado.domain.Cliente;
+import ies.belen.org.proyecto_integrado.domain.Fav;
 import ies.belen.org.proyecto_integrado.domain.Peluqueria;
 import ies.belen.org.proyecto_integrado.exceptions.ClienteNotFoundException;
 import ies.belen.org.proyecto_integrado.repository.CitaRepository;
 import ies.belen.org.proyecto_integrado.repository.ClienteRepository;
+import ies.belen.org.proyecto_integrado.repository.FavRepository;
 import ies.belen.org.proyecto_integrado.repository.PeluqueriaRepository;
 import org.springframework.http.HttpHeaders;
 import org.springframework.http.HttpStatus;
@@ -21,6 +23,7 @@ import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
 import java.util.Optional;
+import java.util.stream.Collectors;
 
 @Service
 public class ClienteService {
@@ -28,11 +31,13 @@ public class ClienteService {
     private final ClienteRepository clienteRepository;
     private final PeluqueriaRepository peluqueriaRepository;
     private final CitaRepository citaRepository;
+    private final FavRepository favRepository;
 
-    public ClienteService(ClienteRepository clienteRepository, CitaRepository citaRepository, PeluqueriaRepository peluqueriaRepository){
+    public ClienteService(ClienteRepository clienteRepository, CitaRepository citaRepository, PeluqueriaRepository peluqueriaRepository,FavRepository favRepository){
         this.clienteRepository = clienteRepository;
         this.citaRepository = citaRepository;
         this.peluqueriaRepository = peluqueriaRepository;
+        this.favRepository = favRepository;
     }
 
     public Cliente save(Cliente cliente){
@@ -50,16 +55,29 @@ public class ClienteService {
         return citaRepository.save(cita);
     }
 
-    public Cliente fav(Long idCliente, Long idPeluqueria){
+    public Fav fav(Long idCliente, Long idPeluqueria){
         Cliente cliente = this.clienteRepository.findById(idCliente).orElse(null);
         Peluqueria peluqueria = this.peluqueriaRepository.findById(idPeluqueria).orElse(null);
+        Fav fav = new Fav();
+        fav.setPeluqueria(peluqueria);
+        fav.setCliente(cliente);
 
-        assert cliente != null;
-        cliente.getPeluquerias().add(peluqueria);
-        assert peluqueria != null;
-        peluqueria.getClientes().add(cliente);
-        return this.clienteRepository.save(cliente);
+        return favRepository.save(fav);
+
     }
+
+    public List<Fav> getFavCliente(Long id){
+        List<Fav> favs = favRepository.findAll();
+        favs = favs.stream().map(f ->{
+            if (f.getCliente().getIdCliente() == id){
+                return f;
+            }
+            return null;
+        }).collect(Collectors.toList());
+
+        return favs;
+    }
+
 
     public Cliente one(Long id){
         return this.clienteRepository.findById(id)

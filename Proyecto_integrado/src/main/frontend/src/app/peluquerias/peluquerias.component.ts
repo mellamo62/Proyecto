@@ -48,4 +48,6 @@ export class PeluqueriasComponent implements OnInit {
   routePeluqueria(id:any) {
     this.router.navigate(['/home/peluquerias/' + id]);
   }
+
+
 }
