@@ -1,7 +1,7 @@
 import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
-import {ClientesService} from "../clientes.service";
-import {Cliente} from "../modelos/cliente";
+import {ClientesService} from "../../services/clientes.service";
+import {Cliente} from "../../modelos/cliente";
 import {Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 

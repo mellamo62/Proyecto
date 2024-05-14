@@ -1,11 +1,11 @@
 import { Injectable } from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
-import {Cliente} from "./modelos/cliente";
+import {Cliente} from "../modelos/cliente";
 import {PeluqueriaService} from "./peluqueria.service";
-import {Peluqueria} from "./modelos/peluqueria";
-import {RequestData} from "./modelos/RequestData";
-import {RequestFileCliente} from "./modelos/RequestFileCliente";
+import {Peluqueria} from "../modelos/peluqueria";
+import {RequestData} from "../modelos/RequestData";
+import {RequestFileCliente} from "../modelos/RequestFileCliente";
 
 @Injectable({
   providedIn: 'root'
@@ -20,15 +20,17 @@ export class ClientesService {
     })
   };
 
-  create(data:FormData, cliente:Cliente) {
 
-    console.log(data)
-    // this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
-    return this.httpClient.post<any>(this.apiURL, cliente);
-  }
 
   constructor(private httpClient: HttpClient) { }
 
+  create(cliente:Cliente) {
+    return this.httpClient.post<any>(this.apiURL, cliente);
+  }
+
+  uploadFile(data:FormData){
+    return this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
+  }
 
   get(id:number):Observable<Cliente>{
     return this.httpClient.get<Cliente>(this.apiURL+id)
@@ -52,6 +54,10 @@ export class ClientesService {
     })
 
     return this.httpClient.post<Cliente>(this.apiURL+"fav/"+idCliente+"/"+idPeluqueria, null);
+  }
+
+  getFavCliente(idCliente:number){
+    return this.httpClient.get(this.apiURL+"fav/"+idCliente);
   }
 
   all(){

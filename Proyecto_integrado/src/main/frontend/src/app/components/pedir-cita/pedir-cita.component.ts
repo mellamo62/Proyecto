@@ -2,14 +2,14 @@ import { Component } from '@angular/core';
 import { CalendarModule } from 'primeng/calendar';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {HorariosService} from "../horarios.service";
 import {ActivatedRoute} from "@angular/router";
-import {ClientesService} from "../clientes.service";
-import {Cliente} from "../modelos/cliente";
-import {Peluqueria} from "../modelos/peluqueria";
-import {RequestData} from "../modelos/RequestData";
 import {CookieService} from "ngx-cookie-service";
-import {PeluqueriaService} from "../peluqueria.service";
+import {HorariosService} from "../../services/horarios.service";
+import {ClientesService} from "../../services/clientes.service";
+import {PeluqueriaService} from "../../services/peluqueria.service";
+import {Cliente} from "../../modelos/cliente";
+import {Peluqueria} from "../../modelos/peluqueria";
+import {RequestData} from "../../modelos/RequestData";
 
 @Component({
   selector: 'app-pedir-cita',

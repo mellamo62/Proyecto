@@ -1,10 +1,10 @@
 import {Component, OnInit} from '@angular/core';
 import {ActivatedRoute, RouterLink} from "@angular/router";
-import {PeluqueriaService} from "../peluqueria.service";
-import {Peluqueria} from "../modelos/peluqueria";
 import {CommonModule} from "@angular/common";
-import {ClientesService} from "../clientes.service";
 import {CookieService} from "ngx-cookie-service";
+import {Peluqueria} from "../../modelos/peluqueria";
+import {PeluqueriaService} from "../../services/peluqueria.service";
+import {ClientesService} from "../../services/clientes.service";
 
 @Component({
   selector: 'app-peluqueria',

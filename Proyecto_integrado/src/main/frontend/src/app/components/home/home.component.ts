@@ -2,8 +2,6 @@ import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {Router, RouterLink, RouterOutlet} from "@angular/router";
 import {FormsModule} from "@angular/forms";
-import {PeluqueriaService} from "../peluqueria.service";
-import { CookieService } from 'ngx-cookie-service';
 
 @Component({
   selector: 'app-home',
