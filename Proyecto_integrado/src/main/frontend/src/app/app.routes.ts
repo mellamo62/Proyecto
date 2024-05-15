@@ -24,7 +24,7 @@ export const routes: Routes = [
       {path: 'peluquerias/fav/:idCliente', component: PeluqueriasComponent},
       {path: 'peluquerias/cita/:idPeluqueria', component: PedirCitaComponent},
       {path: 'perfil', component: PerfilComponent},
-      {path: 'perfil/:id', component: EditarPerfilComponent},
+      {path: 'perfil/editar', component: EditarPerfilComponent},
       {path: 'login', component: LoginComponent},
       {path: '', component: PrincipalComponent}
     ]

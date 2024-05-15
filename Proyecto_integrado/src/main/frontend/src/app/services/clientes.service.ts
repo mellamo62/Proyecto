@@ -28,6 +28,11 @@ export class ClientesService {
     return this.httpClient.post<any>(this.apiURL, cliente);
   }
 
+  uploadCliente(cliente:Cliente, id:number){
+
+    return this.httpClient.put<any>(this.apiURL+id,cliente)
+  }
+
   uploadFile(data:FormData){
     return this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
   }
@@ -49,9 +54,6 @@ export class ClientesService {
   }
 
   fav(idCliente: number, idPeluqueria:number){
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
 
     return this.httpClient.post<Cliente>(this.apiURL+"fav/"+idCliente+"/"+idPeluqueria, null);
   }

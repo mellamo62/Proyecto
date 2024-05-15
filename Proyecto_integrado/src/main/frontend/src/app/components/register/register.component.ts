@@ -31,8 +31,7 @@ export class RegisterComponent {
 
   constructor(private clienteService: ClientesService,
               private router: Router,
-              private cookieService: CookieService,
-              private formBuilder: FormBuilder) {
+              formBuilder: FormBuilder) {
     this.registerForm = formBuilder.group({
       "username": new FormControl('', Validators.required),
       "password": new FormControl('', [Validators.required, Validators.minLength(5)]),
