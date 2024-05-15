@@ -1,5 +1,5 @@
 .login-container {
-  max-width: 400px;
+  max-width: 40em;
   margin: 15em auto;
   background-color: #fff;
   border-radius: 5px;
@@ -15,10 +15,17 @@
 .sinCuenta{
   position: absolute;
   top: 31.5em;
-  right: 46em;
+  right: 38em;
   font-size: 0.9em;
   cursor: pointer;
 }
+
+.errorPassword{
+  font-size: 0.9em;
+  text-decoration: none;
+  color: red;
+}
+
 .button{
   width: 36em;
 }

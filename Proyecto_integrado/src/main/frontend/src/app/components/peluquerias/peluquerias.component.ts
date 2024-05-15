@@ -4,6 +4,7 @@ import {ActivatedRoute, Router} from "@angular/router";
 import {Peluqueria} from "../../modelos/peluqueria";
 import {PeluqueriaService} from "../../services/peluqueria.service";
 import {ClientesService} from "../../services/clientes.service";
+import {CookieService} from "ngx-cookie-service";
 
 
 @Component({
@@ -20,48 +21,78 @@ export class PeluqueriasComponent implements OnInit {
 
   public peluquerias: Peluqueria[];
   private name:string;
-  private fav: number;
+  private fav:number;
+  public favoritos:any;
+  public favoritosPeluqueria:any[];
+  public favoritosArray:any[];
 
   constructor(
     private route:ActivatedRoute,
     private peluqueriaService: PeluqueriaService,
     private clienteService: ClientesService,
-    private router: Router
+    private router: Router,
+    private coockieService: CookieService
   ) {
     this.peluquerias = [];
     this.name ="";
-    this.fav = 0;
+    this.fav =0;
+    this.favoritosPeluqueria =[];
+    this.favoritosArray =[];
   }
 
   ngOnInit() {
+    let idCliente =Number.parseInt(this.coockieService.get('usuario'));
+    this.clienteService.getFavCliente(idCliente)
+    .subscribe((res:any)=>{
+      this.favoritos = res;
+      this.favoritos.forEach((f:any)=>{
+        this.favoritosPeluqueria.push(f.peluqueria);
+      })
+      console.log("favorito")
+      console.log(this.favoritosPeluqueria)
+    });
 
-    let favorito:any;
     this.peluqueriaService.getAll().subscribe(res => {
       this.name = this.route.snapshot.params['name'];
       this.fav = this.route.snapshot.params['idCliente'];
-      
+
+
+
       if (this.name){
         this.peluquerias = res.filter(p => p.nombre.includes(this.name));
-      }else if(this.fav){
-        this.clienteService.getFavCliente(this.fav)
-          .subscribe((res:any)=>{
-            favorito = res;
-          });
 
+      }else if(this.fav){
         setTimeout(()=>{
-          favorito.forEach((f:any) =>{
-            this.peluquerias = res.filter(p=>{
-              return p.idPeluqueria == f.peluqueria.idPeluqueria;
-            })
+          this.favoritos.forEach((f:any) =>{
+            this.peluquerias.push(f.peluqueria)
           })
 
-          console.log(this.peluquerias)
-
-        }, 500);
+        }, 200);
 
       }else {
         this.peluquerias = res;
+        // console.log(this.favoritosPeluqueria)
+        // this.peluquerias.forEach((f:any) =>{
+        //   console.log("es favorita?")
+        //   console.log(f);
+        //
+        //   console.log(this.favoritosPeluqueria.includes(f))
+        // })
       }
+
+      // console.log("bucle")
+      // this.peluquerias.forEach(pelu =>{
+      //   console.log(pelu)
+      //   this.favoritosPeluqueria.forEach(fav =>{
+      //     console.log(fav)
+      //     if (pelu.idPeluqueria == fav.idPeluqueria){
+      //       this.favoritosArray.push()
+      //     }
+      //
+      //   })
+      // })
+      // console.log("array de fvoritos")
+      // console.log(this.favoritosArray)
 
     })
   }

@@ -26,11 +26,13 @@ public class Cliente {
 
     private String fotoPerfil;
 
-    public Cliente(long idCliente, String usuario, String nombre, String apellidos, String urlImagen) {
+    public Cliente(long idCliente, String usuario, String nombre, String apellidos,String password, String fotoPerfil) {
         this.idCliente = idCliente;
         this.usuario = usuario;
         this.nombre = nombre;
         this.apellidos = apellidos;
+        this.password = password;
+        this.fotoPerfil = fotoPerfil;
     }
 
     @OneToMany(mappedBy = "cliente")

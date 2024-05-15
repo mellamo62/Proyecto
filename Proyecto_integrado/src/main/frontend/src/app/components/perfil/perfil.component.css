@@ -1,3 +1,38 @@
 .foto{
   border-radius: 10em;
+  transition: filter 0.5s ease;
+}
+.camera{
+  opacity: 0;
+  position: absolute;
+  left: 12em;
+  top: 11em;
+  width: 15em;
+  transition: opacity 0.5s ease;
+}
+
+#image-container:hover .camera {
+  opacity: 1; /* Mostrar la imagen de la cámara cuando se pasa el ratón sobre el contenedor */
+}
+
+#image-container:hover .foto {
+  filter: grayscale(100%); /* Aplicar filtro de escala de grises a la imagen cuando se pasa el ratón sobre el contenedor */
+}
+
+.col-izq{
+  background-color: white;
+  width: 15.5em;
+  height: 27em;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.col-der{
+  background-color: white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 5px;
+}
+
+.user{
+  text-align: center;
 }

@@ -7,10 +7,14 @@ import {PedirCitaComponent} from "./components/pedir-cita/pedir-cita.component";
 import {EditarPerfilComponent} from "./components/editar-perfil/editar-perfil.component";
 import {PerfilComponent} from "./components/perfil/perfil.component";
 import {PrincipalComponent} from "./components/principal/principal.component";
+import {InicioComponent} from "./components/inicio/inicio.component";
+import {RegisterComponent} from "./components/register/register.component";
 
 
 export const routes: Routes = [
-  {path: '', component: LoginComponent},
+  {path: '', component: InicioComponent},
+  {path: 'login', component:LoginComponent},
+  {path: 'register', component:RegisterComponent},
   {
     path: 'home', component: HomeComponent,
     children: [

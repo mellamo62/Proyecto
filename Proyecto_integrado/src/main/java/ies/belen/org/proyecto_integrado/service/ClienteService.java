@@ -41,6 +41,7 @@ public class ClienteService {
     }
 
     public Cliente save(Cliente cliente){
+
         return this.clienteRepository.save(cliente);
     }
 
@@ -68,12 +69,7 @@ public class ClienteService {
 
     public List<Fav> getFavCliente(Long id){
         List<Fav> favs = favRepository.findAll();
-        favs = favs.stream().map(f ->{
-            if (f.getCliente().getIdCliente() == id){
-                return f;
-            }
-            return null;
-        }).collect(Collectors.toList());
+        favs = favs.stream().filter(f ->f.getCliente().getIdCliente() == id).collect(Collectors.toList());
 
         return favs;
     }

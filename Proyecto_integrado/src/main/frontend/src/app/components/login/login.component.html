@@ -1,17 +1,38 @@
 
 <div class="container">
-  <div class="login-container">
-    <h2>Iniciar Sesión</h2>
+  <div class="login-container row">
+    <div class="row">
+      <h2>Iniciar Sesión</h2>
+    </div>
+
     <form [formGroup]="loginForm" (ngSubmit)="submit()">
       <div class="form-group">
-        <label>Usuario</label>
-        <input type="text" class="form-control" formControlName="username" placeholder="Introduce usuario">
+        <div class="row">
+          <label>Usuario</label>
+        </div>
+        <div class="row">
+          <input type="text" class="form-control" formControlName="username" placeholder="Introduce usuario">
+        </div>
       </div>
       <div class="form-group">
-        <label>Contraseña</label>
-        <input type="password" class="form-control" formControlName="password" placeholder="Introduce contraseña">
+        <div class="row">
+          <label>Contraseña</label>
+        </div>
+
+        <div class="row">
+          <input type="password" class="form-control" formControlName="password" placeholder="Introduce contraseña">
+        </div>
       </div>
-      <button type="submit" class="btn btn-primary btn-block" [disabled]="loginForm.invalid">Iniciar Sesión</button>
+      <div class="form-group">
+        <div class="row">
+          <div class="col-3"></div>
+          <div class="col-9">
+            <a class="sinCuenta" routerLink="/register">¿No tiene cuenta? Registrese aquí.</a>
+          </div>
+        </div>
+
+      </div>
+      <button type="submit" class="button btn btn-primary btn-block" [disabled]="loginForm.invalid">Iniciar Sesión</button>
     </form>
   </div>
 </div>
