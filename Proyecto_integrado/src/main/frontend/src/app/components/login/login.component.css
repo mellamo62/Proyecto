@@ -5,6 +5,7 @@
   border-radius: 5px;
   padding: 20px;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  position: relative;
 }
 .login-container h2 {
   text-align: center;
@@ -14,8 +15,8 @@
 }
 .sinCuenta{
   position: absolute;
-  top: 31.5em;
-  right: 53em;
+  bottom: 5.1em;
+  left: 11.5em;
   font-size: 0.9em;
   cursor: pointer;
 }

@@ -13,14 +13,23 @@
                 <p class="card-text">{{ peluqueria.descripcion }}</p>
               </div>
               <div class="col-md-4">
-                <div class="row">
+                <div class="row" *ngIf="!citas">
                   <div class="col-md-9"></div>
-                  <div class="col-md-3" *ngIf="favoritosPeluqueria.includes(peluqueria)">
+                  <div class="col-md-3" *ngIf="favoritosArray.includes(peluqueria.idPeluqueria)">
                     <i class="fa-solid fa-heart fav"></i>
                   </div>
-                  <div class="col-md-3" *ngIf="!favoritosPeluqueria.includes(peluqueria)">
+                  <div class="col-md-3" *ngIf="!favoritosArray.includes(peluqueria.idPeluqueria)">
                     <i class="fa-regular fa-heart fav"></i>
                   </div>
+                </div>
+                <div class="row" *ngIf="citas">
+                  <div class="col-md-9"></div>
+                  <div class="col-md-3">
+                    <i class="fa-regular fa-clock fav"></i>
+                  </div>
+                  <!--                  <div class="col-md-3" *ngIf="!favoritosArray.includes(peluqueria.idPeluqueria)">-->
+                  <!--                    <i class="fa-regular fa-heart fav"></i>-->
+                  <!--                  </div>-->
                 </div>
                 <div class="row mt-5">
                   <p class="card-text">{{ peluqueria.direccion }}</p>

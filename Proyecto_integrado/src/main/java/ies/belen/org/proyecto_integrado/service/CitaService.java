@@ -8,6 +8,7 @@ import ies.belen.org.proyecto_integrado.repository.CitaRepository;
 import ies.belen.org.proyecto_integrado.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.Optional;
 
@@ -27,6 +28,18 @@ public class CitaService {
     public Citas one(Long id){
         return this.citaRepository.findById(id)
                 .orElseThrow(() -> new ClienteNotFoundException(id));
+    }
+
+    public List<Citas> getAllCliente(Long id){
+        List<Citas> citas = this.citaRepository.findAll();
+        List<Citas> citasToSend =new ArrayList<>();
+        citas.forEach((cita)->{
+            if (cita.getCliente().getIdCliente() == id){
+                citasToSend.add(cita);
+            }
+        });
+
+        return citasToSend;
     }
 
     public Citas replace(Long id, Citas citas){

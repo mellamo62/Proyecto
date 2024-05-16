@@ -59,6 +59,13 @@ public class ClienteController {
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
+    @DeleteMapping("/fav/{idPeluqueria}/{idCliente}")
+    public void deleteFav(@PathVariable("idPeluqueria")Long idPeluqueria, @PathVariable("idCliente") Long idCliente){
+        this.clienteService.deleteFav(idPeluqueria, idCliente);
+    }
+
+    @ResponseBody
+    @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")
     public void deleteCliente(@PathVariable("id") Long id){
         this.clienteService.delete(id);

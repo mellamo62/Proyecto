@@ -22,6 +22,7 @@ import java.text.ParseException;
 import java.text.SimpleDateFormat;
 import java.util.Date;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 import java.util.stream.Collectors;
 
@@ -67,6 +68,15 @@ public class ClienteService {
 
     }
 
+    public void deleteFav(Long idPeluqueria, Long idCliente){
+        List<Fav> favs = this.favRepository.findAll();
+        favs.forEach((fav)->{
+            if (Objects.equals(fav.getCliente().getIdCliente(), idCliente) && Objects.equals(fav.getPeluqueria().getIdPeluqueria(), idPeluqueria)){
+                this.favRepository.delete(fav);
+            }
+        });
+    }
+
     public List<Fav> getFavCliente(Long id){
         List<Fav> favs = favRepository.findAll();
         favs = favs.stream().filter(f ->f.getCliente().getIdCliente() == id).collect(Collectors.toList());
@@ -94,24 +104,5 @@ public class ClienteService {
                 return p;})
                 .orElseThrow(()->new ClienteNotFoundException(id));
     }
-    public Optional<Cliente> getCliente(Long id){
-        return clienteRepository.findById(id);
-    }
-    //Get Image using product ID
-//    @GetMapping(value = "/{clienteId}/image")
-//    public ResponseEntity<byte[]> getClienteImage(@PathVariable Long clienteId) {
-//        Optional<Cliente> clienteOptional = this.getCliente(clienteId);
-//        if (clienteOptional.isPresent()) {
-//            Cliente cliente = clienteOptional.get();
-//            byte[] imageBytes = java.util.Base64.getDecoder().decode(cliente.getImage());
-//            HttpHeaders headers = new HttpHeaders();
-//            headers.setContentType(MediaType.IMAGE_JPEG);
-//            return new ResponseEntity<>(imageBytes, headers, HttpStatus.OK);
-//        } else {
-//            return new ResponseEntity<>(new byte[0], HttpStatus.NOT_FOUND);
-//        }
-//    }
-
-
 
 }

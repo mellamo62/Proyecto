@@ -22,10 +22,10 @@ export const routes: Routes = [
       {path: 'peluquerias/:id', component: PeluqueriaComponent},
       {path: 'peluquerias/nombre/:name', component: PeluqueriasComponent},
       {path: 'peluquerias/fav/:idCliente', component: PeluqueriasComponent},
+      {path: 'citasPedidas', component: PeluqueriasComponent},
       {path: 'peluquerias/cita/:idPeluqueria', component: PedirCitaComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'perfil/editar', component: EditarPerfilComponent},
-      {path: 'login', component: LoginComponent},
       {path: '', component: PrincipalComponent}
     ]
   }

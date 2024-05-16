@@ -53,9 +53,16 @@ export class ClientesService {
     return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
   }
 
+  getCitas(idCliente:number){
+    return this.httpClient.get<Cliente>("http://localhost:8080/citas/cliente/"+idCliente)
+  }
+
   fav(idCliente: number, idPeluqueria:number){
 
     return this.httpClient.post<Cliente>(this.apiURL+"fav/"+idCliente+"/"+idPeluqueria, null);
+  }
+  deleteFav(idPeluqueria:number, idCliente:number){
+    return this.httpClient.delete(this.apiURL+"fav/"+idPeluqueria+"/"+idCliente);
   }
 
   getFavCliente(idCliente:number){

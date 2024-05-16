@@ -3,10 +3,39 @@
     <p-calendar [style]="{'width':'100%'}" dateFormat="dd.mm.yy" [firstDayOfWeek]="1" [(ngModel)]="date" [inline]="true"
                 [minDate]="minDateValue" (onSelect)="changeDay($event)" [disabledDays]="[0,6]"/>
   </div>
-  <div class="row">
-    <div style="margin-left: 5em; padding: 0.3em" *ngFor="let hora of horario">
-      <button class="btn btn-info text-white" (click)="check($event)" [id]="hora.hora">{{hora.hora}}</button>
+  <div class="row" style="margin-left: 0.2em">
+    <div class="col-2 horas" *ngIf="horas">
+        <div style="padding: 0.3em" *ngFor="let hora of horario">
+          <input type="radio" class="btn btn-info text-white" (change)="check(hora.hora)" [id]="hora.hora" name="horaRadioGroup" [value]="hora.hora">
+          <label for="{{hora.hora}}">{{hora.hora}}</label>
+        </div>
+
+    </div>
+    <div class="col-8"></div>
+    <div class="col-2">
+      <button id="pedirCita" class="btn btn-primary" style="margin-left: 4em; margin-top: 0.5em" (click)="confirmSelectionWithModal()">Pedir cita</button>
+    </div>
+
+
+  </div>
+</div>
+
+<div class="confirmation-modal" *ngIf="showConfirmation">
+  <div class="modal-content">
+    <p>¿Estás seguro de que deseas seleccionar esta hora?</p>
+    <div class="row">
+      <div class="col-1"></div>
+      <div class="col-3">
+        <button class="btn btn-primary" (click)="confirmSelection()">Confirmar</button>
+      </div>
+      <div class="col-4"></div>
+      <div class="col-3">
+        <button class="btn btn-danger" (click)="cancelSelection()">Cancelar</button>
+      </div>
+      <div class="col-1"></div>
     </div>
   </div>
 </div>
+
+
 

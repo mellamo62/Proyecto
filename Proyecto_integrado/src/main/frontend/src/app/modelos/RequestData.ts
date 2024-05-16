@@ -2,8 +2,8 @@ import {Cliente} from "./cliente";
 import {Peluqueria} from "./peluqueria";
 
 export interface RequestData {
-  cliente:Cliente,
-  peluqueria:Peluqueria,
-  fecha:string,
-  hora:string
+  cliente:Cliente | null,
+  peluqueria:Peluqueria | null,
+  fecha:string | null,
+  hora:string | null
 }

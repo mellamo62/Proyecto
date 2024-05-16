@@ -25,6 +25,7 @@ export class PeluqueriasComponent implements OnInit {
   public favoritos:any;
   public favoritosPeluqueria:any[];
   public favoritosArray:any[];
+  public citas:boolean;
 
   constructor(
     private route:ActivatedRoute,
@@ -38,6 +39,7 @@ export class PeluqueriasComponent implements OnInit {
     this.fav =0;
     this.favoritosPeluqueria =[];
     this.favoritosArray =[];
+    this.citas = false;
   }
 
   ngOnInit() {
@@ -52,49 +54,45 @@ export class PeluqueriasComponent implements OnInit {
       console.log(this.favoritosPeluqueria)
     });
 
-    this.peluqueriaService.getAll().subscribe(res => {
-      this.name = this.route.snapshot.params['name'];
-      this.fav = this.route.snapshot.params['idCliente'];
+    let citasPedidas = this.route.snapshot.url[0].path;
 
+    if (citasPedidas != "citasPedidas"){
+      this.peluqueriaService.getAll().subscribe(res => {
+        this.name = this.route.snapshot.params['name'];
+        this.fav = this.route.snapshot.params['idCliente'];
 
+        if (this.name){
+          this.peluquerias = res.filter(p => p.nombre.includes(this.name));
 
-      if (this.name){
-        this.peluquerias = res.filter(p => p.nombre.includes(this.name));
+        }else if(this.fav){
+          setTimeout(()=>{
+            this.favoritos.forEach((f:any) =>{
+              this.peluquerias.push(f.peluqueria)
+            })
+            console.log(this.peluquerias)
+          }, 200);
 
-      }else if(this.fav){
-        setTimeout(()=>{
-          this.favoritos.forEach((f:any) =>{
-            this.peluquerias.push(f.peluqueria)
+        }else {
+          this.peluquerias = res;
+        }
+
+        this.favoritos.forEach((fav:any)=>{
+          console.log(fav)
+          this.favoritosArray.push(fav.peluqueria.idPeluqueria);
+        })
+
+      })
+    }else{
+      this.citas = true;
+      this.clienteService.getCitas(idCliente)
+        .subscribe((res:any)=>{
+          res.forEach((c:any)=>{
+            this.peluquerias.push(c.peluqueria);
+
           })
+        })
+    }
 
-        }, 200);
-
-      }else {
-        this.peluquerias = res;
-        // console.log(this.favoritosPeluqueria)
-        // this.peluquerias.forEach((f:any) =>{
-        //   console.log("es favorita?")
-        //   console.log(f);
-        //
-        //   console.log(this.favoritosPeluqueria.includes(f))
-        // })
-      }
-
-      // console.log("bucle")
-      // this.peluquerias.forEach(pelu =>{
-      //   console.log(pelu)
-      //   this.favoritosPeluqueria.forEach(fav =>{
-      //     console.log(fav)
-      //     if (pelu.idPeluqueria == fav.idPeluqueria){
-      //       this.favoritosArray.push()
-      //     }
-      //
-      //   })
-      // })
-      // console.log("array de fvoritos")
-      // console.log(this.favoritosArray)
-
-    })
   }
 
   routePeluqueria(id:any) {

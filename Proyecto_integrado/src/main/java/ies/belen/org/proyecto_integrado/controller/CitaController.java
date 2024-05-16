@@ -8,6 +8,8 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.util.List;
+
 @Slf4j
 @RestController
 @CrossOrigin(origins = "http://localhost:4200")
@@ -25,6 +27,11 @@ public class CitaController {
         return this.citaService.one(id);
     }
 
+    @GetMapping("/cliente/{id}")
+    public List<Citas> getAllCliente(@PathVariable("id") Long id){
+        return this.citaService.getAllCliente(id);
+    }
+
     @PostMapping({"","/"})
     public Citas newCita(@RequestBody Citas citas){
         return this.citaService.save(citas);
@@ -34,13 +41,6 @@ public class CitaController {
     public Citas replaceCita(@PathVariable("id") Long id, @RequestBody Citas citas){
         return this.citaService.replace(id, citas);
     }
-
-//    @PostMapping("/cita")
-//    public Citas newCita(@RequestBody RequestData requestData){
-//        Cliente cliente = requestData.getCliente();
-//        Peluqueria peluqueria = requestData.getPeluqueria();
-//        return this.clienteService.cita(cliente, peluqueria);
-//    }
 
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)

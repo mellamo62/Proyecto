@@ -1,8 +1,8 @@
-import { Component } from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import { CalendarModule } from 'primeng/calendar';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
-import {ActivatedRoute} from "@angular/router";
+import {ActivatedRoute, Router} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {HorariosService} from "../../services/horarios.service";
 import {ClientesService} from "../../services/clientes.service";
@@ -22,27 +22,52 @@ import {RequestData} from "../../modelos/RequestData";
   templateUrl: './pedir-cita.component.html',
   styleUrl: './pedir-cita.component.css'
 })
-export class PedirCitaComponent {
+export class PedirCitaComponent implements OnInit{
   date: any;
   minDateValue: any;
   id:number;
   horario:any;
   fechaFormateada:any;
+  cita:RequestData;
+  public showConfirmation: boolean = false;
+  public horas:boolean;
+  public horasIselected:boolean;
+  boton:any;
 
   constructor(
     private route:ActivatedRoute,
     private horariosService: HorariosService,
     private clientesService:ClientesService,
     private peluqueriaService: PeluqueriaService,
-    private cookieService: CookieService
+    private cookieService: CookieService,
+    private router:Router
   ) {
     this.minDateValue = new Date();
     this.id = this.route.snapshot.params['idPeluqueria'];
+    this.cita= {
+      cliente:null,
+      fecha: null,
+      hora: null,
+      peluqueria: null
+    };
+    this.horas = false;
+    this.horasIselected = false;
+
+  }
+
+  ngOnInit() {
+    this.boton = document.getElementById("pedirCita");
+    console.log(this.boton)
+    this.boton.style.opacity ="0";
   }
 
   public changeDay(event:any){
+    if (this.horasIselected){
+      this.horasIselected = !this.horasIselected;
+      this.boton.style.opacity ="0";
+    }
     const fechaSeleccionada: Date = event;
-
+    this.horas = true;
     const dia = fechaSeleccionada.getDate().toString().padStart(2, '0');
     const mes = (fechaSeleccionada.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
     const anio = fechaSeleccionada.getFullYear();
@@ -55,7 +80,9 @@ export class PedirCitaComponent {
       });
   }
 
-  public check(event:any){
+  public check(selectedHour:string){
+    this.horasIselected = true;
+    this.boton.style.opacity ="1";
     let id = Number.parseInt(this.cookieService.get('usuario'));
     let cliente:Cliente;
     this.clientesService.get(id)
@@ -71,33 +98,41 @@ export class PedirCitaComponent {
         peluqueria = res;
       });
 
-    let hora:string;
-
-    this.horario.forEach((h: any)=>{
-      if (event.target.id == h.hora){
-        hora = h.hora;
-      }
-    })
-
-
-
     setTimeout(()=>{
-      let cita:RequestData = {
+      this.cita = {
       cliente: cliente,
       peluqueria: peluqueria,
       fecha: this.fechaFormateada,
-      hora: hora
+      hora: selectedHour
     }
-      console.log(cita)
-      this.clientesService.createCita(cita)
-        .subscribe(res=>{
-          console.log(res)
-        });
+      console.log(this.cita)
+
     },500)
+  }
 
 
 
+  public confirmSelection(): void {
+    console.log('Confirmado');
+    this.submit();
+    this.router.navigate(['home']);
 
+  }
+
+  public cancelSelection(): void {
+    console.log('Cancelado');
+    this.showConfirmation = false;
+  }
+
+  public confirmSelectionWithModal(): void {
+    this.showConfirmation = true;
+  }
+
+  submit(){
+    this.clientesService.createCita(this.cita)
+      .subscribe(res=>{
+        console.log(res)
+      });
   }
 
 }
