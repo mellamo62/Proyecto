@@ -31,11 +31,11 @@ public class DBOperationRunner implements CommandLineRunner {
     @Override
     public void run(String... args) throws Exception {
         Peluqueria peluqueria1 = new Peluqueria(1L, "Alonso","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "29120 Alhaurín el Grande, Málaga", "https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no");
+        Peluqueria peluqueria2 = new Peluqueria(2L, "Daniel Veiga Vitale, Hair & Beauty","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Muro de Prta Nueva, 7, Distrito Centro, 29005 Málaga", "https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no");
 
         peluqueriaRepository.saveAll(List.of(
                 peluqueria1,
-                new Peluqueria(2L, "Daniel Veiga Vitale, Hair & Beauty","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Muro de Prta Nueva, 7, Distrito Centro, 29005 Málaga", "https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no"),
-
+                peluqueria2,
                 new Peluqueria(3L, "Peluquería El Recorte","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Alcalde Joaquín Alonso, 27, Carretera de Cádiz, 29003 Málaga", "https://lh5.googleusercontent.com/p/AF1QipM3nE35dUeF6C2qVcUiFBnAdGqizmS7wYVJHOwl=w408-h510-k-no", "https://lh5.googleusercontent.com/p/AF1QipM3nE35dUeF6C2qVcUiFBnAdGqizmS7wYVJHOwl=w408-h510-k-no"),
 
                 new Peluqueria(4L, "JR Peluquería","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Berruguete, n° 10, local 6, Carretera de Cádiz, 29004 Málaga", "https://lh5.googleusercontent.com/p/AF1QipMOc8uvs8WnoWgNM_KN58tTMwcFXDAkqEAVT2Vq=w408-h544-k-no","https://lh5.googleusercontent.com/p/AF1QipMOc8uvs8WnoWgNM_KN58tTMwcFXDAkqEAVT2Vq=w408-h544-k-no"),
@@ -48,7 +48,9 @@ public class DBOperationRunner implements CommandLineRunner {
 
                 new Horarios(2, "10:00:00", peluqueria1),
 
-                new Horarios(3, "11:00:00", peluqueria1)
+                new Horarios(3, "11:00:00", peluqueria1),
+
+                new Horarios(3, "11:00:00", peluqueria2)
         ));
 
         clienteRepository.saveAll(List.of(

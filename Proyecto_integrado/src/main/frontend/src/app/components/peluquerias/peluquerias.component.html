@@ -24,12 +24,12 @@
                 </div>
                 <div class="row" *ngIf="citas">
                   <div class="col-md-9"></div>
-                  <div class="col-md-3">
+                  <div class="col-md-3" *ngIf="!expired.includes(peluqueria.id)">
                     <i class="fa-regular fa-clock fav"></i>
                   </div>
-                  <!--                  <div class="col-md-3" *ngIf="!favoritosArray.includes(peluqueria.idPeluqueria)">-->
-                  <!--                    <i class="fa-regular fa-heart fav"></i>-->
-                  <!--                  </div>-->
+                  <div class="col-md-3" *ngIf="expired.includes(peluqueria.id)">
+                    <i class="fa-solid fa-check fav"></i>
+                  </div>
                 </div>
                 <div class="row mt-5">
                   <p class="card-text">{{ peluqueria.direccion }}</p>

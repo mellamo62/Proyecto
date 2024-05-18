@@ -19,13 +19,14 @@ import {CookieService} from "ngx-cookie-service";
 })
 export class PeluqueriasComponent implements OnInit {
 
-  public peluquerias: Peluqueria[];
+  public peluquerias: any[];
   private name:string;
   private fav:number;
   public favoritos:any;
   public favoritosPeluqueria:any[];
   public favoritosArray:any[];
   public citas:boolean;
+  public expired:any[];
 
   constructor(
     private route:ActivatedRoute,
@@ -40,10 +41,12 @@ export class PeluqueriasComponent implements OnInit {
     this.favoritosPeluqueria =[];
     this.favoritosArray =[];
     this.citas = false;
+    this.expired = [];
   }
 
   ngOnInit() {
     let idCliente =Number.parseInt(this.coockieService.get('usuario'));
+
     this.clienteService.getFavCliente(idCliente)
     .subscribe((res:any)=>{
       this.favoritos = res;
@@ -86,9 +89,17 @@ export class PeluqueriasComponent implements OnInit {
       this.citas = true;
       this.clienteService.getCitas(idCliente)
         .subscribe((res:any)=>{
+          res.sort((a:any, b:any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
+          console.log(res)
+          let index=0
           res.forEach((c:any)=>{
-            this.peluquerias.push(c.peluqueria);
-
+            c.peluqueria.id = index;
+            this.peluquerias.push(c.peluqueria)
+            console.log(c.fecha)
+            if (new Date(c.fecha).getTime() <= new Date().getTime()){
+              this.expired.push(c.peluqueria.id);
+            }
+            index++;
           })
         })
     }
@@ -96,7 +107,10 @@ export class PeluqueriasComponent implements OnInit {
   }
 
   routePeluqueria(id:any) {
-    this.router.navigate(['/home/peluquerias/' + id]);
+    if (!this.citas){
+      this.router.navigate(['/home/peluquerias/' + id]);
+    }
+    
   }
 
 
