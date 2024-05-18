@@ -3,6 +3,7 @@ import {HttpClient, HttpHeaders} from "@angular/common/http";
 import {Peluqueria} from "../modelos/peluqueria";
 import {Horarios} from "../modelos/horarios";
 import {catchError, Observable, throwError} from "rxjs";
+import {Cita} from "../modelos/cita";
 
 @Injectable({
   providedIn: 'root'
@@ -21,6 +22,13 @@ export class HorariosService {
 
   getOneByPeluqueria(id:number):Observable<Horarios>{
     return this.http.get<Horarios>(`${this.apiURL}one/${id}`)
+      .pipe(
+        catchError(this.errorHandler)
+      );
+  }
+
+  getCitasByPeluquera(id:number){
+    return this.http.get<Cita>(`http://localhost:8080/citas/peluqueria/${id}`)
       .pipe(
         catchError(this.errorHandler)
       );

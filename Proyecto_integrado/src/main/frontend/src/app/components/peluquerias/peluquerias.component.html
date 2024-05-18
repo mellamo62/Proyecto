@@ -10,10 +10,22 @@
             <div class="row">
               <div class="col-md-8">
                 <h4 class="card-title">{{ peluqueria.nombre }}</h4>
-                <p class="card-text">{{ peluqueria.descripcion }}</p>
+                <div *ngIf="citas.length <0">
+                  <p class="card-text">{{ peluqueria.descripcion }}</p>
+                </div>
+                <div *ngIf="citas.length >0">
+                  <div *ngFor="let cita of citas">
+                    <div *ngIf="cita.id == peluqueria.id">
+                      <p class="card-text">Fecha: {{ cita.fecha }}</p>
+                      <p class="card-text">Hora: {{ cita.hora }}</p>
+                    </div>
+                  </div>
+                </div>
+
+
               </div>
               <div class="col-md-4">
-                <div class="row" *ngIf="!citas">
+                <div class="row" *ngIf="!isCita">
                   <div class="col-md-9"></div>
                   <div class="col-md-3" *ngIf="favoritosArray.includes(peluqueria.idPeluqueria)">
                     <i class="fa-solid fa-heart fav"></i>
@@ -22,7 +34,7 @@
                     <i class="fa-regular fa-heart fav"></i>
                   </div>
                 </div>
-                <div class="row" *ngIf="citas">
+                <div class="row" *ngIf="isCita">
                   <div class="col-md-9"></div>
                   <div class="col-md-3" *ngIf="!expired.includes(peluqueria.id)">
                     <i class="fa-regular fa-clock fav"></i>

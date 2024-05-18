@@ -10,6 +10,7 @@ import org.springframework.stereotype.Service;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Objects;
 import java.util.Optional;
 
 @Service
@@ -35,6 +36,18 @@ public class CitaService {
         List<Citas> citasToSend =new ArrayList<>();
         citas.forEach((cita)->{
             if (cita.getCliente().getIdCliente() == id){
+                citasToSend.add(cita);
+            }
+        });
+
+        return citasToSend;
+    }
+
+    public List<Citas> getAllPeluqueria(Long id){
+        List<Citas> citas = this.citaRepository.findAll();
+        List<Citas> citasToSend =new ArrayList<>();
+        citas.forEach((cita)->{
+            if (Objects.equals(cita.getPeluqueria().getIdPeluqueria(), id)){
                 citasToSend.add(cita);
             }
         });

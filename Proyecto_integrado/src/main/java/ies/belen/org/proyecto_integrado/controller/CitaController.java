@@ -32,6 +32,11 @@ public class CitaController {
         return this.citaService.getAllCliente(id);
     }
 
+    @GetMapping("/peluqueria/{id}")
+    public List<Citas> getAllPeluqueria(@PathVariable("id") Long id){
+        return this.citaService.getAllPeluqueria(id);
+    }
+
     @PostMapping({"","/"})
     public Citas newCita(@RequestBody Citas citas){
         return this.citaService.save(citas);

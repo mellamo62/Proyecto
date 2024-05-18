@@ -25,8 +25,9 @@ export class PeluqueriasComponent implements OnInit {
   public favoritos:any;
   public favoritosPeluqueria:any[];
   public favoritosArray:any[];
-  public citas:boolean;
+  public isCita:boolean;
   public expired:any[];
+  public citas:any;
 
   constructor(
     private route:ActivatedRoute,
@@ -40,8 +41,9 @@ export class PeluqueriasComponent implements OnInit {
     this.fav =0;
     this.favoritosPeluqueria =[];
     this.favoritosArray =[];
-    this.citas = false;
+    this.isCita = false;
     this.expired = [];
+    this.citas = [];
   }
 
   ngOnInit() {
@@ -86,31 +88,36 @@ export class PeluqueriasComponent implements OnInit {
 
       })
     }else{
-      this.citas = true;
+      this.isCita = true;
       this.clienteService.getCitas(idCliente)
         .subscribe((res:any)=>{
           res.sort((a:any, b:any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
-          console.log(res)
           let index=0
+          this.citas = res;
           res.forEach((c:any)=>{
-            c.peluqueria.id = index;
+            c.peluqueria.id = c.id;
+            c.fecha = new Date(c.fecha).getDate()+"/"+(new Date(c.fecha).getMonth()+1)+"/"+new Date(c.fecha).getFullYear();
             this.peluquerias.push(c.peluqueria)
-            console.log(c.fecha)
             if (new Date(c.fecha).getTime() <= new Date().getTime()){
               this.expired.push(c.peluqueria.id);
             }
             index++;
           })
+
+          console.log("peluquerias y citas")
+          console.log(this.peluquerias)
+          console.log(this.citas)
+
         })
     }
 
   }
 
   routePeluqueria(id:any) {
-    if (!this.citas){
+    if (!this.isCita){
       this.router.navigate(['/home/peluquerias/' + id]);
     }
-    
+
   }
 
 

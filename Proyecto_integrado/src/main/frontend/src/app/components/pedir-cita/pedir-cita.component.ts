@@ -10,6 +10,7 @@ import {PeluqueriaService} from "../../services/peluqueria.service";
 import {Cliente} from "../../modelos/cliente";
 import {Peluqueria} from "../../modelos/peluqueria";
 import {RequestData} from "../../modelos/RequestData";
+import {Cita} from "../../modelos/cita";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -33,6 +34,7 @@ export class PedirCitaComponent implements OnInit{
   public horas:boolean;
   public horasIselected:boolean;
   boton:any;
+  public citas:any;
 
   constructor(
     private route:ActivatedRoute,
@@ -52,13 +54,19 @@ export class PedirCitaComponent implements OnInit{
     };
     this.horas = false;
     this.horasIselected = false;
-
+    this.citas =[];
   }
 
   ngOnInit() {
     this.boton = document.getElementById("pedirCita");
     console.log(this.boton)
     this.boton.style.opacity ="0";
+    this.horariosService.getCitasByPeluquera(this.id)
+      .subscribe(res=>{
+        console.log("citas de peluqueria")
+        console.log(res)
+        this.citas = res;
+      })
   }
 
   public changeDay(event:any){
@@ -75,7 +83,6 @@ export class PedirCitaComponent implements OnInit{
     this.fechaFormateada = `${dia}-${mes}-${anio}`;
     this.horariosService.getOneByPeluqueria(this.id)
       .subscribe(res=>{
-        console.log(res)
         this.horario = res;
       });
   }
