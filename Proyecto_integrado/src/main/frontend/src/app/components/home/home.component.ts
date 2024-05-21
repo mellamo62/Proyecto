@@ -19,7 +19,7 @@ import {CookieService} from "ngx-cookie-service";
   templateUrl: './home.component.html',
   styleUrl: './home.component.css'
 })
-export class HomeComponent{
+export class HomeComponent implements OnInit{
 
   public cliente:any;
   constructor(private router: Router, private clienteService: ClientesService, private coockieService:CookieService) {
@@ -30,7 +30,27 @@ export class HomeComponent{
       });
   }
 
+  ngOnInit() {
+    document.addEventListener('click', function(event) {
+      const checkbox = document.getElementById('check') as HTMLInputElement;
+      const sidebar = document.getElementById('sidebar') as HTMLInputElement;
+      const estiloSidebar = getComputedStyle(sidebar);
+      const cilindroAr = document.getElementById('cilindroArriba') as HTMLInputElement;
+      const cilindroAb = document.getElementById('cilindroAbajo') as HTMLInputElement;
+      const sidebarImage = document.getElementById('imagenPerfil') as HTMLInputElement;
+      const target = event.target as Node
+
+      const isClickInside = sidebar.contains(target) || cilindroAb.contains(target) || cilindroAr.contains(target) ;
+
+      if (!isClickInside && estiloSidebar.getPropertyValue('right') == "54.4px" || event.target === sidebarImage) {
+        checkbox.checked = false;
+      }
+    });
+  }
+
   routeSearch(name:string){
     this.router.navigate(['home/peluquerias/nombre/'+name]);
   }
+
+
 }

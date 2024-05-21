@@ -1,21 +1,58 @@
 .bg-button-lateral{
-  background-color: #A2ECFC;
+  background-color: #5C5343;
+  /*background-image: repeating-linear-gradient(*/
+  /*  45deg,*/
+  /*  white 0,*/
+  /*  white 1em,*/
+  /*  #000000 1em,*/
+  /*  #000000 2em*/
+  /*);*/
+  border-radius: 5em;
   height: 20em;
   margin-top: 6em;
+  margin-bottom:-150em;
+  opacity:50%;
+  animation: moveUp 3s forwards;
 
 }
 .bg-button-central{
-  background-color: #94FFF0;
+  background-color: #5C5343;
+  /*background-image: repeating-linear-gradient(*/
+  /*  45deg,*/
+  /*  white 0,*/
+  /*  white 1em,*/
+  /*  #000000 1em,*/
+  /*  #000000 2em*/
+  /*);*/
+  border-radius: 5em;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   height: 33em;
+  margin-bottom:-150em;
+  opacity:50%;
+  animation: moveUp 3s forwards;
+}
+
+@keyframes moveUp {
+  60%{
+    opacity:100%;
+  }
+  100%{
+    opacity:100%;
+    margin-bottom:0
+  }
 }
 .bloque{
   margin-top: 10em;
+  cursor:default;
 }
 
 .text-button{
   text-decoration: none;
   font-size: 2em;
-  color: #876CFF;
+  color: white;
+  border-radius: 1em;
+  width: 10em;
+  text-align: center;
 }
 
 .cursor-pointer {

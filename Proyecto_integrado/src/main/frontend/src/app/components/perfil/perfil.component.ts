@@ -21,7 +21,7 @@ import {ClientesService} from "../../services/clientes.service";
   styleUrl: './perfil.component.css',
   providers: [HttpClientModule]
 })
-export class PerfilComponent implements OnInit {
+export class PerfilComponent {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
@@ -36,10 +36,6 @@ export class PerfilComponent implements OnInit {
         this.cliente = data;
         console.log(this.cliente)
       });
-  }
-
-  ngOnInit() {
-
   }
 
   submit() {

@@ -5,3 +5,6 @@
 body{
   background-image: url("assets/static/fondo.jpg");
 }
+html::-webkit-scrollbar {
+  display: none;
+}

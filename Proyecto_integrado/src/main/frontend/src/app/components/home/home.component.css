@@ -1,21 +1,61 @@
-.logo{
+.logo {
   margin-left: 6em;
 }
 
-.perfil{
+.perfil {
   margin-right: 6em;
 }
 
-.imagenPerfil{
+.imagenPerfil {
   border-radius: 50%;
+  margin-left: 5em;
 }
 
-.searchBar{
+.searchBar {
   width: 50em;
 }
 
-.bg-header{
-  background-color: white;
+.cilindroArriba{
+  transition: all .5s ease;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: -15em;
+}
+
+.cilindroAbajo{
+  transition: all .5s ease;
+  overflow-y: auto;
+  position: fixed;
+  bottom: 0;
+  right: -15em;
+}
+
+.name {
+  position: fixed;
+  bottom: 30em;
+  right: -20em;
+}
+
+.bg-header {
+  background-color: #5C5343;
+  /*background-image: repeating-linear-gradient(*/
+  /*  45deg,*/
+  /*  white 0,*/
+  /*  white 1em,*/
+  /*  #000000 1em,*/
+  /*  #000000 2em*/
+  /*);*/
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  position: relative;
+}
+
+.sidebar {
+  width: 11.3em;
+  height: 45em;
   background-image: repeating-linear-gradient(
     45deg,
     white 0,
@@ -27,8 +67,75 @@
     red 3em,
     red 4em
   );
-
-  border-bottom: black solid 0.2em;
-  border-top: black solid 0.2em;
+  transition: all .5s ease;
+  animation: rotate-background 10s linear infinite;
+  background-size: 200% 200%;
+  overflow-y: auto;
+  position: fixed;
+  top: 0;
+  right: -15em;
+  margin-top: 7.75em;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
 }
+
+@keyframes rotate-background {
+  0% {
+    background-position: 100% 100%;
+  }
+  100% {
+    background-position: 0 0;
+  }
+}
+
+.sidebar a {
+  display: block;
+  height: 65px;
+  width: 100px;
+  color: #353535;
+  line-height: 65px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  border-left: 5px solid transparent;
+  font-family: 'Lato', sans-serif;
+  transition: all .5s ease;
+}
+
+#check {
+  display: none;
+}
+
+.info{
+  width: 6em;
+  text-align: center;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  background-color: #fff;
+  border-radius: 5px;
+}
+
+label #btn {
+
+  margin-right: 8em;
+  cursor: pointer;
+  height: 5em;
+  width: 5em;
+  text-align: center;
+  transition: all .5s ease;
+}
+
+#check:checked ~ .sidebar {
+  right: 3.4em;
+}
+#check:checked ~ .cilindroArriba {
+  right: 0;
+}
+#check:checked ~ .cilindroAbajo {
+  right: 0;
+}
+
+#check:checked ~ label #btn {
+  margin-right: 245px;
+  opacity: 0;
+  visibility: hidden;
+}
+
 
