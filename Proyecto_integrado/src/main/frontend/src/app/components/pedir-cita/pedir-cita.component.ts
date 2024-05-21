@@ -61,12 +61,19 @@ export class PedirCitaComponent implements OnInit{
     this.boton = document.getElementById("pedirCita");
     console.log(this.boton)
     this.boton.style.opacity ="0";
-    this.horariosService.getCitasByPeluquera(this.id)
+    this.horariosService.getCitasByPeluqueria(this.id)
       .subscribe(res=>{
         console.log("citas de peluqueria")
         console.log(res)
         this.citas = res;
       })
+  }
+
+  formatTime(fecha:Date){
+    const dia = fecha.getDate().toString().padStart(2, '0');
+    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
+    const anio = fecha.getFullYear();
+    return `${dia}-${mes}-${anio}`;
   }
 
   public changeDay(event:any){
@@ -76,14 +83,19 @@ export class PedirCitaComponent implements OnInit{
     }
     const fechaSeleccionada: Date = event;
     this.horas = true;
-    const dia = fechaSeleccionada.getDate().toString().padStart(2, '0');
-    const mes = (fechaSeleccionada.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
-    const anio = fechaSeleccionada.getFullYear();
 
-    this.fechaFormateada = `${dia}-${mes}-${anio}`;
+    this.fechaFormateada = this.formatTime(fechaSeleccionada);
     this.horariosService.getOneByPeluqueria(this.id)
       .subscribe(res=>{
         this.horario = res;
+        console.log(this.horario)
+        this.citas.forEach((c:any)=>{
+          if (this.formatTime(new Date(c.fecha)) == this.fechaFormateada){
+            console.log(c.hora)
+            this.horario = this.horario.filter((h:any) => h.hora != c.hora);
+          }
+        })
+        console.log(this.horario)
       });
   }
 

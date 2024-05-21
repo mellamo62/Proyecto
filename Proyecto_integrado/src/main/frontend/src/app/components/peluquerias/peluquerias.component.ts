@@ -57,7 +57,7 @@ export class PeluqueriasComponent implements OnInit {
       })
       console.log("favorito")
       console.log(this.favoritosPeluqueria)
-    });
+
 
     let citasPedidas = this.route.snapshot.url[0].path;
 
@@ -96,13 +96,19 @@ export class PeluqueriasComponent implements OnInit {
           this.citas = res;
           res.forEach((c:any)=>{
             c.peluqueria.id = c.id;
-            c.fecha = new Date(c.fecha).getDate()+"/"+(new Date(c.fecha).getMonth()+1)+"/"+new Date(c.fecha).getFullYear();
+            c.fecha = new Date(c.fecha).getFullYear()+"-"+ ((new Date(c.fecha).getMonth()+1 < 10) ? 0 : "") + (new Date(c.fecha).getMonth()+1)+"-"+new Date(c.fecha).getDate();
             this.peluquerias.push(c.peluqueria)
-            if (new Date(c.fecha).getTime() <= new Date().getTime()){
+            console.log(c.fecha)
+            let fecha = new Date(c.fecha)
+            let fechaCita = fecha.getTime();
+            let hoy = new Date().getTime();
+            if (fechaCita <= hoy){
               this.expired.push(c.peluqueria.id);
             }
             index++;
           })
+
+          console.log(this.expired)
 
           console.log("peluquerias y citas")
           console.log(this.peluquerias)
@@ -110,7 +116,7 @@ export class PeluqueriasComponent implements OnInit {
 
         })
     }
-
+    });
   }
 
   routePeluqueria(id:any) {

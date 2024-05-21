@@ -50,7 +50,7 @@ public class DBOperationRunner implements CommandLineRunner {
 
                 new Horarios(3, "11:00:00", peluqueria1),
 
-                new Horarios(3, "11:00:00", peluqueria2)
+                new Horarios(4, "11:00:00", peluqueria2)
         ));
 
         clienteRepository.saveAll(List.of(

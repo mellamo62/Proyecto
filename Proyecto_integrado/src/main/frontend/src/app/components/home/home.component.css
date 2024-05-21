@@ -15,5 +15,20 @@
 }
 
 .bg-header{
-  background-color: #dee3ff;
+  background-color: white;
+  background-image: repeating-linear-gradient(
+    45deg,
+    white 0,
+    white 1em,
+    blue 1em,
+    blue 2em,
+    white 2em,
+    white 3em,
+    red 3em,
+    red 4em
+  );
+
+  border-bottom: black solid 0.2em;
+  border-top: black solid 0.2em;
 }
+
