@@ -31,13 +31,18 @@ public class Peluqueria {
     @Column(name = "url_imagen2")
     private String urlImagen2;
 
-    public Peluqueria(Long idPeluqueria, String nombre, String descripcion, String direccion, String urlImagen, String urlImagen2) {
+    private double latitud;
+    private double longitud;
+
+    public Peluqueria(Long idPeluqueria, String nombre, String descripcion, String direccion, String urlImagen, String urlImagen2,double latitud, double longitud) {
         this.idPeluqueria = idPeluqueria;
         this.nombre = nombre;
         this.descripcion = descripcion;
         this.direccion = direccion;
         this.urlImagen = urlImagen;
         this.urlImagen2 = urlImagen2;
+        this.latitud = latitud;
+        this.longitud = longitud;
     }
 
     @OneToMany(mappedBy = "peluqueria")

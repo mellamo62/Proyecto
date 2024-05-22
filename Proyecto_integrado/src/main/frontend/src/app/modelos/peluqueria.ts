@@ -5,4 +5,6 @@ export interface Peluqueria{
   direccion:string;
   urlImagen:any;
   urlImagen2:any;
+  latitud:number;
+  longitud:number;
 }

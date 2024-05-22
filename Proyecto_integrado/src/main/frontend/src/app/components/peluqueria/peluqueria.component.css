@@ -6,7 +6,7 @@
 }
 
 .nombre{
-  margin-top: -1.5em;
+  margin-top: -1em;
   margin-left: 2em;
 }
 
@@ -21,6 +21,7 @@
   margin-top: -0.5em;
   border:0;
   background-color: transparent;
+  color: #882018;
 }
 
 .tooltip-container {
@@ -48,5 +49,22 @@
 }
 
 .peluqueria{
-  background-color: white;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  background-size: cover;
+  margin-top: -1%;
+  border-radius: 2.5%;
+  color:white
+}
+
+.imagenGrande{
+  border-radius: 2.5%;
+}
+
+#map{
+  height: 24em;
+  width: 90%;
+  border-radius: 1%;
+  margin-left: 5%;
+  margin-bottom: 3%;
+  margin-top: 2%;
 }

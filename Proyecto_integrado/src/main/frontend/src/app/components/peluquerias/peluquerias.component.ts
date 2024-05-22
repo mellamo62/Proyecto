@@ -110,12 +110,18 @@ export class PeluqueriasComponent implements OnInit {
 
           console.log(this.expired)
 
-          console.log("peluquerias y citas")
-          console.log(this.peluquerias)
-          console.log(this.citas)
+
 
         })
+
+
     }
+    setTimeout(()=>{
+      console.log("peluquerias y citas")
+      console.log(this.peluquerias)
+      console.log(this.citas)
+    },1000)
+
     });
   }
 

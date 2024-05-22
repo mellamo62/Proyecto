@@ -1,7 +1,8 @@
+<div class="row ">
+  <img [src]="peluqueria.urlImagen2" width="100%" height="400em" class="imagenGrande" alt="Foto peluqueria grande">
+</div>
+
 <div class="peluqueria">
-  <div class="row">
-    <img [src]="peluqueria.urlImagen2" width="100%" height="400em" alt="Foto peluqueria grande">
-  </div>
   <div class="row">
     <div class="col-md-2">
       <img [src]="peluqueria.urlImagen" class=" fotoPerfil" alt="Foto peluqueria" width="150" height="150">
@@ -21,10 +22,6 @@
             <button class="fa-regular fa-heart fav" id="corazon" (click)="makeFav()" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false"></button>
             <div class="tooltip" *ngIf="showTooltip">Añadir a favoritos</div>
           </div>
-
-          <div class="row mt-5">
-            <p class="card-text">{{ peluqueria.direccion }}</p>
-          </div>
         </div>
       </div>
     </div>
@@ -35,5 +32,10 @@
       <button class="btn btn-info text-white" [routerLink]="'/home/peluquerias/cita/'+idPeluqueria">Pedir cita</button>
     </div>
   </div>
+
+  <div class="row">
+    <div id="map"></div>
+  </div>
+
 </div>
 
