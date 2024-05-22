@@ -11,6 +11,11 @@
   margin-left: 5em;
 }
 
+.sidebarImagen{
+  border-radius: 50%;
+  max-width: 100%;
+}
+
 .searchBar {
   width: 50em;
 }
@@ -21,6 +26,7 @@
   position: fixed;
   top: 0;
   right: -15em;
+  z-index:1000;
 }
 
 .cilindroAbajo{
@@ -29,6 +35,7 @@
   position: fixed;
   bottom: 0;
   right: -15em;
+  z-index:1000;
 }
 
 .name {
@@ -38,14 +45,7 @@
 }
 
 .bg-header {
-  background-color: #5C5343;
-  /*background-image: repeating-linear-gradient(*/
-  /*  45deg,*/
-  /*  white 0,*/
-  /*  white 1em,*/
-  /*  #000000 1em,*/
-  /*  #000000 2em*/
-  /*);*/
+  background-image: url("/assets/static/fondoCabecera.jpg");
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   display: flex;
   align-items: center;
@@ -55,7 +55,7 @@
 
 .sidebar {
   width: 11.3em;
-  height: 45em;
+  /*height: 72.2%;*/
   background-image: repeating-linear-gradient(
     45deg,
     white 0,
@@ -76,6 +76,11 @@
   right: -15em;
   margin-top: 7.75em;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  z-index:1000;
+}
+
+.fullheight{
+  min-height: calc(100vh - 15.5em)
 }
 
 @keyframes rotate-background {
@@ -105,11 +110,24 @@
 }
 
 .info{
-  width: 6em;
+  width: 130%;
   text-align: center;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   background-color: #fff;
   border-radius: 5px;
+}
+
+/* Ajusta el margen superior al 10% del contenedor */
+#usuario {
+  margin-top: -30%;
+}
+/* Ajusta el margen superior al 20% del contenedor */
+#nombre {
+  margin-top: -130%;
+}
+/* Ajusta el margen superior al 30% del contenedor */
+#apellidos {
+  margin-top: -230%;
 }
 
 label #btn {

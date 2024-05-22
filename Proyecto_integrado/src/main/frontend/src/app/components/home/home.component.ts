@@ -30,6 +30,21 @@ export class HomeComponent implements OnInit{
       });
   }
 
+  // ajustarAltura() {
+  //   const div1 = document.getElementById('div1') as HTMLInputElement;
+  //   const div2 = document.getElementById('div2') as HTMLInputElement;
+  //   const div3 = document.getElementById('div3') as HTMLInputElement;
+  //
+  //   const alturaDiv1 = div1.offsetHeight;
+  //   const alturaDiv3 = div3.offsetHeight;
+  //
+  //   const alturaRestante = window.innerHeight - alturaDiv1 - alturaDiv3;
+  //   div2.style.minHeight = `${alturaRestante}px`;
+  // }
+  //
+  // window.addEventListener('load', ajustarAltura);
+  // window.addEventListener('resize', ajustarAltura);
+
   ngOnInit() {
     document.addEventListener('click', function(event) {
       const checkbox = document.getElementById('check') as HTMLInputElement;
