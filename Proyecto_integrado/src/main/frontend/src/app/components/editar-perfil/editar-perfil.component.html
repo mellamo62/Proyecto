@@ -1,19 +1,17 @@
-<div class="container">
+<div class="container ">
   <form [formGroup]="formEdit" (ngSubmit)="submit()">
     <div class="row mt-5">
       <div class="col-2 col-izq">
         <div class="row">
           <div id="image-container">
             <img class="foto mt-3" [src]="cliente.fotoPerfil" alt="foto de perfil" height="220em">
-            <img class="camera" src="assets/static/camera.svg" alt="XD" height="220em" (click)="changeFile()">
+            <img class="camera" src="assets/static/camera.svg" alt="camera" height="220em" (click)="changeFile()">
             <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
           </div>
         </div>
       </div>
       <div class="col-1"></div>
-      <div class="col-7 col-der">
-
-
+      <div class="col-7 contenedor col-der">
         <div class="row form-group">
           <div class="col-4"></div>
           <div class="col-4 user">

@@ -1,15 +1,20 @@
 <div class="row ">
   <img [src]="peluqueria.urlImagen2" width="100%" height="400em" class="imagenGrande" alt="Foto peluqueria grande">
 </div>
-
+<div class="row imageContainer">
+  <div class="tooltip-container">
+    <button class="fa-regular fa-heart fav" id="corazon" (click)="makeFav()" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false"></button>
+    <div class="tooltip" *ngIf="showTooltip">Añadir a favoritos</div>
+  </div>
+</div>
 <div class="peluqueria">
   <div class="row">
     <div class="col-md-2">
       <img [src]="peluqueria.urlImagen" class=" fotoPerfil" alt="Foto peluqueria" width="150" height="150">
     </div>
-    <div class="col-md-10">
+    <div class="col-10">
       <div class="row mt-5">
-        <div class="col-md-8">
+        <div class="col-8">
           <div class="row">
             <h2 class="card-title nombre">{{ peluqueria.nombre }}</h2>
           </div>
@@ -17,21 +22,15 @@
             <p class="card-text descripcion">{{ peluqueria.descripcion }}</p>
           </div>
         </div>
-        <div class="col-md-4">
-          <div class="row tooltip-container">
-            <button class="fa-regular fa-heart fav" id="corazon" (click)="makeFav()" (mouseover)="showTooltip = true" (mouseout)="showTooltip = false"></button>
-            <div class="tooltip" *ngIf="showTooltip">Añadir a favoritos</div>
-          </div>
+        <div class="col-4">
+          <button class="btn text-white boton" [routerLink]="'/home/peluquerias/cita/'+idPeluqueria">Pedir cita</button>
         </div>
+
       </div>
     </div>
   </div>
-  <div class="row">
-    <div class="col-md-9"></div>
-    <div class="col-md-3">
-      <button class="btn btn-info text-white" [routerLink]="'/home/peluquerias/cita/'+idPeluqueria">Pedir cita</button>
-    </div>
-  </div>
+
+
 
   <div class="row">
     <div id="map"></div>

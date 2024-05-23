@@ -16,18 +16,21 @@
 }
 
 .fav{
-  font-size: 1.5em;
-  margin-left: 4.5em;
-  margin-top: -0.5em;
+  font-size: 3em;
   border:0;
   background-color: transparent;
-  color: #882018;
+  color: red;
 }
 
 .tooltip-container {
-  position: relative;
+  position: absolute;
 }
 
+.imageContainer{
+  position: relative;
+  top: -4em;
+  left: 95%;
+}
 .tooltip {
   position: absolute;
   top: -3em;
@@ -67,4 +70,14 @@
   margin-left: 5%;
   margin-bottom: 3%;
   margin-top: 2%;
+}
+
+.boton{
+  background-color: #4d3a21;
+  margin-left: 70%;
+  margin-top: -10%
+}
+
+.boton:hover{
+  background-color: #987041FF;
 }

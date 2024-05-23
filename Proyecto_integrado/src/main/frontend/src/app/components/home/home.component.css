@@ -75,7 +75,7 @@
   top: 0;
   right: -15em;
   margin-top: 7.75em;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 1);
   z-index:1000;
 }
 
@@ -112,23 +112,39 @@
 .info{
   width: 130%;
   text-align: center;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
-  background-color: #fff;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+  background: rgba(255, 255, 255);
   border-radius: 5px;
+  border: none;
 }
 
-/* Ajusta el margen superior al 10% del contenedor */
 #usuario {
-  margin-top: -30%;
+  margin-top: 10%;
+  margin-left: -13%;
 }
-/* Ajusta el margen superior al 20% del contenedor */
 #nombre {
-  margin-top: -130%;
+  margin-top: -60%;
+  margin-left: -13%;
 }
-/* Ajusta el margen superior al 30% del contenedor */
+
 #apellidos {
-  margin-top: -230%;
+  margin-top: -110%;
+  margin-left: -13%;
 }
+
+#editar{
+  margin-top: -150%;
+  margin-left: -13%;
+  cursor: pointer;
+}
+
+#cerrarSesion{
+  margin-top: 80%;
+  margin-left: -13%;
+  cursor: pointer;
+}
+
+
 
 label #btn {
 

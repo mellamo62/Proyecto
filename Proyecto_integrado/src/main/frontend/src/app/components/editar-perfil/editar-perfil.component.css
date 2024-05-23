@@ -45,3 +45,8 @@
 .cerrar{
   text-align: right;
 }
+
+.contenedor{
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  background-size: cover;
+}

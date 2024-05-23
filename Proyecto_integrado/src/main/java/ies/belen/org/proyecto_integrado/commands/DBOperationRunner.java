@@ -30,7 +30,7 @@ public class DBOperationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Peluqueria peluqueria1 = new Peluqueria(1L, "Alonso","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "29120 Alhaurín el Grande, Málaga", "https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no",36.656029137439816, -4.695380195598312);
+        Peluqueria peluqueria1 = new Peluqueria(1L, "Alonso","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "29120 Alhaurín el Grande, Málaga", "https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no",36.64249787625064, -4.695516934918495);
         Peluqueria peluqueria2 = new Peluqueria(2L, "Daniel Veiga Vitale, Hair & Beauty","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Muro de Prta Nueva, 7, Distrito Centro, 29005 Málaga", "https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no",36.721134797649256, -4.424599032583397);
 
         peluqueriaRepository.saveAll(List.of(
