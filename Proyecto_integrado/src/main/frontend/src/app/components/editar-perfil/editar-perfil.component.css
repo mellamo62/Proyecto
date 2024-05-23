@@ -38,15 +38,40 @@
   border-radius: 5px;
 }
 
-.user{
-  text-align: center;
+.field{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+  margin-top: -3%;
 }
 
-.cerrar{
-  text-align: right;
+.boton-aceptar{
+  width: 100%;
+  border: 0.15em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton-aceptar:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
 .contenedor{
   background-image: url("/assets/static/fondoPeluqueria4.jpg");
   background-size: cover;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.input-underline {
+  height: 5%;
+  width: 50%;
+  background-color: #000000;
+  transition: width 0.3s ease-in-out;
+  margin-left: 15%;
+  margin-bottom: 5%;
+  transform: translateX(-15%);
+}
+
+.form-control:focus + .input-underline {
+  width: 100%;
 }

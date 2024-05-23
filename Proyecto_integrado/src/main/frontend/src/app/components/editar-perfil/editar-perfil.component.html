@@ -1,89 +1,124 @@
-<div class="container ">
+<div class="container">
   <form [formGroup]="formEdit" (ngSubmit)="submit()">
-    <div class="row mt-5">
-      <div class="col-2 col-izq">
+
+    <div class="row">
+      <div class="col-3"></div>
+      <div class="col-6">
         <div class="row">
-          <div id="image-container">
-            <img class="foto mt-3" [src]="cliente.fotoPerfil" alt="foto de perfil" height="220em">
-            <img class="camera" src="assets/static/camera.svg" alt="camera" height="220em" (click)="changeFile()">
-            <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+          <div class="col-3"></div>
+          <div class="col-6">
+            <div id="image-container">
+              <img class="foto mt-3" [src]="cliente.fotoPerfil" alt="foto de perfil" height="220em">
+              <img class="camera" src="assets/static/camera.svg" alt="camera" height="220em" (click)="changeFile()">
+              <input type="file" #fileInput style="display: none" (change)="onFileSelected($event)">
+            </div>
           </div>
+          <div class="col-3"></div>
+        </div>
+
+        <div class="row">
+          <div class="col-1"></div>
+          <div class="col-9 contenedor col-der">
+
+            <div class="row mt-5">
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-4">
+                  <h5>Usuario</h5>
+                </div>
+                <div class="col-6"></div>
+              </div>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                  <input class="input form-control field" formControlName="username" type="text">
+                  <div class="input-underline"></div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-2">
+                  <h5>Nombre</h5>
+                </div>
+                <div class="col-8"></div>
+              </div>
+
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                  <input class="input form-control field" formControlName="name" type="text" >
+                  <div class="input-underline"></div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-2">
+                  <h5>Apellidos</h5>
+                </div>
+                <div class="col-8"></div>
+              </div>
+              <div class="row">
+                <div class="col-2"></div>
+                <div class="col-8">
+                  <input class="input form-control field" formControlName="lastName" type="text">
+                  <div class="input-underline"></div>
+                </div>
+                <div class="col-2"></div>
+              </div>
+
+
+              <div class="row">
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-2">
+                    <h5>Contraseña</h5>
+                  </div>
+                  <div class="col-8"></div>
+                </div>
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <input class="input form-control field" formControlName="password" type="password" >
+                    <div class="input-underline"></div>
+                  </div>
+                  <div class="col-2"></div>
+
+                </div>
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-6">
+                    <h5>Repite la contraseña</h5>
+                  </div>
+                  <div class="col-6"></div>
+                </div>
+                <div class="row">
+                  <div class="col-2"></div>
+                  <div class="col-8">
+                    <input class="input form-control field" formControlName="passwordRep" type="password">
+                    <div class="input-underline"></div>
+                  </div>
+                  <div class="col-2"></div>
+                </div>
+              </div>
+            </div>
+            <div class="row mt-5 mb-3">
+
+              <div class="col-2"></div>
+              <div class="col-8">
+                <input class="btn boton-aceptar" type="submit" value="Editar">
+              </div>
+              <div class="col-2"></div>
+            </div>
+          </div>
+
+          <div class="col-2"></div>
         </div>
       </div>
-      <div class="col-1"></div>
-      <div class="col-7 contenedor col-der">
-        <div class="row form-group">
-          <div class="col-4"></div>
-          <div class="col-4 user">
-            <div class="row">
-              <h4 class="mt-2">Usuario</h4>
-            </div>
-            <div class="row">
-              <input class="input form-control" formControlName="username" type="text">
-            </div>
-          </div>
-          <div class="col-4"></div>
-        </div>
-        <div class="row mt-5">
-          <div class="col-6 user">
-            <div class="row">
-              <h4>Contraseña</h4>
-            </div>
-            <div class="row">
-              <div class="col-2"></div>
-              <div class="col-8">
-                <input class="input form-control" formControlName="password" type="password">
-              </div>
-              <div class="col-2"></div>
-            </div>
-            <div class="row">
-              <h4>Repita la contraseña</h4>
-            </div>
-            <div class="row">
-              <div class="col-2"></div>
-              <div class="col-8">
-                <input class="input form-control" formControlName="passwordRep" type="password">
-              </div>
-              <div class="col-2"></div>
-            </div>
-          </div>
 
-          <div class="col-6 user">
-            <div class="row">
-              <h4>Nombre</h4>
-            </div>
-            <div class="row">
-              <div class="col-2"></div>
-              <div class="col-8">
-                <input class="input form-control" formControlName="name" type="text">
-              </div>
-              <div class="col-2"></div>
-
-            </div>
-            <div class="row">
-              <h4>Apellidos</h4>
-            </div>
-            <div class="row">
-              <div class="col-2"></div>
-              <div class="col-8">
-                <input class="input form-control" formControlName="lastName" type="text">
-              </div>
-              <div class="col-2"></div>
-            </div>
-          </div>
-        </div>
-        <div class="row mt-5">
-
-          <div class="col-9"></div>
-          <div class="col-3 cerrar">
-            <input class="btn btn-primary cerrar" type="submit" placeholder="Guardar">
-          </div>
-        </div>
-
-      </div>
-
-      <div class="col-2"></div>
     </div>
+
 
   </form>
 </div>

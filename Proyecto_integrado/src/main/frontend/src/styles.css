@@ -5,7 +5,7 @@
 @import url("https://unpkg.com/leaflet@1.7.1/dist/leaflet.css");
 
 body{
-  background-image: url("assets/static/fondo.jpg");
+  background-image: url("assets/static/fondoGeneral.jpg");
 }
 html::-webkit-scrollbar {
   display: none;

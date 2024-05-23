@@ -4,6 +4,7 @@ import {CookieService} from "ngx-cookie-service";
 import {ClientesService} from "../../services/clientes.service";
 import {Router, RouterLink} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
+import {Location} from "@angular/common";
 
 @Component({
   selector: 'app-editar-perfil',
@@ -15,7 +16,7 @@ import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} fr
   templateUrl: './editar-perfil.component.html',
   styleUrl: './editar-perfil.component.css'
 })
-export class EditarPerfilComponent implements OnInit{
+export class EditarPerfilComponent implements OnInit {
 
   @ViewChild('fileInput') fileInput!: ElementRef;
 
@@ -26,8 +27,7 @@ export class EditarPerfilComponent implements OnInit{
 
   constructor(public clienteService: ClientesService,
               private coockieService: CookieService,
-              formGroup: FormBuilder,
-              private router:Router) {
+              private location: Location) {
     this.formEdit = new FormGroup({
       "username": new FormControl('', Validators.required),
       "password": new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -57,24 +57,23 @@ export class EditarPerfilComponent implements OnInit{
 
     console.log("entra")
     console.log(this.formEdit.get('name'))
-      let cliente:Cliente ={
-        idCliente: this.cliente.idCliente,
-        usuario:this.formEdit.get('username')!.value,
-        nombre:this.formEdit.get('name')!.value,
-        apellidos:this.formEdit.get('lastName')!.value,
-        password:this.formEdit.get('password')!.value,
-        fotoPerfil:this.cliente.fotoPerfil
-      }
+    let cliente: Cliente = {
+      idCliente: this.cliente.idCliente,
+      usuario: this.formEdit.get('username')!.value,
+      nombre: this.formEdit.get('name')!.value,
+      apellidos: this.formEdit.get('lastName')!.value,
+      password: this.formEdit.get('password')!.value,
+      fotoPerfil: this.cliente.fotoPerfil
+    }
 
-    console.log(cliente)
 
-      this.clienteService.uploadCliente(cliente,this.cliente.idCliente)
-        .subscribe((res: any) => {
-          console.log("cliente")
-          console.log(res)
-        });
+    this.clienteService.uploadCliente(cliente, this.cliente.idCliente)
+      .subscribe((res: any) => {
+        console.log("cliente")
+        console.log(res)
+      });
 
-    this.router.navigate(['/home/perfil'])
+    this.location.back();
 
   }
 

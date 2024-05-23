@@ -18,6 +18,23 @@
 
 .searchBar {
   width: 50em;
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.input-underline {
+  height: 5%;
+  width: 90%;
+  background-color: #000000; /* Color de la barra */
+  transition: width 0.5s ease-in-out;
+  margin-left: 25%;
+  transform: translateX(-25%);
+}
+
+.form-control:focus + .input-underline {
+  width: 100%;
 }
 
 .cilindroArriba{
@@ -113,9 +130,21 @@
   width: 130%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: rgba(255, 255, 255);
+  background: rgb(255, 255, 255);
+  color: #000000;
   border-radius: 5px;
   border: none;
+}
+
+.boton-aceptar{
+  background: transparent;
+  width: 100%;
+  border: 0.15em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.boton-aceptar:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
 #usuario {
@@ -123,17 +152,17 @@
   margin-left: -13%;
 }
 #nombre {
-  margin-top: -60%;
+  margin-top: -45%;
   margin-left: -13%;
 }
 
 #apellidos {
-  margin-top: -110%;
+  margin-top: -120%;
   margin-left: -13%;
 }
 
 #editar{
-  margin-top: -150%;
+  margin-top: -160%;
   margin-left: -13%;
   cursor: pointer;
 }

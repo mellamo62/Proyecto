@@ -43,8 +43,14 @@
   text-align: center;
 }
 
-.cursor-pointer {
+.bigButton {
   cursor: pointer;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+.bigButton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
 .irse{
