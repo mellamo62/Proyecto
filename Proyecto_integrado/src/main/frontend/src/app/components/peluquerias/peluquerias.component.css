@@ -37,3 +37,15 @@
   font-size: 2em;
   color: #882018;
 }
+
+.salir{
+  animation: out 2s forwards;
+}
+
+@keyframes out {
+
+  100%{
+    opacity:0;
+    margin-top:100%
+  }
+}

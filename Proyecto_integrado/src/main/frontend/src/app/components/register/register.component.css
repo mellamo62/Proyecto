@@ -1,11 +1,33 @@
 .login-container {
   max-width: 40em;
   margin: 15em auto;
-  background-color: #fff;
-  border-radius: 5px;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  background-size: cover;
+  border-radius: 1em;
   padding: 20px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   position: relative;
+  animation: enter 1.2s forwards;
+}
+
+.success-container {
+  max-width: 40em;
+  margin: 15em auto;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  background-size: cover;
+  border-radius: 1em;
+  padding: 20px;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
+  position: relative;
+}
+
+@keyframes enter {
+  0%{
+    margin-top: -100%;
+  }
+  100%{
+    margin-top: 20%
+  }
 }
 .login-container h2 {
   text-align: center;
@@ -14,7 +36,6 @@
   margin-bottom: 20px;
 }
 .sinCuenta{
-  position: absolute;
   bottom:11em;
   left: 27.5em;
   font-size: 0.9em;
@@ -28,5 +49,64 @@
 }
 
 .button{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
   width: 36em;
 }
+
+.button:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.field{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.salir{
+  animation: out 1.2s forwards;
+}
+
+@keyframes out {
+  0%{
+    margin-top: 15%;
+    opacity: 100%;
+  }
+  100%{
+    opacity:0;
+    margin-top: -50%;
+  }
+}
+
+.input-underline {
+  width: 80%;
+  background-color: #000000;
+  transition: width 0.3s ease-in-out;
+  margin-left: 20%;
+  margin-bottom: 5%;
+  transform: translateX(-15%);
+}
+
+.height{
+  height: 0.1em;
+}
+
+.lastName{
+  height: 0.05em;
+}
+
+.form-control:focus + .input-underline {
+  width: 100%;
+}
+
+.icono {
+  font-size: 25em;
+  color: green;
+  text-align: center;
+}
+
+

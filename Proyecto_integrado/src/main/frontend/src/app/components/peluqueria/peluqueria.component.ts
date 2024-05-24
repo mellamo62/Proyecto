@@ -1,5 +1,5 @@
 import {AfterViewInit, Component, OnInit} from '@angular/core';
-import {ActivatedRoute, RouterLink} from "@angular/router";
+import {ActivatedRoute, Router, RouterLink} from "@angular/router";
 import {CommonModule} from "@angular/common";
 import {CookieService} from "ngx-cookie-service";
 import {Peluqueria} from "../../modelos/peluqueria";
@@ -31,7 +31,8 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
     private route: ActivatedRoute,
     private peluqueriaService: PeluqueriaService,
     private clienteService: ClientesService,
-    private coockieService: CookieService) {
+    private coockieService: CookieService,
+    private router: Router) {
     this.peluqueria = {
       idPeluqueria: 1,
       nombre: "",
@@ -120,5 +121,17 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
           console.log(res)
         });
     }
+  }
+
+  pedirCita(){
+    console.log("entra")
+    let contenedor = document.getElementById('contenedor') as HTMLElement;
+    console.log(contenedor.classList)
+    contenedor.classList.add('salir')
+    console.log(contenedor.classList)
+    // setTimeout(()=>{
+    //   this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
+    // },1000)
+
   }
 }

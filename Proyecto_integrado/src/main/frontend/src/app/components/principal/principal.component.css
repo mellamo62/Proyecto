@@ -58,11 +58,11 @@
 }
 
 @keyframes moveDown {
-  60%{
-    opacity:0;
+  0%{
+    margin-top: 10em
   }
   100%{
     opacity:0;
-    margin-bottom:-150em
+    margin-top:30em
   }
 }

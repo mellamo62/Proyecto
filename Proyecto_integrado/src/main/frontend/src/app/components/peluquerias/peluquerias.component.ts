@@ -127,7 +127,13 @@ export class PeluqueriasComponent implements OnInit {
 
   routePeluqueria(id:any) {
     if (!this.isCita){
-      this.router.navigate(['/home/peluquerias/' + id]);
+
+      let contenedor = document.getElementById('contenedor') as HTMLElement;
+      contenedor.classList.add('salir')
+
+      setTimeout(()=>{
+        this.router.navigate(['/home/peluquerias/' + id]);
+      }, 1400)
     }
 
   }

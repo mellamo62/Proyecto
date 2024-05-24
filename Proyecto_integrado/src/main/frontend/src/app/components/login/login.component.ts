@@ -1,9 +1,10 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ClientesService} from "../../services/clientes.service";
 import {Cliente} from "../../modelos/cliente";
 import {Router, RouterLink} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
+import {RegisterComponent} from "../register/register.component";
 
 @Component({
   selector: 'app-login',
@@ -15,7 +16,7 @@ import {CookieService} from "ngx-cookie-service";
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
 })
-export class LoginComponent {
+export class LoginComponent{
 
   public loginForm: FormGroup;
 
@@ -28,21 +29,36 @@ export class LoginComponent {
     });
   }
 
+
+
+
+
   submit() {
     let clientes: Cliente[] = [];
     this.service.all()
       .subscribe(res => {
-        console.log(res)
         res.forEach(r => {
           clientes.push(r);
         })
         console.log(clientes)
         clientes.forEach((c:Cliente) => {
           if (this.loginForm.get('username')?.value == c.usuario && this.loginForm.get('password')?.value == c.password) {
-            this.cookieService.set("usuario", c.idCliente.toString());
+            let ExpireSession = new Date();
+            ExpireSession.setHours(ExpireSession.getHours() + 12)
+            this.cookieService.set("usuario", c.idCliente.toString(),ExpireSession);
             this.router.navigate(['home']);
           }
         })
       })
+  }
+
+  register(){
+    let contenedor = document.getElementById("contenedor") as HTMLElement;
+
+    contenedor.classList.add('salir');
+
+    setTimeout(()=>{
+      this.router.navigate(['/register']);
+    },1100)
   }
 }

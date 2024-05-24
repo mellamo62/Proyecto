@@ -68,11 +68,20 @@
   align-items: center;
   justify-content: space-between;
   position: relative;
+  animation: enter 1s forwards;
+}
+
+@keyframes enter {
+  0%{
+    margin-top: -20%
+  }
+  100%{
+    margin-top: 0
+  }
 }
 
 .sidebar {
   width: 11.3em;
-  /*height: 72.2%;*/
   background-image: repeating-linear-gradient(
     45deg,
     white 0,
@@ -152,23 +161,23 @@
   margin-left: -13%;
 }
 #nombre {
-  margin-top: -45%;
+  margin-top: -70%;
   margin-left: -13%;
 }
 
 #apellidos {
-  margin-top: -120%;
+  margin-top: -135%;
   margin-left: -13%;
 }
 
 #editar{
-  margin-top: -160%;
+  margin-top: -180%;
   margin-left: -13%;
   cursor: pointer;
 }
 
 #cerrarSesion{
-  margin-top: 80%;
+  margin-top: 75%;
   margin-left: -13%;
   cursor: pointer;
 }
@@ -200,5 +209,4 @@ label #btn {
   opacity: 0;
   visibility: hidden;
 }
-
 

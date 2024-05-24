@@ -81,3 +81,29 @@
 .boton:hover{
   background-color: #987041FF;
 }
+
+.contenedor{
+  animation: showUp 1s forwards;
+}
+@keyframes showUp {
+  0%{
+    margin-top: 80%
+  }
+  100%{
+    margin-top: 0
+  }
+}
+
+.salir{
+  background-color: black;
+  /*animation: out 1s forwards;*/
+}
+
+@keyframes out {
+  0%{
+    margin-top:0
+  }
+  100%{
+    margin-top:80%
+  }
+}

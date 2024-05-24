@@ -33,9 +33,9 @@
         </div>
 
         <div class="row sidebar fullheight" id="sidebar">
-          <div class="row">
+          <div class="row" style="max-height: 1em">
             <div class="col-2"></div>
-            <div class="col-10" style="max-height: 1em">
+            <div class="col-10" >
               <img [src]="cliente.fotoPerfil" class="sidebarImagen" alt="Perfil" height="100em" width="100em" priority style="margin-left: 0.5em; margin-top: 1em" id="imagenPerfil">
             </div>
           </div>
@@ -70,7 +70,7 @@
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h5 class="info" id="cerrarSesion" routerLink="">Cerrar sesión</h5>
+              <h5 class="info" id="cerrarSesion" (click)="logOut()">Cerrar sesión</h5>
             </div>
             <div class="col-1"></div>
           </div>

@@ -1,11 +1,23 @@
 .login-container {
   max-width: 400px;
   margin: 15em auto;
-  background-color: #fff;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
   border-radius: 1em;
   padding: 20px;
-  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.2);
   position: relative;
+  animation: enters 1.2s forwards;
+}
+
+@keyframes enters {
+  0%{
+    margin-top:-130%;
+    opacity: 0;
+  }
+  100%{
+    opacity: 100%;
+    margin-top:20%;
+  }
 }
 .login-container h2 {
   text-align: center;
@@ -20,6 +32,57 @@
   font-size: 0.9em;
   cursor: pointer;
 }
-.button{
+
+.field{
+  background: transparent;
+  border: none;
+  border-radius: 0;
+  box-shadow: none;
+}
+
+.input-underline {
+  width: 70%;
+  background-color: #000000;
+  transition: width 0.3s ease-in-out;
+  margin-left: 15%;
+  margin-bottom: 5%;
+  transform: translateX(-15%);
+}
+
+.user{
+  height: 0.1em;
+}
+.pass{
+  height: 0.05em;
+}
+
+.form-control:focus + .input-underline {
+  width: 100%;
+}
+
+.boton{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
   width: 21em;
+}
+
+.boton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.salir{
+  animation: out 1.2s forwards;
+}
+
+@keyframes out {
+  0%{
+    margin-top: 15%;
+    opacity: 100%;
+  }
+  100%{
+    opacity:0;
+    margin-top: -50%;
+  }
 }

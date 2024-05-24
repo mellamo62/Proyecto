@@ -1,7 +1,7 @@
-<div class="container">
-  <div class="login-container row">
+<div class="container" id="contenedor">
+  <div class="login-container row" *ngIf="!showSuccessMessage">
     <div class="row">
-      <h2>Reigstrarse</h2>
+      <h2>Registrarse</h2>
     </div>
 
     <form [formGroup]="registerForm" (ngSubmit)="submit()">
@@ -12,33 +12,43 @@
               <label>Usuario</label>
             </div>
             <div class="row">
-              <input type="text" class="form-control" formControlName="username" placeholder="Introduce usuario">
+              <input type="text" class="form-control field" formControlName="username" placeholder="Introduce usuario*" (input)="onInputChangeUserName()">
+              <div class="input-underline height"></div>
+              <div *ngIf="userNameError">
+                <a class="errorPassword">Este campo es obligatorio</a>
+              </div>
             </div>
           </div>
           <div class="form-group">
             <div class="row">
               <label>Contraseña</label>
             </div>
-            <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
-              <a class="errorPassword">La contraseña debe tener al menos 5 caracteres.</a>
-            </div>
+
             <div class="row">
-              <input type="password" class="form-control" formControlName="password" placeholder="Introduce contraseña">
+              <input type="password" class="form-control field" formControlName="password" placeholder="Introduce contraseña*" (input)="onInputChangePass()">
+              <div class="input-underline height"></div>
+              <div *ngIf="passError">
+                <a class="errorPassword">Este campo es obligatorio</a>
+              </div>
+              <div *ngIf="registerForm.get('password')?.errors?.['minlength']">
+                <a class="errorPassword">La contraseña debe tener al menos 5 caracteres.</a>
+              </div>
             </div>
-            <div *ngIf="registerForm.hasError('contraseniasNoCoinciden')">
-            <a class="errorPassword">Las contraseñas no coinciden</a>
-          </div>
           </div>
           <div class="form-group">
             <div class="row">
               <label>Repite contraseña</label>
             </div>
             <div class="row">
-              <input type="password" class="form-control" formControlName="passwordRep"
-                     placeholder="Introduce contraseña de nuevo">
+              <input type="password" class="form-control field" placeholder="Introduce contraseña de nuevo*" formControlName="passwordRep" (input)="onInputChangePassRep()">
+              <div class="input-underline height"></div>
+              <div *ngIf="passRepError">
+                <a class="errorPassword">Este campo es obligatorio</a>
+              </div>
+              <div *ngIf="registerForm.hasError('contraseniasNoCoinciden')">
+                <a class="errorPassword">Las contraseñas no coinciden</a>
+              </div>
             </div>
-
-
           </div>
         </div>
         <div class="col-1"></div>
@@ -48,7 +58,11 @@
               <label>Nombre</label>
             </div>
             <div class="row">
-              <input type="text" class="form-control" formControlName="name" placeholder="Introduce nombre">
+              <input type="text" class="form-control field" formControlName="name" placeholder="Introduce nombre*" (input)="onInputChangeName()">
+              <div class="input-underline height"></div>
+              <div *ngIf="nameError">
+                <a class="errorPassword">Este campo es obligatorio</a>
+              </div>
             </div>
           </div>
           <div class="form-group">
@@ -56,23 +70,28 @@
               <label>Apellidos</label>
             </div>
             <div class="row">
-              <input type="text" class="form-control" formControlName="lastName" placeholder="Introduce apellidos">
+              <input type="text" class="form-control field" formControlName="lastName" placeholder="Introduce apellidos*" (input)="onInputChangeLastName()">
+              <div class="input-underline lastName"></div>
+              <div *ngIf="lastNameError">
+                <a class="errorPassword">Este campo es obligatorio</a>
+              </div>
+            </div>
+            <div class="row">
+              <div class="col-2"></div>
+              <div class="col-10">
+                <a class="sinCuenta" (click)="logIn()">¿Ya tiene cuenta? Inicie sesión aquí.</a>
+              </div>
+
             </div>
           </div>
         </div>
       </div>
-
-      <div class="form-group">
-        <div class="row">
-          <div class="col-3"></div>
-          <div class="col-9">
-            <a class="sinCuenta" routerLink="/login">¿Ya tiene cuenta? Inicie sesión aquí.</a>
-          </div>
-        </div>
-
-      </div>
-      <button type="submit" class="button btn btn-primary btn-block" [disabled]="registerForm.invalid">Registrar</button>
+      <button type="submit" class="button btn btn-primary btn-block">Registrar</button>
     </form>
+  </div>
+
+  <div class="success-container row" *ngIf="showSuccessMessage">
+    <i class="fa-regular fa-circle-check icono"></i>
   </div>
 </div>
 
