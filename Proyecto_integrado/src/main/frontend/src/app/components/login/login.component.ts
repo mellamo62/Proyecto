@@ -30,9 +30,6 @@ export class LoginComponent{
   }
 
 
-
-
-
   submit() {
     let clientes: Cliente[] = [];
     this.service.all()
@@ -46,7 +43,13 @@ export class LoginComponent{
             let ExpireSession = new Date();
             ExpireSession.setHours(ExpireSession.getHours() + 12)
             this.cookieService.set("usuario", c.idCliente.toString(),ExpireSession);
-            this.router.navigate(['home']);
+            let contenedor = document.getElementById("contenedor") as HTMLElement;
+
+            contenedor.classList.add('salir');
+
+            setTimeout(()=>{
+              this.router.navigate(['/home']);
+            },1100)
           }
         })
       })

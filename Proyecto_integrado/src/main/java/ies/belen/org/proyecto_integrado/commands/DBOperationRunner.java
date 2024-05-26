@@ -30,17 +30,17 @@ public class DBOperationRunner implements CommandLineRunner {
 
     @Override
     public void run(String... args) throws Exception {
-        Peluqueria peluqueria1 = new Peluqueria(1L, "Alonso","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "29120 Alhaurín el Grande, Málaga", "https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no",36.64249787625064, -4.695516934918495);
-        Peluqueria peluqueria2 = new Peluqueria(2L, "Daniel Veiga Vitale, Hair & Beauty","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Muro de Prta Nueva, 7, Distrito Centro, 29005 Málaga", "https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipOjgyULuZqVOkdPq5F-UY1zmMULeaKH7Rfox-yx=w408-h408-k-no/p/AF1QipNpO3k8IdRS5uh7di28MemRObEMJQUOuQ0B1y3E=w426-h240-k-no",36.721134797649256, -4.424599032583397);
+        Peluqueria peluqueria1 = new Peluqueria(1L, "Alonso","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "29120 Alhaurín el Grande, Málaga", "assets/files/peluquerias/Alonso.jpg","assets/files/peluquerias/Alonso.jpg",36.64249787625064, -4.695516934918495);
+        Peluqueria peluqueria2 = new Peluqueria(2L, "Daniel Veiga Vitale, Hair & Beauty","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Muro de Prta Nueva, 7, Distrito Centro, 29005 Málaga", "assets/files/peluquerias/Daniel_Veiga.png","assets/files/peluquerias/Daniel_Veiga.png",36.721134797649256, -4.424599032583397);
 
         peluqueriaRepository.saveAll(List.of(
                 peluqueria1,
                 peluqueria2,
-                new Peluqueria(3L, "Peluquería El Recorte","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Alcalde Joaquín Alonso, 27, Carretera de Cádiz, 29003 Málaga", "https://lh5.googleusercontent.com/p/AF1QipM3nE35dUeF6C2qVcUiFBnAdGqizmS7wYVJHOwl=w408-h510-k-no", "https://lh5.googleusercontent.com/p/AF1QipM3nE35dUeF6C2qVcUiFBnAdGqizmS7wYVJHOwl=w408-h510-k-no", 36.69889345872411, -4.4526208489312635),
+                new Peluqueria(3L, "Peluquería El Recorte","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Alcalde Joaquín Alonso, 27, Carretera de Cádiz, 29003 Málaga", "assets/files/peluquerias/El_recorte.jpeg", "assets/files/peluquerias/El_recorte.jpeg", 36.69889345872411, -4.4526208489312635),
 
-                new Peluqueria(4L, "JR Peluquería","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Berruguete, n° 10, local 6, Carretera de Cádiz, 29004 Málaga", "https://lh5.googleusercontent.com/p/AF1QipMOc8uvs8WnoWgNM_KN58tTMwcFXDAkqEAVT2Vq=w408-h544-k-no","https://lh5.googleusercontent.com/p/AF1QipMOc8uvs8WnoWgNM_KN58tTMwcFXDAkqEAVT2Vq=w408-h544-k-no", 36.69651456185324, -4.453999834766973),
+                new Peluqueria(4L, "JR Peluquería","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. Berruguete, n° 10, local 6, Carretera de Cádiz, 29004 Málaga", "assets/files/peluquerias/JR_peluqueria.jpg","assets/files/peluquerias/JR_peluqueria.jpg", 36.69651456185324, -4.453999834766973),
 
-                new Peluqueria(5L, "Barbería peluquería Nani","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. José Calderón, 26, Campanillas, 29590 Málaga", "https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no","https://lh5.googleusercontent.com/p/AF1QipPvFsDxYIt7OeywZE1sglChJtm6S4meCkWxMQAc=w426-h240-k-no", 36.722867766942, -4.537212402893763)
+                new Peluqueria(5L, "Barbería peluquería Nani","Lorem ipsum dolor sit amet, consectetur adipiscing elit. Nullam non imperdiet tortor.", "C. José Calderón, 26, Campanillas, 29590 Málaga", "assets/files/peluquerias/nani.jpeg","assets/files/peluquerias/nani.jpeg", 36.722867766942, -4.537212402893763)
         ));
 
         horariosRepository.saveAll(List.of(

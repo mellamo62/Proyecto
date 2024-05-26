@@ -127,7 +127,7 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
     console.log("entra")
     let contenedor = document.getElementById('contenedor') as HTMLElement;
     console.log(contenedor.classList)
-    contenedor.classList.add('salir')
+    contenedor.classList.toggle('animate');
     console.log(contenedor.classList)
     // setTimeout(()=>{
     //   this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
