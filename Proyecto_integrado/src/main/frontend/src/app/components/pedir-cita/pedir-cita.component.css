@@ -10,12 +10,26 @@
   align-items: center;
   width: 100%;
   height: 100%;
+
+}
+
+.confirmation-animate{
+  animation: moveConfirmation 1s forwards;
+}
+
+@keyframes moveConfirmation {
+  0%{
+    top: 100%
+  }
+  100%{
+    top:0
+  }
 }
 
 .modal-content {
-  background-color: white;
-  padding: 20px;
-  border-radius: 8px;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  padding: 2em;
+  border-radius: 1em;
   text-align: center;
   width: 25%;
 }
@@ -25,7 +39,119 @@
 }
 
 .horas{
-  background-color: white;
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  color:white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border-radius: 5px;
+}
+
+.animateHoras{
+  animation: moveDown 1s forwards;
+}
+
+.disappear{
+  animation: moveUp 1s forwards;
+}
+
+@keyframes moveUp {
+  0%{
+    margin-top:1%
+  }
+  100%{
+    margin-top:40%
+  }
+}
+
+@keyframes moveDown {
+  0%{
+    margin-top:40%;
+  }
+  100%{
+    margin-top:1%;
+  }
+}
+.hora{
+  margin-top: 1%;
+  margin-left: 0.25%;
+}
+
+::ng-deep .p-datepicker{
+  border-radius: 1em;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+::ng-deep .p-datepicker-header{
+  background: transparent;
+  border-radius: 1em;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"]{
+  display: none;
+}
+.custom-radio:hover {
+  background-color: #a67c41;
+  border-color: #a67c41;
+}
+.custom-radio{
+  border-radius: 1em;
+}
+
+#pedirCita{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+
+}
+
+#pedirCita:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.moveRightBoton{
+  margin-top: -7%;
+  animation: moveRight 0.7s forwards;
+}
+
+@keyframes moveRight {
+  0%{
+    margin-left:150%
+  }
+  100%{
+    margin-left: 86%
+  }
+}
+
+.moveLeftConfirm{
+  animation: moveLeftConfirm 1s forwards;
+}
+
+@keyframes moveLeftConfirm {
+  100%{
+    margin-right:100%;
+  }
+}
+
+.boton{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+}
+
+.boton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.animateOut{
+  animation: animateOut 1s forwards;
+}
+
+@keyframes animateOut {
+  100%{
+    margin-top:100%;
+  }
 }

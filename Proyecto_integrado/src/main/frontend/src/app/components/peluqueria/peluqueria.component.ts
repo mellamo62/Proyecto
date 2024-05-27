@@ -130,7 +130,7 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
     contenedor.classList.toggle('animate');
     console.log(contenedor.classList)
     // setTimeout(()=>{
-    //   this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
+      this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
     // },1000)
 
   }
