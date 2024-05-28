@@ -91,7 +91,20 @@ export class PeluqueriasComponent implements OnInit {
       this.isCita = true;
       this.clienteService.getCitas(idCliente)
         .subscribe((res:any)=>{
-          res.sort((a:any, b:any) => new Date(b.fecha).getTime() - new Date(a.fecha).getTime())
+          res.sort((a:any, b:any) =>{
+          const dateComparison = new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
+
+          if (dateComparison !== 0) {
+            return dateComparison;
+          } else {
+            const timeA = a.hora.split(':').map(Number);
+            const timeB = b.hora.split(':').map(Number);
+
+            const totalSecondsA = timeA[0] * 3600;
+            const totalSecondsB = timeB[0] * 3600;
+
+            return totalSecondsB - totalSecondsA;
+          }});
           let index=0
           this.citas = res;
           res.forEach((c:any)=>{
@@ -103,18 +116,19 @@ export class PeluqueriasComponent implements OnInit {
             let fechaCita = fecha.getTime();
             let hoy = new Date().getTime();
             if (fechaCita <= hoy){
-              this.expired.push(c.peluqueria.id);
+              console.log("fechas y horas")
+              console.log(new Date().getHours())
+              let horaCita = c.hora.split(':');
+              console.log(horaCita)
+              if (new Date().getHours() >= horaCita[0]){
+                this.expired.push(c.peluqueria.id);
+              }
+
             }
             index++;
           })
-
           console.log(this.expired)
-
-
-
         })
-
-
     }
     setTimeout(()=>{
       console.log("peluquerias y citas")
@@ -125,16 +139,23 @@ export class PeluqueriasComponent implements OnInit {
     });
   }
 
-  routePeluqueria(id:any) {
+  routePeluqueria(peluqueria:any) {
+
+    let contenedor = document.getElementById('contenedor') as HTMLElement;
+    contenedor.classList.add('salir')
+
     if (!this.isCita){
 
-      let contenedor = document.getElementById('contenedor') as HTMLElement;
-      contenedor.classList.add('salir')
-
       setTimeout(()=>{
-        this.router.navigate(['/home/peluquerias/' + id]);
+        this.router.navigate(['/home/peluquerias/' + peluqueria.idPeluqueria]);
+      }, 1400)
+    }else{
+      setTimeout(()=>{
+        console.log(peluqueria)
+        this.router.navigate(['/home/cita/' + peluqueria.id+"/"+peluqueria.idPeluqueria]);
       }, 1400)
     }
+
 
   }
 

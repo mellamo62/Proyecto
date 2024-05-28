@@ -9,6 +9,7 @@ import {PerfilComponent} from "./components/perfil/perfil.component";
 import {PrincipalComponent} from "./components/principal/principal.component";
 import {InicioComponent} from "./components/inicio/inicio.component";
 import {RegisterComponent} from "./components/register/register.component";
+import {CitaComponent} from "./components/cita/cita.component";
 
 
 export const routes: Routes = [
@@ -23,6 +24,7 @@ export const routes: Routes = [
       {path: 'peluquerias/nombre/:name', component: PeluqueriasComponent},
       {path: 'peluquerias/fav/:idCliente', component: PeluqueriasComponent},
       {path: 'citasPedidas', component: PeluqueriasComponent},
+      {path: 'cita/:idCita/:idPeluqueria', component: CitaComponent},
       {path: 'peluquerias/cita/:idPeluqueria', component: PedirCitaComponent},
       {path: 'perfil', component: PerfilComponent},
       {path: 'perfil/editar', component: EditarPerfilComponent},

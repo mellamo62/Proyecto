@@ -5,19 +5,21 @@
                   [minDate]="minDateValue" (onSelect)="changeDay($event)" [disabledDays]="[0,6]"/>
     </div>
     <div class="row hora" id="horas">
-      <div class="col-2 horas" *ngIf="horas">
-        <div class="custom-radio" style="padding: 0.3em" *ngFor="let hora of horario">
-          <input type="radio" class="btn btn-info text-white" (change)="check(hora.hora)" [id]="hora.hora" name="horaRadioGroup" [value]="hora.hora">
-          <label for="{{hora.hora}}" style="width:100%">{{hora.hora}}</label>
-        </div>
-
-      </div>
-      <div class="col-1"></div>
-      <div class="col" id="bloqueCita">
-        <button id="pedirCita" class="btn btn-primary" style="margin-left: 4em; margin-top: 0.5em" (click)="confirmSelectionWithModal()">Pedir cita</button>
+      <div class="col-2">
+        <div class="row">
+          <div class="horas" *ngIf="horas">
+            <div class="custom-radio" style="padding: 0.3em" *ngFor="let hora of horario" [ngClass]="{'selected': selectedHora === hora.hora}">
+              <input type="radio" class="btn btn-info text-white" (change)="check(hora.hora)" [id]="hora.hora" name="horaRadioGroup" [value]="hora.hora">
+              <label for="{{hora.hora}}" style="width:100%">{{hora.hora}}</label>
+            </div>
+          </div>
       </div>
 
-
+      </div>
+      <div class="col-8"></div>
+      <div class="col-2" id="bloqueCita">
+        <button #pedirCita class="btn pedirCita" (click)="confirmSelectionWithModal()">Pedir cita</button>
+      </div>
     </div>
   </div>
 
@@ -27,11 +29,11 @@
       <div class="row">
         <div class="col-1"></div>
         <div class="col-3">
-          <button class="btn btn-primary boton" (click)="confirmSelection()">Confirmar</button>
+          <button class="btn boton" (click)="confirmSelection()">Confirmar</button>
         </div>
         <div class="col-4"></div>
         <div class="col-3">
-          <button class="btn btn-danger boton" (click)="cancelSelection()">Cancelar</button>
+          <button class="btn boton" (click)="cancelSelection()">Cancelar</button>
         </div>
         <div class="col-1"></div>
       </div>

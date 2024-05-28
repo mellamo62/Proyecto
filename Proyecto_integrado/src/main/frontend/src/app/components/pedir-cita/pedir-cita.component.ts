@@ -1,4 +1,4 @@
-import {Component, OnInit} from '@angular/core';
+import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CalendarModule} from 'primeng/calendar';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -23,7 +23,8 @@ import {Cita} from "../../modelos/cita";
   templateUrl: './pedir-cita.component.html',
   styleUrl: './pedir-cita.component.css'
 })
-export class PedirCitaComponent implements OnInit {
+export class PedirCitaComponent implements OnInit, AfterViewInit {
+  @ViewChild('pedirCita', { static: false }) boton!: ElementRef;
   date: any;
   minDateValue: any;
   id: number;
@@ -33,8 +34,8 @@ export class PedirCitaComponent implements OnInit {
   public showConfirmation: boolean;
   public horas: boolean;
   public horasIselected: boolean;
-  boton: any;
   public citas: any;
+  selectedHora: string;
 
   constructor(
     private route: ActivatedRoute,
@@ -56,12 +57,11 @@ export class PedirCitaComponent implements OnInit {
     this.horasIselected = false;
     this.citas = [];
     this.showConfirmation = false;
+    this.selectedHora = "";
   }
 
   ngOnInit() {
-    this.boton = document.getElementById("pedirCita");
-    console.log(this.boton)
-    this.boton.style.opacity = "0";
+
     this.horariosService.getCitasByPeluqueria(this.id)
       .subscribe(res => {
         console.log("citas de peluqueria")
@@ -83,6 +83,11 @@ export class PedirCitaComponent implements OnInit {
       })
   }
 
+  ngAfterViewInit() {
+    console.log(this.boton);
+    this.boton.nativeElement.style.opacity = "0";
+  }
+
   formatTime(fecha: Date) {
     const dia = fecha.getDate().toString().padStart(2, '0');
     const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
@@ -91,9 +96,10 @@ export class PedirCitaComponent implements OnInit {
   }
 
   public changeDay(event: any) {
+    this.selectedHora = "";
     if (this.horasIselected) {
       this.horasIselected = !this.horasIselected;
-      this.boton.style.opacity = "0";
+      this.boton.nativeElement.style.opacity = "0";
     }
     const fechaSeleccionada: Date = event;
     this.horas = true;
@@ -134,7 +140,8 @@ export class PedirCitaComponent implements OnInit {
 
   public check(selectedHour: string) {
     this.horasIselected = true;
-    this.boton.style.opacity = "1";
+    this.selectedHora = selectedHour;
+    this.boton.nativeElement.style.opacity = "1";
     let id = Number.parseInt(this.cookieService.get('usuario'));
     let cliente: Cliente;
     this.clientesService.get(id)
@@ -168,8 +175,8 @@ export class PedirCitaComponent implements OnInit {
     this.showConfirmation = false;
     let bloque = document.getElementById('bloque') as HTMLElement;
     bloque.classList.add('animateOut');
+    this.submit();
     setTimeout(()=>{
-      this.submit();
       this.router.navigate(['home/citasPedidas']);
     },800)
 
@@ -178,7 +185,13 @@ export class PedirCitaComponent implements OnInit {
 
   public cancelSelection(): void {
     console.log('Cancelado');
-    this.showConfirmation = false;
+    let bloque = document.getElementById('confirmation') as HTMLElement;
+    bloque.classList.add('animateOut');
+
+    setTimeout(()=>{
+      this.showConfirmation = false;
+      },800)
+
   }
 
   public confirmSelectionWithModal(): void {

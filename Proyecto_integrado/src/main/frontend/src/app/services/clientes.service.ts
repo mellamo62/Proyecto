@@ -6,6 +6,7 @@ import {PeluqueriaService} from "./peluqueria.service";
 import {Peluqueria} from "../modelos/peluqueria";
 import {RequestData} from "../modelos/RequestData";
 import {RequestFileCliente} from "../modelos/RequestFileCliente";
+import {Cita} from "../modelos/cita";
 
 @Injectable({
   providedIn: 'root'
@@ -55,6 +56,10 @@ export class ClientesService {
 
   getCitas(idCliente:number){
     return this.httpClient.get<Cliente>("http://localhost:8080/citas/cliente/"+idCliente)
+  }
+
+  getCita(idCita:number){
+    return this.httpClient.get<Cita>("http://localhost:8080/citas/"+idCita);
   }
 
   fav(idCliente: number, idPeluqueria:number){

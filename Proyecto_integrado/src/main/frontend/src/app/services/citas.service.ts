@@ -20,8 +20,11 @@ export class CitasService {
 
   constructor(private httpClient: HttpClient) { }
 
-  // create(cita: Cita, peluqueria:Peluqueria, cliente: Cliente): Observable<Cita> {
-  //
-  //   return this.httpClient.post<Cita>(this.apiURL, formData, this.httpOptions);
-  // }
+  edit(cita:Cita) {
+    return this.httpClient.put<Cita>(this.apiURL+cita.id, cita);
+  }
+
+  delete(id:number){
+    return this.httpClient.delete<Cita>(this.apiURL+id);
+  }
 }

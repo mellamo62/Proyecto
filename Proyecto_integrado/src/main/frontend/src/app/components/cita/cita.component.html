@@ -1,0 +1,106 @@
+<div class="container contenedor" id="contenedor">
+  <div class="row">
+    <div class="col-7">
+      <div class="row">
+        <img [src]="peluqueria.urlImagen2" width="100%" height="400em" class="imagenGrande"
+             alt="Foto peluqueria grande">
+      </div>
+      <div class="row imageContainer">
+        <div class="tooltip-container">
+          <button class="fa-regular fa-heart fav" id="corazon" (click)="makeFav()" (mouseover)="showTooltip = true"
+                  (mouseout)="showTooltip = false"></button>
+          <div class="tooltip" *ngIf="showTooltip">Añadir a favoritos</div>
+        </div>
+      </div>
+      <div class="peluqueria">
+        <div class="row">
+          <div class="col-md-2">
+            <img [src]="peluqueria.urlImagen" class=" fotoPerfil" alt="Foto peluqueria" width="150" height="150">
+          </div>
+          <div class="col-10">
+            <div class="row mt-5">
+              <div class="col-8">
+                <div class="row">
+                  <h2 class="card-title nombre">{{ peluqueria.nombre }}</h2>
+                </div>
+                <div class="row">
+                  <p class="card-text descripcion">{{ peluqueria.descripcion }}</p>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="row">
+            <div id="map"></div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="col-5">
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-11">
+          <p-calendar class="custom-calendar" [style]="{'width':'100%'}" dateFormat="dd.mm.yy" [firstDayOfWeek]="1"
+                      [(ngModel)]="date" [inline]="true" [minDate]="minDateValue" (onSelect)="changeDay($event)"
+                      [disabledDays]="[0,6]"/>
+        </div>
+        <div class="row" id="horas">
+          <div class="col-1"></div>
+          <div class="col-4">
+            <div class="row">
+              <div class="horas">
+                <div class="custom-radio" style="padding: 0.3em" *ngFor="let hora of horario" [ngClass]="{'selected': selectedHora === hora.hora}">
+                  <input type="radio" class="btn btn-info text-white" (change)="check(hora.hora)" [id]="hora.hora"
+                         name="horaRadioGroup" [value]="hora.hora">
+                  <label for="{{hora.hora}}" style="width:100%">{{ hora.hora }}</label>
+                </div>
+              </div>
+            </div>
+          </div>
+          <div class="col-5"></div>
+          <div class="col-2" id="bloqueCita">
+            <div class="row">
+              <button class="btn boton" (click)="editModal()">Editar cita</button>
+            </div>
+            <div class="row">
+              <button class="btn btn-danger botonBorrar" (click)="borrarModal()">Cancelar cita</button>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirmation-modal" *ngIf="showConfirmation" id="confirmationBloque">
+    <div class="modal-content"  id="confirmation">
+      <p>¿Estás seguro de que deseas editar esta cita?</p>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <button class="btn botonModal" (click)="confirmSelection()">Sí</button>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-3">
+          <button class="btn botonModal" (click)="cancelSelection()">No</button>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </div>
+
+  <div class="confirmation-modal" *ngIf="showCancelar" id="cancelarBloque">
+    <div class="modal-content"  id="cancelar">
+      <p>¿Estás seguro de que deseas cancelar esta cita?</p>
+      <div class="row">
+        <div class="col-1"></div>
+        <div class="col-3">
+          <button class="btn botonModal" (click)="confirmCancelar()">Sí</button>
+        </div>
+        <div class="col-4"></div>
+        <div class="col-3">
+          <button class="btn botonModal" (click)="cancelar()">No</button>
+        </div>
+        <div class="col-1"></div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -45,12 +45,16 @@ public class DBOperationRunner implements CommandLineRunner {
 
         horariosRepository.saveAll(List.of(
                 new Horarios(1, "09:00:00", peluqueria1),
-
                 new Horarios(2, "10:00:00", peluqueria1),
-
                 new Horarios(3, "11:00:00", peluqueria1),
+                new Horarios(4, "12:00:00", peluqueria1),
+                new Horarios(5, "13:00:00", peluqueria1),
+                new Horarios(6, "14:00:00", peluqueria1),
+                new Horarios(7, "17:00:00", peluqueria1),
+                new Horarios(8, "18:00:00", peluqueria1),
+                new Horarios(9, "19:00:00", peluqueria1),
 
-                new Horarios(4, "11:00:00", peluqueria2)
+                new Horarios(10, "11:00:00", peluqueria2)
         ));
 
         clienteRepository.saveAll(List.of(

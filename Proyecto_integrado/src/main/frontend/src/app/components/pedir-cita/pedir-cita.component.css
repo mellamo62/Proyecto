@@ -98,30 +98,38 @@ input[type="radio"]{
 .custom-radio{
   border-radius: 1em;
 }
+.custom-radio.selected {
+  background-color: #a67c41;
+  border-color: #a67c41;
+}
 
-#pedirCita{
+.pedirCita{
   background: transparent;
   border: 0.10em solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   color: black;
-
 }
 
-#pedirCita:hover{
+.pedirCita:hover{
   box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
+#bloqueCita{
+  position: fixed;
+  top: 36.5em;
+  right: 5em
+}
+
 .moveRightBoton{
-  margin-top: -7%;
-  animation: moveRight 0.7s forwards;
+  animation: moveRight 1s forwards;
 }
 
 @keyframes moveRight {
   0%{
-    margin-left:150%
+    left:100%
   }
   100%{
-    margin-left: 86%
+    left: 78%
   }
 }
 

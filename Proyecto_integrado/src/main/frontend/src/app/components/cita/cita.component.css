@@ -1,0 +1,328 @@
+.fotoPerfil {
+  margin-top: -6em;
+  margin-left: 2.5em;
+  border: #dddddd 0.5em solid;
+  border-radius: 10em;
+}
+
+.nombre {
+  margin-top: -1em;
+  margin-left: 2em;
+}
+
+.descripcion {
+  margin-left: 4em;
+  margin-top: 1.5em;
+}
+
+.fav {
+  font-size: 3em;
+  border: 0;
+  background-color: transparent;
+  color: red;
+}
+
+.tooltip-container {
+  position: absolute;
+}
+
+.imageContainer {
+  position: relative;
+  top: -3.5em;
+  left: 90%;
+}
+
+.tooltip {
+  position: absolute;
+  top: -2em;
+  left: 8em;
+  transform: translateX(-50%);
+  padding: 5px 10px;
+  background-color: #333;
+  color: #fff;
+  border-radius: 5px;
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s, visibility 0.3s;
+  width: 10em;
+}
+
+.tooltip-container:hover .tooltip {
+  opacity: 1;
+  visibility: visible;
+}
+
+.peluqueria {
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  background-size: cover;
+  margin-top: -1%;
+  border-radius: 2.5%;
+  color: white
+}
+
+.imagenGrande {
+  border-radius: 2.5%;
+}
+
+#map {
+  height: 20em;
+  width: 90%;
+  border-radius: 1%;
+  margin-left: 5%;
+  margin-bottom: 3%;
+  margin-top: 2%;
+}
+.contenedor {
+  height: max-content;
+  animation: showUp 1s forwards;
+}
+
+@keyframes showUp {
+  0% {
+    margin-top: 80%
+  }
+  100% {
+    margin-top: 1%
+  }
+}
+
+.contenedor.animate {
+  margin-top: 80em;
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+}
+
+.confirmation-animate{
+  animation: moveConfirmation 1s forwards;
+}
+
+@keyframes moveConfirmation {
+  0%{
+    top: 100%
+  }
+  100%{
+    top:0
+  }
+}
+
+.modal-content {
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  padding: 2em;
+  border-radius: 1em;
+  text-align: center;
+  width: 25%;
+}
+
+.modal-content button {
+  margin: 0 10px;
+}
+
+.horas{
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  color:white;
+  box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
+  border-radius: 1em;
+  margin-top: 3%;
+  margin-left: 7.5%
+}
+
+.animateHoras{
+  animation: moveDown 1s forwards;
+}
+
+.disappear{
+  animation: moveUp 1s forwards;
+}
+
+@keyframes moveUp {
+  0%{
+    margin-top:1%
+  }
+  100%{
+    margin-top:150%
+  }
+}
+
+@keyframes moveDown {
+  0%{
+    margin-top:150%;
+  }
+  100%{
+    margin-top:1%;
+  }
+}
+
+::ng-deep .p-datepicker{
+  border-radius: 1em;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+::ng-deep .p-datepicker-header{
+  background: transparent;
+  border-radius: 1em;
+  border: none;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+}
+
+input[type="radio"]{
+  display: none;
+}
+.custom-radio:hover {
+  background-color: #a67c41;
+  border-color: #a67c41;
+}
+.custom-radio{
+  border-radius: 1em;
+}
+.custom-radio.selected {
+  background-color: #a67c41;
+  border-color: #a67c41;
+}
+
+#bloqueCita{
+  position: fixed;
+  top: 230%;
+  right: 6.2%;
+  animation: bloqueCita 1s forwards;
+}
+
+@keyframes bloqueCita{
+  100%{
+    top: 57%;
+  }
+}
+
+.moveRightBoton{
+  animation: moveRight 0.7s forwards;
+}
+
+@keyframes moveRight {
+  0%{
+    left:150%
+  }
+  100%{
+    left: 81.5%
+  }
+}
+
+.moveLeftConfirm{
+  animation: moveLeftConfirm 1s forwards;
+}
+
+@keyframes moveLeftConfirm {
+  100%{
+    margin-right:100%;
+  }
+}
+
+.boton{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+  width: 40%
+}
+
+.boton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.botonBorrar{
+  margin-top:3.5%;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: #ffffff;
+  width: 40%
+}
+
+.botonBorrar:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.animateOut{
+  animation: animateOut 1s forwards;
+}
+
+@keyframes animateOut {
+  100%{
+    margin-top:100%;
+  }
+}
+
+.confirmation-modal {
+  position: fixed;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 9999;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 100%;
+  height: 100%;
+
+}
+
+.confirmation-animate{
+  animation: moveConfirmation 1s forwards;
+}
+
+@keyframes moveConfirmation {
+  0%{
+    top: 100%
+  }
+  100%{
+    top:0
+  }
+}
+
+.modal-content {
+  background-image: url("/assets/static/fondoPeluqueria4.jpg");
+  padding: 2em;
+  border-radius: 1em;
+  text-align: center;
+  width: 25%;
+}
+
+.modal-content button {
+  margin: 0 10px;
+}
+
+.botonModal{
+  width:60%;
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+}
+
+.botonModal:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+#editarCita{
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  color: black;
+
+}
+
+#editarCita:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
