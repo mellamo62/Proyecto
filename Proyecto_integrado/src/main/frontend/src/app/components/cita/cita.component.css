@@ -194,9 +194,9 @@ input[type="radio"]{
 }
 
 #bloqueCita{
-  position: fixed;
-  top: 230%;
-  right: 6.2%;
+
+  /*top: 250%;*/
+  /*right: 6.2%;*/
   animation: bloqueCita 1s forwards;
 }
 
@@ -234,7 +234,7 @@ input[type="radio"]{
   border: 0.10em solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   color: black;
-  width: 40%
+  width: 100%
 }
 
 .boton:hover{
@@ -242,11 +242,11 @@ input[type="radio"]{
 }
 
 .botonBorrar{
-  margin-top:3.5%;
+  margin-top:10%;
   border: 0.10em solid black;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
   color: #ffffff;
-  width: 40%
+  width: 100%
 }
 
 .botonBorrar:hover{

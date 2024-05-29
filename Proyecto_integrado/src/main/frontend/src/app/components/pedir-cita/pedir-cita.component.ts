@@ -23,7 +23,7 @@ import {Cita} from "../../modelos/cita";
   templateUrl: './pedir-cita.component.html',
   styleUrl: './pedir-cita.component.css'
 })
-export class PedirCitaComponent implements OnInit, AfterViewInit {
+export class PedirCitaComponent implements OnInit {
   @ViewChild('pedirCita', { static: false }) boton!: ElementRef;
   date: any;
   minDateValue: any;
@@ -67,6 +67,8 @@ export class PedirCitaComponent implements OnInit, AfterViewInit {
         console.log("citas de peluqueria")
         console.log(res)
         this.citas = res;
+        let pedirCita = document.getElementById('bloqueCita') as HTMLElement;
+        pedirCita.classList.add('rightBoton')
         const self = this;
         document.addEventListener('click', function (event) {
           const confirmation = document.getElementById('confirmation') as HTMLInputElement;
@@ -83,11 +85,6 @@ export class PedirCitaComponent implements OnInit, AfterViewInit {
       })
   }
 
-  ngAfterViewInit() {
-    console.log(this.boton);
-    this.boton.nativeElement.style.opacity = "0";
-  }
-
   formatTime(fecha: Date) {
     const dia = fecha.getDate().toString().padStart(2, '0');
     const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
@@ -99,7 +96,12 @@ export class PedirCitaComponent implements OnInit, AfterViewInit {
     this.selectedHora = "";
     if (this.horasIselected) {
       this.horasIselected = !this.horasIselected;
-      this.boton.nativeElement.style.opacity = "0";
+      let pedirCitas = document.getElementById('bloqueCita') as HTMLElement;
+      console.log("pedirCitas")
+      pedirCitas.classList.remove('moveRightBoton')
+      pedirCitas.classList.remove('rightBoton')
+      pedirCitas.classList.add('moveLeftBoton');
+      console.log(pedirCitas.classList.value)
     }
     const fechaSeleccionada: Date = event;
     this.horas = true;
@@ -128,23 +130,21 @@ export class PedirCitaComponent implements OnInit, AfterViewInit {
         } else {
           horas.classList.add('animateHoras')
         }
-        if (!this.showConfirmation) {
-          let pedirCita = document.getElementById('bloqueCita') as HTMLElement;
-          setTimeout(() => {
-            pedirCita.classList.add('moveRightBoton')
-          }, 1000)
-
-        }
       });
   }
 
   public check(selectedHour: string) {
     this.horasIselected = true;
     this.selectedHora = selectedHour;
-    this.boton.nativeElement.style.opacity = "1";
-    let id = Number.parseInt(this.cookieService.get('usuario'));
+    let pedirCitas = document.getElementById('bloqueCita') as HTMLElement;
+    console.log("pedir citas horas")
+    console.log(pedirCitas.classList.value)
+    pedirCitas.classList.remove('moveLeftBoton')
+    pedirCitas.classList.add('moveRightBoton')
+    console.log(pedirCitas.classList.value)
+    let idCliente = Number.parseInt(this.cookieService.get('usuario'));
     let cliente: Cliente;
-    this.clientesService.get(id)
+    this.clientesService.get(idCliente)
       .subscribe(res => {
         cliente = res;
       });

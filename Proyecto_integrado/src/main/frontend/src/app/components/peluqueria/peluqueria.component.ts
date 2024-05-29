@@ -126,12 +126,13 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
   pedirCita(){
     console.log("entra")
     let contenedor = document.getElementById('contenedor') as HTMLElement;
-    console.log(contenedor.classList)
-    contenedor.classList.toggle('animate');
-    console.log(contenedor.classList)
-    // setTimeout(()=>{
+    console.log(contenedor.classList.value)
+    contenedor.classList.remove('contenedor')
+    contenedor.classList.add('animate');
+    console.log(contenedor.classList.value)
+    setTimeout(()=>{
       this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
-    // },1000)
+    },1000)
 
   }
 }

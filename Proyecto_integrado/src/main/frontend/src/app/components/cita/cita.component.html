@@ -48,7 +48,8 @@
           <div class="col-4">
             <div class="row">
               <div class="horas">
-                <div class="custom-radio" style="padding: 0.3em" *ngFor="let hora of horario" [ngClass]="{'selected': selectedHora === hora.hora}">
+                <div class="custom-radio" style="padding: 0.3em" *ngFor="let hora of horario"
+                     [ngClass]="{'selected': selectedHora === hora.hora}">
                   <input type="radio" class="btn btn-info text-white" (change)="check(hora.hora)" [id]="hora.hora"
                          name="horaRadioGroup" [value]="hora.hora">
                   <label for="{{hora.hora}}" style="width:100%">{{ hora.hora }}</label>
@@ -56,13 +57,17 @@
               </div>
             </div>
           </div>
-          <div class="col-5"></div>
-          <div class="col-2" id="bloqueCita">
-            <div class="row">
-              <button class="btn boton" (click)="editModal()">Editar cita</button>
+          <div class="col-2"></div>
+          <div class="col-5" id="bloqueCita">
+            <div class="d-flex justify-content-end">
+              <div class="row">
+                <button class="btn boton" (click)="editModal()">Editar cita</button>
+              </div>
             </div>
-            <div class="row">
-              <button class="btn btn-danger botonBorrar" (click)="borrarModal()">Cancelar cita</button>
+            <div class="d-flex justify-content-end">
+              <div class="row">
+                <button class="btn btn-danger botonBorrar" (click)="borrarModal()">Cancelar cita</button>
+              </div>
             </div>
           </div>
         </div>
@@ -71,7 +76,7 @@
   </div>
 
   <div class="confirmation-modal" *ngIf="showConfirmation" id="confirmationBloque">
-    <div class="modal-content"  id="confirmation">
+    <div class="modal-content" id="confirmation">
       <p>¿Estás seguro de que deseas editar esta cita?</p>
       <div class="row">
         <div class="col-1"></div>
@@ -88,7 +93,7 @@
   </div>
 
   <div class="confirmation-modal" *ngIf="showCancelar" id="cancelarBloque">
-    <div class="modal-content"  id="cancelar">
+    <div class="modal-content" id="cancelar">
       <p>¿Estás seguro de que deseas cancelar esta cita?</p>
       <div class="row">
         <div class="col-1"></div>

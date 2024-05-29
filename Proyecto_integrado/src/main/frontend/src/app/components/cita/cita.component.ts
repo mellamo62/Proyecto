@@ -113,6 +113,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
         console.log("citas de peluqueria")
         console.log(res)
         this.citas = res;
+
         const self = this;
         document.addEventListener('click', function (event) {
           const confirmation = document.getElementById('confirmation') as HTMLInputElement;
@@ -234,13 +235,17 @@ export class CitaComponent implements OnInit, AfterViewInit {
       .subscribe(res => {
         this.horario = res;
         console.log(this.horario)
+        console.log(this.citas)
         this.citas.forEach((c: any) => {
           console.log("fechas")
-
-          if (this.cita.hora == c.hora) {
-            this.selectedHora = this.cita.hora;
-          } else {
-            this.horario = this.horario.filter((h: any) => h.hora != c.hora);
+          console.log(this.fechaFormateada)
+          console.log(c.fecha)
+          if (this.formatTime(c.fecha) == this.formatTime(this.fechaFormateada)) {
+            if (this.cita.hora == c.hora) {
+              this.selectedHora = this.cita.hora;
+            } else {
+              this.horario = this.horario.filter((h: any) => h.hora != c.hora);
+            }
           }
 
         })

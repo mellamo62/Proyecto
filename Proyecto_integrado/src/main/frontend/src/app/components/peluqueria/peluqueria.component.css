@@ -34,8 +34,8 @@
 
 .tooltip {
   position: absolute;
-  top: -3em;
-  left: 15em;
+  top: -2em;
+  left: 9em;
   transform: translateX(-50%);
   padding: 5px 10px;
   background-color: #333;
@@ -74,13 +74,16 @@
 }
 
 .boton {
-  background-color: #4d3a21;
+  background: transparent;
+  border: 0.10em solid black;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.5);
+  color: black;
   margin-left: 70%;
   margin-top: -10%
 }
 
 .boton:hover {
-  background-color: #987041FF;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
 }
 
 .contenedor {
@@ -97,7 +100,13 @@
   }
 }
 
-.contenedor.animate {
-  margin-top: 80em;
+.animate {
+  height: max-content;
+  animation: out 1s forwards;
 }
 
+@keyframes out {
+  100%{
+    margin-top: 80%;
+  }
+}

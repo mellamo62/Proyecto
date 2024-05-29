@@ -117,19 +117,36 @@ input[type="radio"]{
 #bloqueCita{
   position: fixed;
   top: 36.5em;
-  right: 5em
+  right: 5em;
 }
 
 .moveRightBoton{
   animation: moveRight 1s forwards;
 }
 
+.rightBoton{
+  left:130%
+}
+
 @keyframes moveRight {
   0%{
-    left:100%
+    left:130%
   }
   100%{
     left: 78%
+  }
+}
+
+.moveLeftBoton{
+  animation: moveLeft 1s forwards;
+}
+
+@keyframes moveLeft {
+  0%{
+    left:78%
+  }
+  100%{
+    left: 130%
   }
 }
 

@@ -86,12 +86,12 @@
     45deg,
     white 0,
     white 1em,
-    blue 1em,
-    blue 2em,
+    #b8a88a 1em,
+    #b8a88a 2em,
     white 2em,
     white 3em,
-    red 3em,
-    red 4em
+    #8f733f 3em,
+    #8f733f 4em
   );
   transition: all .5s ease;
   animation: rotate-background 10s linear infinite;
