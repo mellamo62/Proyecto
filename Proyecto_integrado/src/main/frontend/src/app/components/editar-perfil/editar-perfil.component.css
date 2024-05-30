@@ -75,3 +75,26 @@
 .form-control:focus + .input-underline {
   width: 100%;
 }
+
+.bloque{
+  animation: enter 1s forwards;
+}
+
+@keyframes enter {
+  0%{
+    margin-top: 100%
+  }
+  100%{
+    margin-top:0
+  }
+}
+
+.salir{
+  animation: salir 1s forwards;
+}
+
+@keyframes salir {
+  100%{
+    margin-top:100%
+  }
+}

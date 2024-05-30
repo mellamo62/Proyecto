@@ -180,3 +180,17 @@ input[type="radio"]{
     margin-top:100%;
   }
 }
+
+.contenedor{
+  animation: contenedor 1s forwards;
+}
+
+@keyframes contenedor {
+  0%{
+    margin-top:100%
+  }
+  100%{
+    margin-top:0
+  }
+}
+

@@ -118,19 +118,6 @@
   }
 }
 
-.sidebar a {
-  display: block;
-  height: 65px;
-  width: 100px;
-  color: #353535;
-  line-height: 65px;
-  padding-left: 30px;
-  box-sizing: border-box;
-  border-left: 5px solid transparent;
-  font-family: 'Lato', sans-serif;
-  transition: all .5s ease;
-}
-
 #check {
   display: none;
 }
@@ -139,8 +126,7 @@
   width: 130%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  background: rgb(255, 255, 255);
-  color: #000000;
+  color: #ffffff;
   border-radius: 5px;
   border: none;
 }
@@ -171,7 +157,7 @@
 }
 
 #editar{
-  margin-top: -180%;
+  margin-top: -200%;
   margin-left: -13%;
   cursor: pointer;
 }
@@ -210,3 +196,10 @@ label #btn {
   visibility: hidden;
 }
 
+.infoPerfil{
+  background-color: #b58229;
+}
+
+.botones{
+  background-color: #674207;
+}

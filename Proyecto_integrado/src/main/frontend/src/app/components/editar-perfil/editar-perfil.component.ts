@@ -39,6 +39,10 @@ export class EditarPerfilComponent implements OnInit {
   }
 
   ngOnInit() {
+    setTimeout(()=>{
+      let bloque = document.getElementById('bloque') as HTMLElement;
+      bloque.classList.remove('bloque');
+    },1000)
     this.clienteService.get(Number.parseInt(this.coockieService.get('usuario')))
       .subscribe((data: Cliente) => {
         this.cliente = data;
@@ -55,25 +59,31 @@ export class EditarPerfilComponent implements OnInit {
 
   submit() {
 
-    console.log("entra")
-    console.log(this.formEdit.get('name'))
-    let cliente: Cliente = {
-      idCliente: this.cliente.idCliente,
-      usuario: this.formEdit.get('username')!.value,
-      nombre: this.formEdit.get('name')!.value,
-      apellidos: this.formEdit.get('lastName')!.value,
-      password: this.formEdit.get('password')!.value,
-      fotoPerfil: this.cliente.fotoPerfil
-    }
+    let bloque = document.getElementById('bloque') as HTMLElement;
+    bloque.classList.add('salir');
+
+    setTimeout(()=>{
+      console.log("entra")
+      console.log(this.formEdit.get('name'))
+      let cliente: Cliente = {
+        idCliente: this.cliente.idCliente,
+        usuario: this.formEdit.get('username')!.value,
+        nombre: this.formEdit.get('name')!.value,
+        apellidos: this.formEdit.get('lastName')!.value,
+        password: this.formEdit.get('password')!.value,
+        fotoPerfil: this.cliente.fotoPerfil
+      }
 
 
-    this.clienteService.uploadCliente(cliente, this.cliente.idCliente)
-      .subscribe((res: any) => {
-        console.log("cliente")
-        console.log(res)
-      });
+      this.clienteService.uploadCliente(cliente, this.cliente.idCliente)
+        .subscribe((res: any) => {
+          console.log("cliente")
+          console.log(res)
+        });
 
-    this.location.back();
+      this.location.back();
+    },800)
+
 
   }
 

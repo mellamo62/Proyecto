@@ -62,6 +62,11 @@ export class PedirCitaComponent implements OnInit {
 
   ngOnInit() {
 
+    setTimeout(()=>{
+      let bloque = document.getElementById('bloque') as HTMLElement;
+      bloque.classList.remove('contenedor')
+    },1000)
+
     this.horariosService.getCitasByPeluqueria(this.id)
       .subscribe(res => {
         console.log("citas de peluqueria")
