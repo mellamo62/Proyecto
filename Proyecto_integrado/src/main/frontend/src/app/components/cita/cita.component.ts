@@ -47,8 +47,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
   citaId: number;
   showCancelar: boolean;
   cliente: Cliente;
-  public editEnable: boolean;
-  citaOrg:Cita;
 
   constructor(
     private route: ActivatedRoute,
@@ -67,13 +65,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
       urlImagen2: "",
       latitud: 0,
       longitud: 0
-    };
-    this.citaOrg = {
-      id:0,
-      hora:"",
-      fecha:new Date(),
-      cliente: null,
-      peluqueria: null
     };
     this.idCliente = Number.parseInt(this.cookieService.get('usuario'));
     this.citaId = Number.parseInt(this.route.snapshot.params['idCita']);
@@ -100,14 +91,12 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.showConfirmation = false;
     this.showCancelar = false;
     this.selectedHora = "";
-    this.editEnable = true;
 
   }
 
   ngOnInit() {
 
     this.idPeluqueria = this.route.snapshot.params['idPeluqueria'];
-
     this.peluqueriaService.find(this.idPeluqueria).subscribe(res => {
       this.peluqueria = res;
       console.log(this.peluqueria)
@@ -238,7 +227,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.clienteService.getCita(this.citaId)
       .subscribe(res => {
         this.cita = res;
-        this.citaOrg = res;
         this.date = new Date(this.cita.fecha);
         this.fechaFormateada = this.formatTime(this.date);
         this.selectedHora = this.cita.hora
@@ -246,6 +234,8 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.horariosService.getOneByPeluqueria(this.idPeluqueria)
       .subscribe(res => {
         this.horario = res;
+        console.log(this.horario)
+        console.log(this.citas)
         this.citas.forEach((c: any) => {
           console.log("fechas")
           console.log(this.fechaFormateada)
@@ -275,7 +265,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
       });
     setTimeout(() => {
 
-      var mapbox_url = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVsbGFtbzYyMSIsImEiOiJjbHd0MHVvMWYwMjJsMmxxdHZhcXlrMTU3In0.RX1pnhXIeXGhL-p2I2J5gQ';
+      var mapbox_url = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiam9ubnltY2N1bGxhZ2giLCJhIjoiY2xsYzdveWh4MGhwcjN0cXV5Z3BwMXA1dCJ9.QoEHzPNq9DtTRrdtXfOdrw';
       var esri_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
       var lyr_satellite = L.tileLayer(esri_url, {maxZoom: 20, tileSize: 512, zoomOffset: -1});
@@ -324,8 +314,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
   }
 
   public check(selectedHour: string) {
-    this.editEnable = this.citaOrg.hora == selectedHour;
-
     this.horasIselected = true;
     this.selectedHora = selectedHour;
     let cliente: Cliente;

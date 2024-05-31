@@ -24,7 +24,7 @@ import {Cita} from "../../modelos/cita";
   styleUrl: './pedir-cita.component.css'
 })
 export class PedirCitaComponent implements OnInit {
-  @ViewChild('pedirCita', { static: false }) boton!: ElementRef;
+  @ViewChild('pedirCita', {static: false}) boton!: ElementRef;
   date: any;
   minDateValue: any;
   id: number;
@@ -62,10 +62,10 @@ export class PedirCitaComponent implements OnInit {
 
   ngOnInit() {
 
-    setTimeout(()=>{
+    setTimeout(() => {
       let bloque = document.getElementById('bloque') as HTMLElement;
       bloque.classList.remove('contenedor')
-    },1000)
+    }, 1500)
 
     this.horariosService.getCitasByPeluqueria(this.id)
       .subscribe(res => {
@@ -120,6 +120,14 @@ export class PedirCitaComponent implements OnInit {
           if (this.formatTime(new Date(c.fecha)) == this.fechaFormateada) {
             console.log(c.hora)
             this.horario = this.horario.filter((h: any) => h.hora != c.hora);
+          }
+        })
+        this.horario = this.horario.filter((h:any) => {
+          let hora = h.hora.split(':');
+          if (hora[0] > new Date().getHours()){
+            return h.hora
+          }else{
+            return
           }
         })
         let horas = document.getElementById('horas') as HTMLElement;
@@ -181,9 +189,9 @@ export class PedirCitaComponent implements OnInit {
     let bloque = document.getElementById('bloque') as HTMLElement;
     bloque.classList.add('animateOut');
     this.submit();
-    setTimeout(()=>{
+    setTimeout(() => {
       this.router.navigate(['home/citasPedidas']);
-    },800)
+    }, 800)
 
 
   }
@@ -193,9 +201,9 @@ export class PedirCitaComponent implements OnInit {
     let bloque = document.getElementById('confirmation') as HTMLElement;
     bloque.classList.add('animateOut');
 
-    setTimeout(()=>{
+    setTimeout(() => {
       this.showConfirmation = false;
-      },800)
+    }, 800)
 
   }
 

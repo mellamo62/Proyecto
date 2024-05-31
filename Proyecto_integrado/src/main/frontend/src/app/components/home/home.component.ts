@@ -5,6 +5,7 @@ import {FormsModule} from "@angular/forms";
 import {Cliente} from "../../modelos/cliente";
 import {ClientesService} from "../../services/clientes.service";
 import {CookieService} from "ngx-cookie-service";
+import {PerfilService} from "../../services/perfil.service";
 
 @Component({
   selector: 'app-home',
@@ -22,7 +23,10 @@ import {CookieService} from "ngx-cookie-service";
 export class HomeComponent implements OnInit{
 
   public cliente:any;
-  constructor(private router: Router, private clienteService: ClientesService, private cookieService:CookieService) {
+  constructor(private router: Router,
+              private clienteService: ClientesService,
+              private cookieService:CookieService,
+              private perfilService: PerfilService) {
     this.clienteService.get(Number.parseInt(this.cookieService.get('usuario')))
       .subscribe((data: Cliente) => {
         this.cliente = data;
@@ -31,6 +35,12 @@ export class HomeComponent implements OnInit{
   }
 
   ngOnInit() {
+    this.perfilService.perfil$.subscribe(perfil => {
+      console.log("perfil")
+      console.log(perfil)
+      this.cliente = perfil;
+    });
+
     if (!this.cookieService.get('usuario')){
       this.router.navigate([''])
     }else{

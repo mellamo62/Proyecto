@@ -182,15 +182,13 @@ input[type="radio"]{
 }
 
 .contenedor{
-  animation: contenedor 1s forwards;
+  margin-top: 70%;
+  animation: enter 1.5s forwards;
 }
 
-@keyframes contenedor {
-  0%{
-    margin-top:100%
-  }
+@keyframes enter {
+
   100%{
-    margin-top:0
+    margin-top: 0
   }
 }
-

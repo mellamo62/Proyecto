@@ -1,4 +1,4 @@
-import {Component} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {
   AbstractControl,
   FormBuilder,
@@ -25,7 +25,7 @@ import {Cliente} from "../../modelos/cliente";
   templateUrl: './register.component.html',
   styleUrl: './register.component.css'
 })
-export class RegisterComponent {
+export class RegisterComponent implements OnInit{
 
   public registerForm: FormGroup;
   public userNameError: boolean;
@@ -33,7 +33,10 @@ export class RegisterComponent {
   public lastNameError: boolean;
   public passError: boolean;
   public passRepError: boolean;
+  public userNameRepError: boolean;
   public showSuccessMessage: boolean;
+  private clientes: Cliente[];
+
 
   constructor(private clienteService: ClientesService,
               private router: Router,
@@ -44,6 +47,8 @@ export class RegisterComponent {
     this.passError = false;
     this.passRepError = false;
     this.showSuccessMessage = false;
+    this.userNameRepError = false;
+    this.clientes = [];
     this.registerForm = formBuilder.group({
       "username": new FormControl('', Validators.required),
       "password": new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -51,6 +56,13 @@ export class RegisterComponent {
       "name": new FormControl('', Validators.required),
       "lastName": new FormControl('', Validators.required)
     }, {validator: this.compararPassword});
+  }
+
+  ngOnInit() {
+    this.clienteService.getAll()
+      .subscribe(res=>{
+        this.clientes = res;
+      })
   }
 
   compararPassword(formGroup: FormGroup) {
@@ -62,9 +74,17 @@ export class RegisterComponent {
 
   submit() {
 
+    console.log(this.registerForm.value)
 
     if (!this.registerForm.get('username')?.value) {
       this.userNameError = true;
+
+    }else{
+      this.clientes.forEach(cli =>{
+        if (this.registerForm.get('username')?.value == cli.usuario){
+          this.userNameRepError = true;
+        }
+      })
     }
     if(!this.registerForm.get('name')?.value){
       this.nameError = true;
@@ -78,7 +98,7 @@ export class RegisterComponent {
     if (!this.registerForm.get('passwordRep')?.value){
       this.passRepError = true;
     }
-    if(!this.nameError && !this.lastNameError && ! this.userNameError){
+    if(!this.nameError && !this.lastNameError && ! this.userNameError && !this.userNameRepError && !this.passError && !this.passRepError){
       this.showSuccessMessage = true;
       let contenedor = document.getElementById('contenedor') as HTMLElement;
 
@@ -97,10 +117,10 @@ export class RegisterComponent {
           fotoPerfil: "assets/static/avatar.webp"
         };
 
-        // this.clienteService.create(cliente)
-        //   .subscribe(res => {
-        //     console.log(res)
-        //   });
+        this.clienteService.create(cliente)
+          .subscribe(res => {
+            console.log(res)
+          });
 
         this.router.navigate(['login']);
         }, 1500)

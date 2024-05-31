@@ -75,7 +75,7 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
   ngAfterViewInit() {
     setTimeout(() => {
 
-      var mapbox_url = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1Ijoiam9ubnltY2N1bGxhZ2giLCJhIjoiY2xsYzdveWh4MGhwcjN0cXV5Z3BwMXA1dCJ9.QoEHzPNq9DtTRrdtXfOdrw';
+      var mapbox_url = 'https://api.mapbox.com/styles/v1/mapbox/streets-v11/tiles/{z}/{x}/{y}?access_token=pk.eyJ1IjoibWVsbGFtbzYyMSIsImEiOiJjbHd0MHVvMWYwMjJsMmxxdHZhcXlrMTU3In0.RX1pnhXIeXGhL-p2I2J5gQ';
       var esri_url = 'https://server.arcgisonline.com/ArcGIS/rest/services/World_Imagery/MapServer/tile/{z}/{y}/{x}';
 
       var lyr_satellite = L.tileLayer(esri_url, {maxZoom: 20, tileSize: 512, zoomOffset: -1});

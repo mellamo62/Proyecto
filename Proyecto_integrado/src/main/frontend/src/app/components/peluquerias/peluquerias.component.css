@@ -50,7 +50,12 @@
   }
 }
 
-#tusCitas{
+.tituloCitas{
+  width: 75%; margin-left: 46%;
+  animation: aparece 2.5s forwards;
+}
+.tituloFav{
+  width: 75%; margin-left: 35%;
   animation: aparece 2.5s forwards;
 }
 
@@ -61,4 +66,28 @@
   100%{
     opacity: 1;
   }
+}
+
+.boton{
+  margin-top: 2%;
+  margin-left: 47%;
+  background: transparent;
+  border: 0.10em solid black;
+  border-radius: 0.3em;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.3);
+  animation: aparece 2.5s forwards;
+}
+
+.boton:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.h2NoTienesCitas{
+  width: 75%; margin-left: 36%;
+  animation: aparece 2.5s forwards;
+}
+
+.h2NoTienesFavs{
+  width: 75%; margin-left: 28%;
+  animation: aparece 2.5s forwards;
 }

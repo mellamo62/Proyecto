@@ -118,6 +118,19 @@
   }
 }
 
+.sidebar a {
+  display: block;
+  height: 65px;
+  width: 100px;
+  color: #353535;
+  line-height: 65px;
+  padding-left: 30px;
+  box-sizing: border-box;
+  border-left: 5px solid transparent;
+  font-family: 'Lato', sans-serif;
+  transition: all .5s ease;
+}
+
 #check {
   display: none;
 }
@@ -126,7 +139,6 @@
   width: 130%;
   text-align: center;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
-  color: #ffffff;
   border-radius: 5px;
   border: none;
 }
@@ -157,7 +169,7 @@
 }
 
 #editar{
-  margin-top: -200%;
+  margin-top: -180%;
   margin-left: -13%;
   cursor: pointer;
 }
@@ -196,10 +208,18 @@ label #btn {
   visibility: hidden;
 }
 
-.infoPerfil{
-  background-color: #b58229;
+.botonHeader{
+  background-color: #492815;
+  color:white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.7);
 }
 
-.botones{
-  background-color: #674207;
+.botonHeader:hover{
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 1);
+}
+
+.infoHeader{
+  background-color: #965314;
+  color:white;
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.4);
 }

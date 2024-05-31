@@ -135,7 +135,7 @@
   color:white;
   box-shadow: 0 0 10px 0 rgba(0, 0, 0, 0.1);
   border-radius: 1em;
-  margin-top: 8%;
+  margin-top: 3%;
   margin-left: 7.5%
 }
 
@@ -195,12 +195,14 @@ input[type="radio"]{
 
 #bloqueCita{
 
+  /*top: 250%;*/
+  /*right: 6.2%;*/
   animation: bloqueCita 1s forwards;
 }
 
 @keyframes bloqueCita{
   100%{
-    margin-top: 3%;
+    top: 57%;
   }
 }
 

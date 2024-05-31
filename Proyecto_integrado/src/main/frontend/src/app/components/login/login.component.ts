@@ -32,7 +32,7 @@ export class LoginComponent{
 
   submit() {
     let clientes: Cliente[] = [];
-    this.service.all()
+    this.service.getAll()
       .subscribe(res => {
         res.forEach(r => {
           clientes.push(r);

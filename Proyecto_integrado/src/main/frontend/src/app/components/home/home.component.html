@@ -1,7 +1,6 @@
 <header>
   <div class="row">
     <nav class="navbar navbar-expand-lg navbar-light bg-header">
-
       <div class="col-2">
         <a class="navbar-brand logo" [routerLink]="['/home']">
           <img ngSrc="../../../assets/static/logo.PNG" alt="Logo" height="85" width="85" priority>
@@ -42,35 +41,35 @@
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h6 class="info infoPerfil" id="usuario">{{ cliente.usuario }}</h6>
+              <h6 class="info infoHeader" id="usuario">{{ cliente.usuario }}</h6>
             </div>
             <div class="col-1"></div>
           </div>
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h6 class="info infoPerfil" id="nombre">{{ cliente.nombre }}</h6>
+              <h6 class="info infoHeader" id="nombre">{{ cliente.nombre }}</h6>
             </div>
             <div class="col-1"></div>
           </div>
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h6 class="info infoPerfil" id="apellidos">{{ cliente.apellidos }}</h6>
+              <h6 class="info infoHeader" id="apellidos">{{ cliente.apellidos }}</h6>
             </div>
             <div class="col-1"></div>
           </div>
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h5 class="info botones" routerLink="perfil/editar" id="editar">Editar perfil</h5>
+              <h5 class="info botonHeader" routerLink="perfil/editar" id="editar">Editar perfil</h5>
             </div>
             <div class="col-1"></div>
           </div>
           <div class="row" style="max-height: 1em">
             <div class="col-1"></div>
             <div class="col-10" >
-              <h5 class="info botones" id="cerrarSesion" (click)="logOut()">Cerrar sesión</h5>
+              <h5 class="info botonHeader" id="cerrarSesion" (click)="logOut()">Cerrar sesión</h5>
             </div>
             <div class="col-1"></div>
           </div>

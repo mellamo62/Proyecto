@@ -74,7 +74,7 @@ export class ClientesService {
     return this.httpClient.get(this.apiURL+"fav/"+idCliente);
   }
 
-  all(){
+  getAll(){
     return this.httpClient.get<Cliente[]>(this.apiURL);
   }
 

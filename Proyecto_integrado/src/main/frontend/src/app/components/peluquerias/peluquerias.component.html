@@ -1,5 +1,16 @@
-<div id="tusCitas" *ngIf="citas.length >0" style="width: 75%; margin-left: 46%">
+<div class="tituloCitas" *ngIf="isCita">
   <h1>Tus citas</h1>
+</div>
+<div *ngIf="noCita">
+  <h2 class="h2NoTienesCitas">¡Aún no tienes ninguna cita!</h2>
+  <button class="boton" routerLink="/home/peluquerias">Ver peluquerías</button>
+</div>
+<div class="tituloFav" *ngIf="isFav">
+  <h1>Tus peluquerías favoritas</h1>
+</div>
+<div *ngIf="noFav">
+  <h2 class="h2NoTienesFavs">¡Aún no tienes ninguna peluquería favorita!</h2>
+  <button class="boton" routerLink="/home/peluquerias">Ver peluquerías</button>
 </div>
 <div class="container" id="contenedor" style="margin-left: 12em;margin-top: 3em">
   <div class="w-75" *ngFor="let peluqueria of peluquerias">
