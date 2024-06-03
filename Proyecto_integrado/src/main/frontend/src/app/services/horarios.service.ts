@@ -10,7 +10,7 @@ import {Cita} from "../modelos/cita";
 })
 export class HorariosService {
 
-  private apiURL = "http://localhost:8080/horarios/";
+  private apiURL = "http://192.168.1.40:8080/horarios/";
 
   httpOptions = {
     headers: new HttpHeaders({
@@ -28,7 +28,7 @@ export class HorariosService {
   }
 
   getCitasByPeluqueria(id:number){
-    return this.http.get<Cita>(`http://localhost:8080/citas/peluqueria/${id}`)
+    return this.http.get<Cita>(`http://192.168.1.40:8080/citas/peluqueria/${id}`)
       .pipe(
         catchError(this.errorHandler)
       );

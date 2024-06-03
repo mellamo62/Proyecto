@@ -11,7 +11,7 @@ import java.io.IOException;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/file")
 public class FileUploadController {
     @PostMapping("/uploadCliente")

@@ -11,7 +11,7 @@ import java.util.stream.Collectors;
 
 @Slf4j
 @RestController
-@CrossOrigin(origins = "http://localhost:4200")
+@CrossOrigin
 @RequestMapping("/horarios")
 public class HorariosController {
     private final HorariosService horariosService;
