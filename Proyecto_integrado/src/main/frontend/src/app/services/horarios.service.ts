@@ -28,7 +28,7 @@ export class HorariosService {
   }
 
   getCitasByPeluqueria(id:number){
-    return this.http.get<Cita>(`http://192.168.1.40:8080/citas/peluqueria/${id}`)
+    return this.http.get<Cita>(`http://hairdate.top:8080/citas/peluqueria/${id}`)
       .pipe(
         catchError(this.errorHandler)
       );

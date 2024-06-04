@@ -35,7 +35,7 @@ export class ClientesService {
   }
 
   uploadFile(data:FormData){
-    return this.httpClient.post<any>("http://192.168.1.40:8080/file/uploadCliente", data);
+    return this.httpClient.post<any>("http://hairdate.top:8080/file/uploadCliente", data);
   }
 
   get(id:number):Observable<Cliente>{
@@ -55,11 +55,11 @@ export class ClientesService {
   }
 
   getCitas(idCliente:number){
-    return this.httpClient.get<Cliente>("http://192.168.1.40:8080/citas/cliente/"+idCliente)
+    return this.httpClient.get<Cliente>("http://hairdate.top:8080/citas/cliente/"+idCliente)
   }
 
   getCita(idCita:number){
-    return this.httpClient.get<Cita>("http://192.168.1.40:8080/citas/"+idCita);
+    return this.httpClient.get<Cita>("http://hairdate.top:8080/citas/"+idCita);
   }
 
   fav(idCliente: number, idPeluqueria:number){
