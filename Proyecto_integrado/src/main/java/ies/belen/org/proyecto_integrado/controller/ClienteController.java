@@ -12,7 +12,7 @@ import java.util.List;
 
 @Slf4j
 @RestController
-@CrossOrigin
+@CrossOrigin(origins = "http://hairdate.top:8088")
 @RequestMapping("/clientes")
 public class ClienteController {
 

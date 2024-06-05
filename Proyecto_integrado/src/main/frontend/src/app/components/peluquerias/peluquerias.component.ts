@@ -139,7 +139,7 @@ export class PeluqueriasComponent implements OnInit {
             if (fechaCita < hoy){
               console.log("entro en la primera")
               this.expired.push(c.peluqueria.id);
-            }else if (new Date().getHours() >= horaCita[0]){
+            }else if (fechaCita == hoy && new Date().getHours() <= horaCita[0]){
               console.log("entro en la segunda")
               this.expired.push(c.peluqueria.id);
             }

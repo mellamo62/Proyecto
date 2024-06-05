@@ -10,7 +10,7 @@ import {Cita} from "../modelos/cita";
 })
 export class HorariosService {
 
-  private apiURL = "http://192.168.1.40:8080/horarios/";
+  private apiURL = "http://hairdate.top:8080/horarios/";
 
   httpOptions = {
     headers: new HttpHeaders({

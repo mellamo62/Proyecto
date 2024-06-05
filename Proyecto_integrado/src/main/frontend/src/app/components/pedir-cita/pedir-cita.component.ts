@@ -122,14 +122,18 @@ export class PedirCitaComponent implements OnInit {
             this.horario = this.horario.filter((h: any) => h.hora != c.hora);
           }
         })
-        this.horario = this.horario.filter((h:any) => {
-          let hora = h.hora.split(':');
-          if (hora[0] > new Date().getHours()){
-            return h.hora
-          }else{
-            return
-          }
-        })
+        if (this.fechaFormateada == this.formatTime(new Date())){
+          this.horario = this.horario.filter((h:any) => {
+            let hora = h.hora.split(':');
+            if (hora[0] > new Date().getHours()){
+              return h.hora
+            }else{
+              return
+            }
+          })
+        }
+        console.log("horario final")
+        console.log(this.horario)
         let horas = document.getElementById('horas') as HTMLElement;
         let clases = horas.classList.value.split(' ');
         clases = clases.filter(c => c.includes("animateHoras"));
