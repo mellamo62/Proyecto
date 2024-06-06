@@ -8,7 +8,7 @@ import {Peluqueria} from "../modelos/peluqueria";
 })
 export class PeluqueriaService {
 
-  private apiURL = "http://hairdate.top:8080/peluquerias/";
+  private apiURL = "http://83.60.195.211:8080/peluquerias/";
 
   httpOptions = {
     headers: new HttpHeaders({

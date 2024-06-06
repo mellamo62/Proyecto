@@ -27,7 +27,7 @@
 }
 .sinCuenta{
   position: absolute;
-  bottom: 5.1em;
+  top:16em;
   left: 11.5em;
   font-size: 0.9em;
   cursor: pointer;
@@ -85,4 +85,11 @@
     opacity:0;
     margin-top: -50%;
   }
+}
+
+.errorPassword{
+  font-size: 0.9em;
+  text-decoration: none;
+  color: red;
+  /*margin-top:5%*/
 }

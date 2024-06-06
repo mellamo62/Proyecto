@@ -10,7 +10,7 @@ import {Observable} from "rxjs";
 })
 export class CitasService {
 
-  private apiURL= "http://hairdate.top:8080/citas/";
+  private apiURL= "http://83.60.195.211:8080/citas/";
 
   httpOptions = {
     headers: new HttpHeaders({

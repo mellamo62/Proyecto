@@ -5,13 +5,15 @@ import {Cliente} from "../../modelos/cliente";
 import {Router, RouterLink} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 import {RegisterComponent} from "../register/register.component";
+import {NgIf} from "@angular/common";
 
 @Component({
   selector: 'app-login',
   standalone: true,
   imports: [
     ReactiveFormsModule,
-    RouterLink
+    RouterLink,
+    NgIf
   ],
   templateUrl: './login.component.html',
   styleUrl: './login.component.css'
@@ -19,6 +21,7 @@ import {RegisterComponent} from "../register/register.component";
 export class LoginComponent{
 
   public loginForm: FormGroup;
+  public isIncorrect: boolean;
 
   constructor(private service: ClientesService,
               private router: Router,
@@ -27,6 +30,7 @@ export class LoginComponent{
       "username": new FormControl('', Validators.required),
       "password": new FormControl('', Validators.required)
     });
+    this.isIncorrect = false;
   }
 
 
@@ -50,6 +54,8 @@ export class LoginComponent{
             setTimeout(()=>{
               this.router.navigate(['/home']);
             },1100)
+          }else{
+            this.isIncorrect = true;
           }
         })
       })
