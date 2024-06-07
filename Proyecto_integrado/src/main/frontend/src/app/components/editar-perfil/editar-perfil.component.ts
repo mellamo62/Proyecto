@@ -30,6 +30,7 @@ export class EditarPerfilComponent implements OnInit {
   public passRepError: boolean;
   public userNameRepError: boolean;
   private clientes: Cliente[];
+  public showSuccessMessage: boolean;
 
 
   public cliente: Cliente = {idCliente: 1, usuario: "", nombre: "", apellidos: "", password: "", fotoPerfil: ""};
@@ -45,7 +46,8 @@ export class EditarPerfilComponent implements OnInit {
     this.passError = false;
     this.passRepError = false;
     this.userNameRepError = false;
-    this.clientes=[]
+    this.clientes=[];
+    this.showSuccessMessage = false;
     this.formEdit = formBuilder.group({
       "username": new FormControl('', Validators.required),
       "password": new FormControl('', [Validators.required, Validators.minLength(5)]),
@@ -118,19 +120,21 @@ export class EditarPerfilComponent implements OnInit {
       }
 
       let contenedor = document.getElementById('contenedor') as HTMLElement;
-      contenedor.classList.add('salir');
+      this.showSuccessMessage = true;
+      setTimeout(()=>{
+        contenedor.classList.add('salir');
+      },500)
+
 
       setTimeout(()=>{
         this.clienteService.uploadCliente(cliente, this.cliente.idCliente)
           .subscribe((res: any) => {
-            console.log("cliente")
-            console.log(res)
 
             this.perfilService.actualizarPerfil(res);
           });
 
         this.location.back();
-      },900)
+      },1400)
     }
   }
 
@@ -140,8 +144,13 @@ export class EditarPerfilComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
+    console.log("file")
+    console.log(file)
     if (file) {
-      this.subirArchivo(file);
+      if (file.name.toLowerCase().endsWith('.png') || file.name.toLowerCase().endsWith('.webp') || file.name.toLowerCase().endsWith('.jpeg') || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.bmp') || file.name.toLowerCase().endsWith('.svg')){
+        this.subirArchivo(file);
+      }
+
     }
   }
 

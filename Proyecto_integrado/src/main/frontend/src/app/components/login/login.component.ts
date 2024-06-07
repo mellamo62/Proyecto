@@ -42,6 +42,7 @@ export class LoginComponent{
           clientes.push(r);
         })
         console.log(clientes)
+        let cont =0;
         clientes.forEach((c:Cliente) => {
           if (this.loginForm.get('username')?.value == c.usuario && this.loginForm.get('password')?.value == c.password) {
             let ExpireSession = new Date();
@@ -55,9 +56,12 @@ export class LoginComponent{
               this.router.navigate(['/home']);
             },1100)
           }else{
-            this.isIncorrect = true;
+            cont++;
           }
         })
+        if (clientes.length == cont){
+          this.isIncorrect = true;
+        }
       })
   }
 
