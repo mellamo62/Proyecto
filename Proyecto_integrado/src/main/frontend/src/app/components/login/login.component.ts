@@ -1,10 +1,9 @@
-import {Component, OnInit} from '@angular/core';
+import {Component} from '@angular/core';
 import {FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {ClientesService} from "../../services/clientes.service";
 import {Cliente} from "../../modelos/cliente";
 import {Router, RouterLink} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
-import {RegisterComponent} from "../register/register.component";
 import {NgIf} from "@angular/common";
 
 @Component({
@@ -41,7 +40,6 @@ export class LoginComponent{
         res.forEach(r => {
           clientes.push(r);
         })
-        console.log(clientes)
         let cont =0;
         clientes.forEach((c:Cliente) => {
           if (this.loginForm.get('username')?.value == c.usuario && this.loginForm.get('password')?.value == c.password) {

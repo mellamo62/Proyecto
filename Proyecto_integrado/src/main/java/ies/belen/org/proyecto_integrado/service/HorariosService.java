@@ -30,15 +30,6 @@ public class HorariosService {
                 .orElseThrow(() -> new HorariosNotFoundException(id));
     }
 
-    public Horarios save(Horarios horarios){
-        return this.horariosRepository.save(horarios);
-    }
-
-    public Horarios replace(Long id, Horarios horarios){
-        return this.horariosRepository.findById(id).map(p->(id.equals(horarios.getIdHorarios()) ? this.horariosRepository.save(horarios) : null))
-                .orElseThrow(() -> new HorariosNotFoundException(id));
-    }
-
     public void delete(Long id){
         this.horariosRepository.findById(id).map(p->{this.horariosRepository.delete(p);
                     return p;})

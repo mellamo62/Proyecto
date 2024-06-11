@@ -99,7 +99,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.idPeluqueria = this.route.snapshot.params['idPeluqueria'];
     this.peluqueriaService.find(this.idPeluqueria).subscribe(res => {
       this.peluqueria = res;
-      console.log(this.peluqueria)
       this.icono = document.getElementById("corazon");
     })
 
@@ -110,8 +109,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
 
     this.horariosService.getCitasByPeluqueria(this.idPeluqueria)
       .subscribe(res => {
-        console.log("citas de peluqueria")
-        console.log(res)
         this.citas = res;
 
         const self = this;
@@ -146,7 +143,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
         .subscribe(res => {
           favs = res;
           favs.forEach((fav: any) => {
-            console.log(fav)
             if (this.peluqueria.idPeluqueria == fav.peluqueria.idPeluqueria) {
               this.icono.classList.remove("fa-regular");
               this.icono.classList.add("fa-solid");
@@ -169,26 +165,17 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.horariosService.getOneByPeluqueria(this.idPeluqueria)
       .subscribe(res => {
         this.horario = res;
-        console.log(this.horario)
 
         let horas = document.getElementById('horas') as HTMLElement;
         let clases = horas.classList.value.split(' ');
         clases = clases.filter(c => c.includes("animateHoras"));
-        console.log("clases")
-        console.log(clases)
         if (clases.length > 0) {
           horas.classList.remove('animateHoras');
           horas.classList.add('disappear')
 
           setTimeout(() => {
-            console.log(this.fechaFormateada)
             this.citas.forEach((c: any) => {
               if (this.formatTime(new Date(c.fecha)) == this.formatTime(this.fechaFormateada)) {
-                console.log("hora")
-                console.log(c.hora)
-                console.log(this.cita.hora)
-                console.log(c.fecha)
-                console.log(this.cita.fecha)
                 if (this.cita.hora == c.hora) {
                   this.selectedHora = this.cita.hora;
                 } else {
@@ -224,7 +211,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
-    this.clienteService.getCita(this.citaId)
+    this.citasService.getCita(this.citaId)
       .subscribe(res => {
         this.cita = res;
         this.date = new Date(this.cita.fecha);
@@ -234,12 +221,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.horariosService.getOneByPeluqueria(this.idPeluqueria)
       .subscribe(res => {
         this.horario = res;
-        console.log(this.horario)
-        console.log(this.citas)
         this.citas.forEach((c: any) => {
-          console.log("fechas")
-          console.log(this.fechaFormateada)
-          console.log(c.fecha)
           if (this.formatTime(c.fecha) == this.formatTime(this.fechaFormateada)) {
             if (this.cita.hora == c.hora) {
               this.selectedHora = this.cita.hora;
@@ -295,21 +277,16 @@ export class CitaComponent implements OnInit, AfterViewInit {
   }
 
   makeFav() {
-    console.log(this.peluqueria.idPeluqueria)
     if (this.icono.classList.contains("fa-regular")) {
       this.icono.classList.remove("fa-regular");
       this.icono.classList.add("fa-solid");
       this.clienteService.fav(Number.parseInt(this.cookieService.get('usuario')), this.peluqueria.idPeluqueria)
-        .subscribe(res => {
-          console.log(res)
-        });
+        .subscribe();
     } else {
       this.icono.classList.remove("fa-solid");
       this.icono.classList.add("fa-regular");
       this.clienteService.deleteFav(this.idPeluqueria, this.idCliente)
-        .subscribe(res => {
-          console.log(res)
-        });
+        .subscribe();
     }
   }
 
@@ -336,7 +313,6 @@ export class CitaComponent implements OnInit, AfterViewInit {
         fecha: this.fechaFormateada,
         hora: selectedHour
       }
-      console.log(this.cita)
 
     }, 500)
   }

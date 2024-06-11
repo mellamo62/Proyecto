@@ -1,5 +1,5 @@
 import {Component, OnInit} from '@angular/core';
-import {ActivatedRoute, Router, RouterLink} from "@angular/router";
+import { Router, RouterLink} from "@angular/router";
 import {CookieService} from "ngx-cookie-service";
 
 @Component({
@@ -23,7 +23,6 @@ export class PrincipalComponent implements OnInit{
   }
 
   citas(option:number){
-    console.log("citas")
     let principal = document.getElementById('bloque') as HTMLElement
     principal.classList.add('irse');
     setTimeout(()=>{

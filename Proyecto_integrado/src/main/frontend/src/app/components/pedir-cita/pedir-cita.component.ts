@@ -1,4 +1,4 @@
-import {AfterViewChecked, AfterViewInit, Component, ElementRef, OnInit, ViewChild} from '@angular/core';
+import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {CalendarModule} from 'primeng/calendar';
 import {FormsModule} from "@angular/forms";
 import {CommonModule} from "@angular/common";
@@ -10,7 +10,6 @@ import {PeluqueriaService} from "../../services/peluqueria.service";
 import {Cliente} from "../../modelos/cliente";
 import {Peluqueria} from "../../modelos/peluqueria";
 import {RequestData} from "../../modelos/RequestData";
-import {Cita} from "../../modelos/cita";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -69,8 +68,6 @@ export class PedirCitaComponent implements OnInit {
 
     this.horariosService.getCitasByPeluqueria(this.id)
       .subscribe(res => {
-        console.log("citas de peluqueria")
-        console.log(res)
         this.citas = res;
         let pedirCita = document.getElementById('bloqueCita') as HTMLElement;
         pedirCita.classList.add('rightBoton')
@@ -102,11 +99,9 @@ export class PedirCitaComponent implements OnInit {
     if (this.horasIselected) {
       this.horasIselected = !this.horasIselected;
       let pedirCitas = document.getElementById('bloqueCita') as HTMLElement;
-      console.log("pedirCitas")
       pedirCitas.classList.remove('moveRightBoton')
       pedirCitas.classList.remove('rightBoton')
       pedirCitas.classList.add('moveLeftBoton');
-      console.log(pedirCitas.classList.value)
     }
     const fechaSeleccionada: Date = event;
     this.horas = true;
@@ -115,10 +110,8 @@ export class PedirCitaComponent implements OnInit {
     this.horariosService.getOneByPeluqueria(this.id)
       .subscribe(res => {
         this.horario = res;
-        console.log(this.horario)
         this.citas.forEach((c: any) => {
           if (this.formatTime(new Date(c.fecha)) == this.fechaFormateada) {
-            console.log(c.hora)
             this.horario = this.horario.filter((h: any) => h.hora != c.hora);
           }
         })
@@ -132,8 +125,6 @@ export class PedirCitaComponent implements OnInit {
             }
           })
         }
-        console.log("horario final")
-        console.log(this.horario)
         let horas = document.getElementById('horas') as HTMLElement;
         let clases = horas.classList.value.split(' ');
         clases = clases.filter(c => c.includes("animateHoras"));
@@ -154,11 +145,8 @@ export class PedirCitaComponent implements OnInit {
     this.horasIselected = true;
     this.selectedHora = selectedHour;
     let pedirCitas = document.getElementById('bloqueCita') as HTMLElement;
-    console.log("pedir citas horas")
-    console.log(pedirCitas.classList.value)
     pedirCitas.classList.remove('moveLeftBoton')
     pedirCitas.classList.add('moveRightBoton')
-    console.log(pedirCitas.classList.value)
     let idCliente = Number.parseInt(this.cookieService.get('usuario'));
     let cliente: Cliente;
     this.clientesService.get(idCliente)
@@ -181,14 +169,12 @@ export class PedirCitaComponent implements OnInit {
         fecha: this.fechaFormateada,
         hora: selectedHour
       }
-      console.log(this.cita)
 
     }, 500)
   }
 
 
   public confirmSelection(): void {
-    console.log('Confirmado');
     this.showConfirmation = false;
     let bloque = document.getElementById('bloque') as HTMLElement;
     bloque.classList.add('animateOut');
@@ -201,7 +187,6 @@ export class PedirCitaComponent implements OnInit {
   }
 
   public cancelSelection(): void {
-    console.log('Cancelado');
     let bloque = document.getElementById('confirmation') as HTMLElement;
     bloque.classList.add('animateOut');
 
@@ -222,7 +207,6 @@ export class PedirCitaComponent implements OnInit {
   submit() {
     this.clientesService.createCita(this.cita)
       .subscribe(res => {
-        console.log(res)
       });
   }
 

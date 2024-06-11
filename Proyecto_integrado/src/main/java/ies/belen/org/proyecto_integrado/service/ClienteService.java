@@ -31,12 +31,10 @@ public class ClienteService {
 
     private final ClienteRepository clienteRepository;
     private final PeluqueriaRepository peluqueriaRepository;
-    private final CitaRepository citaRepository;
     private final FavRepository favRepository;
 
-    public ClienteService(ClienteRepository clienteRepository, CitaRepository citaRepository, PeluqueriaRepository peluqueriaRepository,FavRepository favRepository){
+    public ClienteService(ClienteRepository clienteRepository, PeluqueriaRepository peluqueriaRepository,FavRepository favRepository){
         this.clienteRepository = clienteRepository;
-        this.citaRepository = citaRepository;
         this.peluqueriaRepository = peluqueriaRepository;
         this.favRepository = favRepository;
     }
@@ -44,17 +42,6 @@ public class ClienteService {
     public Cliente save(Cliente cliente){
 
         return this.clienteRepository.save(cliente);
-    }
-
-    public Citas cita(Cliente cliente, Peluqueria peluqueria, String fecha, String hora) throws ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaFormat = formato.parse(fecha);
-        Citas cita = new Citas();
-        cita.setCliente(cliente);
-        cita.setPeluqueria(peluqueria);
-        cita.setFecha(fechaFormat);
-        cita.setHora(hora);
-        return citaRepository.save(cita);
     }
 
     public Fav fav(Long idCliente, Long idPeluqueria){

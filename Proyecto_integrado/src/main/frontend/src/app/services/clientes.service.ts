@@ -13,15 +13,7 @@ import {Cita} from "../modelos/cita";
 })
 export class ClientesService {
 
-  private apiURL= "http://83.60.195.211:8080/clientes/";
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-  };
-
-
+  private apiURL= "http://localhost:8080/clientes/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -35,7 +27,7 @@ export class ClientesService {
   }
 
   uploadFile(data:FormData){
-    return this.httpClient.post<any>("http://83.60.195.211:8080/file/uploadCliente", data);
+    return this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
   }
 
   get(id:number):Observable<Cliente>{
@@ -52,14 +44,6 @@ export class ClientesService {
     })
 
     return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
-  }
-
-  getCitas(idCliente:number){
-    return this.httpClient.get<Cliente>("http://83.60.195.211:8080/citas/cliente/"+idCliente)
-  }
-
-  getCita(idCita:number){
-    return this.httpClient.get<Cita>("http://83.60.195.211:8080/citas/"+idCita);
   }
 
   fav(idCliente: number, idPeluqueria:number){

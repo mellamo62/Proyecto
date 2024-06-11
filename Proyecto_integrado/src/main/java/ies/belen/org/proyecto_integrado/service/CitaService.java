@@ -8,10 +8,9 @@ import ies.belen.org.proyecto_integrado.repository.CitaRepository;
 import ies.belen.org.proyecto_integrado.repository.ClienteRepository;
 import org.springframework.stereotype.Service;
 
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Objects;
-import java.util.Optional;
+import java.text.ParseException;
+import java.text.SimpleDateFormat;
+import java.util.*;
 
 @Service
 public class CitaService {
@@ -20,10 +19,6 @@ public class CitaService {
 
     public CitaService(CitaRepository citaRepository){
         this.citaRepository = citaRepository;
-    }
-
-    public Citas save(Citas citas){
-        return this.citaRepository.save(citas);
     }
 
     public Citas one(Long id){
@@ -55,6 +50,17 @@ public class CitaService {
         return citasToSend;
     }
 
+    public Citas newCita(Cliente cliente, Peluqueria peluqueria, String fecha, String hora) throws ParseException {
+        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
+        Date fechaFormat = formato.parse(fecha);
+        Citas cita = new Citas();
+        cita.setCliente(cliente);
+        cita.setPeluqueria(peluqueria);
+        cita.setFecha(fechaFormat);
+        cita.setHora(hora);
+        return citaRepository.save(cita);
+    }
+
     public Citas replace(Long id, Citas citas){
         return this.citaRepository.findById(id).map(p->(id.equals(citas.getId()) ? this.citaRepository.save(citas) : null))
                 .orElseThrow(() -> new ClienteNotFoundException(id));
@@ -64,9 +70,6 @@ public class CitaService {
         this.citaRepository.findById(id).map(p->{this.citaRepository.delete(p);
                     return p;})
                 .orElseThrow(()->new ClienteNotFoundException(id));
-    }
-    public Optional<Citas> getCita(Long id){
-        return citaRepository.findById(id);
     }
 
     public List<Citas> all(){

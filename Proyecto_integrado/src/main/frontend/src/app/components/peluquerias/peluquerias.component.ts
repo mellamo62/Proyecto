@@ -1,10 +1,10 @@
-import {Component, Input, OnInit} from '@angular/core';
+import {Component, OnInit} from '@angular/core';
 import {CommonModule, NgOptimizedImage} from "@angular/common";
 import {ActivatedRoute, Router, RouterLink} from "@angular/router";
-import {Peluqueria} from "../../modelos/peluqueria";
 import {PeluqueriaService} from "../../services/peluqueria.service";
 import {ClientesService} from "../../services/clientes.service";
 import {CookieService} from "ngx-cookie-service";
+import {CitasService} from "../../services/citas.service";
 
 
 @Component({
@@ -37,6 +37,7 @@ export class PeluqueriasComponent implements OnInit {
     private route:ActivatedRoute,
     private peluqueriaService: PeluqueriaService,
     private clienteService: ClientesService,
+    private citaService: CitasService,
     private router: Router,
     private coockieService: CookieService
   ) {
@@ -62,8 +63,6 @@ export class PeluqueriasComponent implements OnInit {
       this.favoritos.forEach((f:any)=>{
         this.favoritosPeluqueria.push(f.peluqueria);
       })
-      console.log("favorito")
-      console.log(this.favoritosPeluqueria)
 
 
     let citasPedidas = this.route.snapshot.url[0].path;
@@ -85,7 +84,6 @@ export class PeluqueriasComponent implements OnInit {
             if (this.peluquerias.length ==0){
               this.noFav = true;
             }
-            console.log(this.peluquerias)
           }, 200);
 
         }else {
@@ -93,14 +91,13 @@ export class PeluqueriasComponent implements OnInit {
         }
 
         this.favoritos.forEach((fav:any)=>{
-          console.log(fav)
           this.favoritosArray.push(fav.peluqueria.idPeluqueria);
         })
 
       })
     }else{
       this.isCita = true;
-      this.clienteService.getCitas(idCliente)
+      this.citaService.getCitas(idCliente)
         .subscribe((res:any)=>{
           res.sort((a:any, b:any) =>{
           const dateComparison = new Date(b.fecha).getTime() - new Date(a.fecha).getTime();
@@ -125,33 +122,22 @@ export class PeluqueriasComponent implements OnInit {
             c.peluqueria.id = c.id;
             c.fecha = new Date(c.fecha).getFullYear()+"-"+ ((new Date(c.fecha).getMonth()+1 < 10) ? 0 : "") + (new Date(c.fecha).getMonth()+1)+"-"+new Date(c.fecha).getDate();
             this.peluquerias.push(c.peluqueria)
-            console.log(c.fecha)
             let fecha = new Date(c.fecha)
             let fechaCita = fecha.getTime();
             let hoy:any = new Date();
             hoy.setHours(0,0,0,0)
             hoy = hoy.getTime();
             let horaCita = c.hora.split(':');
-            console.log("horas")
-            console.log(fechaCita)
-            console.log(hoy)
-            console.log(new Date().getHours() >= horaCita[0])
             if (fechaCita < hoy){
-              console.log("entro en la primera")
               this.expired.push(c.peluqueria.id);
             }else if (fechaCita == hoy && new Date().getHours() >= horaCita[0]){
-              console.log("entro en la segunda")
               this.expired.push(c.peluqueria.id);
             }
             index++;
           })
-          console.log(this.expired)
         })
     }
     setTimeout(()=>{
-      console.log("peluquerias y citas")
-      console.log(this.peluquerias)
-      console.log(this.citas)
     },1000)
 
     });
@@ -169,7 +155,6 @@ export class PeluqueriasComponent implements OnInit {
       }, 1400)
     }else{
       setTimeout(()=>{
-        console.log(peluqueria)
         this.router.navigate(['/home/cita/' + peluqueria.id+"/"+peluqueria.idPeluqueria]);
       }, 1400)
     }

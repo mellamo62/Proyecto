@@ -2,7 +2,7 @@ import {Component, ElementRef, OnInit, ViewChild} from '@angular/core';
 import {Cliente} from "../../modelos/cliente";
 import {CookieService} from "ngx-cookie-service";
 import {ClientesService} from "../../services/clientes.service";
-import {Router, RouterLink} from "@angular/router";
+import {RouterLink} from "@angular/router";
 import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Location, NgIf} from "@angular/common";
 import {PerfilService} from "../../services/perfil.service";
@@ -70,7 +70,6 @@ export class EditarPerfilComponent implements OnInit {
     this.clienteService.get(Number.parseInt(this.coockieService.get('usuario')))
       .subscribe((data: Cliente) => {
         this.cliente = data;
-        console.log(this.cliente)
         this.formEdit.get('username')!.setValue(this.cliente.usuario);
         this.formEdit.get('password')!.setValue(this.cliente.password);
         this.formEdit.get('passwordRep')!.setValue(this.cliente.password);
@@ -96,8 +95,6 @@ export class EditarPerfilComponent implements OnInit {
       this.userNameError = false;
       this.userNameRepError = false;
       this.clientes = this.clientes.filter(cli => cli.idCliente != this.cliente.idCliente);
-      console.log("clientes")
-      console.log(this.clientes)
       this.clientes.forEach(cli =>{
         if (this.formEdit.get('username')?.value == cli.usuario){
           this.userNameRepError = true;
@@ -144,8 +141,6 @@ export class EditarPerfilComponent implements OnInit {
 
   onFileSelected(event: any) {
     const file: File = event.target.files[0];
-    console.log("file")
-    console.log(file)
     if (file) {
       if (file.name.toLowerCase().endsWith('.png') || file.name.toLowerCase().endsWith('.webp') || file.name.toLowerCase().endsWith('.jpeg') || file.name.toLowerCase().endsWith('.jpg') || file.name.toLowerCase().endsWith('.bmp') || file.name.toLowerCase().endsWith('.svg')){
         this.subirArchivo(file);
@@ -157,12 +152,9 @@ export class EditarPerfilComponent implements OnInit {
   subirArchivo(file: File) {
     let formFile = new FormData();
     formFile.append('file', file);
-    console.log(file)
     this.cliente.fotoPerfil = "/assets/files/clientes/" + file.name;
     this.clienteService.create(this.cliente)
       .subscribe((res: any) => {
-        console.log("cliente")
-        console.log(res)
         this.perfilService.actualizarPerfil(res);
       });
     this.clienteService.uploadFile(formFile).subscribe();

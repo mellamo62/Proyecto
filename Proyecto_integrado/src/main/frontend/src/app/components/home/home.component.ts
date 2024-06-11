@@ -27,17 +27,14 @@ export class HomeComponent implements OnInit{
               private clienteService: ClientesService,
               private cookieService:CookieService,
               private perfilService: PerfilService) {
-    this.clienteService.get(Number.parseInt(this.cookieService.get('usuario')))
-      .subscribe((data: Cliente) => {
-        this.cliente = data;
-        console.log(this.cliente)
-      });
   }
 
   ngOnInit() {
+    this.clienteService.get(Number.parseInt(this.cookieService.get('usuario')))
+      .subscribe((data: Cliente) => {
+        this.cliente = data;
+      });
     this.perfilService.perfil$.subscribe(perfil => {
-      console.log("perfil")
-      console.log(perfil)
       this.cliente = perfil;
     });
 

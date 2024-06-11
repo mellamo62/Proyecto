@@ -8,6 +8,7 @@ import lombok.extern.slf4j.Slf4j;
 import org.springframework.http.HttpStatus;
 import org.springframework.web.bind.annotation.*;
 
+import java.text.ParseException;
 import java.util.List;
 
 @Slf4j
@@ -22,31 +23,36 @@ public class CitaController {
         this.citaService = citaService;
     }
 
+    //Obtener una cita por ID
     @GetMapping("/{id}")
     public Citas one(@PathVariable("id") Long id){
         return this.citaService.one(id);
     }
 
+    //Obtener todas las citas de un cliente
     @GetMapping("/cliente/{id}")
     public List<Citas> getAllCliente(@PathVariable("id") Long id){
         return this.citaService.getAllCliente(id);
     }
 
+    //Obtener todas las citas de una peluqeuría
     @GetMapping("/peluqueria/{id}")
     public List<Citas> getAllPeluqueria(@PathVariable("id") Long id){
         return this.citaService.getAllPeluqueria(id);
     }
 
-    @PostMapping({"","/"})
-    public Citas newCita(@RequestBody Citas citas){
-        return this.citaService.save(citas);
+    @PostMapping({"/",""})
+    public Citas newCita(@RequestBody RequestData requestData) throws ParseException {
+        return this.citaService.newCita(requestData.getCliente(), requestData.getPeluqueria(), requestData.getFecha(), requestData.getHora());
     }
 
+    //Editar una cita
     @PutMapping("/{id}")
     public Citas replaceCita(@PathVariable("id") Long id, @RequestBody Citas citas){
         return this.citaService.replace(id, citas);
     }
 
+    //Eliminar una cita
     @ResponseBody
     @ResponseStatus(HttpStatus.NO_CONTENT)
     @DeleteMapping("/{id}")

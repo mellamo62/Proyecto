@@ -1,5 +1,5 @@
 import { Injectable } from '@angular/core';
-import {HttpClient, HttpHeaders} from "@angular/common/http";
+import {HttpClient} from "@angular/common/http";
 import {catchError, Observable, throwError} from "rxjs";
 import {Peluqueria} from "../modelos/peluqueria";
 
@@ -8,22 +8,9 @@ import {Peluqueria} from "../modelos/peluqueria";
 })
 export class PeluqueriaService {
 
-  private apiURL = "http://83.60.195.211:8080/peluquerias/";
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-  };
+  private apiURL = "http://localhost:8080/peluquerias/";
 
   constructor(private httpClient: HttpClient) { }
-
-  create(peluqueria: Peluqueria): Observable<Peluqueria> {
-    return this.httpClient.post<Peluqueria>(this.apiURL, JSON.stringify(peluqueria), this.httpOptions)
-      .pipe(
-        catchError(this.errorHandler)
-      )
-  }
 
   getAll(): Observable<Peluqueria[]> {
     return this.httpClient.get<Peluqueria[]>(this.apiURL)

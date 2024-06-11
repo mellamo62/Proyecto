@@ -1,6 +1,5 @@
 import {Injectable} from '@angular/core';
 import {HttpClient, HttpHeaders} from "@angular/common/http";
-import {Peluqueria} from "../modelos/peluqueria";
 import {Horarios} from "../modelos/horarios";
 import {catchError, Observable, throwError} from "rxjs";
 import {Cita} from "../modelos/cita";
@@ -10,13 +9,7 @@ import {Cita} from "../modelos/cita";
 })
 export class HorariosService {
 
-  private apiURL = "http://83.60.195.211:8080/horarios/";
-
-  httpOptions = {
-    headers: new HttpHeaders({
-      'Content-Type': 'multipart/form-data'
-    })
-  };
+  private apiURL = "http://localhost:8080/horarios/";
 
   constructor( private http: HttpClient ) {}
 
@@ -28,7 +21,7 @@ export class HorariosService {
   }
 
   getCitasByPeluqueria(id:number){
-    return this.http.get<Cita>(`http://83.60.195.211:8080/citas/peluqueria/${id}`)
+    return this.http.get<Cita>(`http://localhost:8080/citas/peluqueria/${id}`)
       .pipe(
         catchError(this.errorHandler)
       );

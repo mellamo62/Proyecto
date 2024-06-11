@@ -51,7 +51,6 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
     this.idPeluqueria = this.route.snapshot.params['id'];
     this.peluqueriaService.find(this.idPeluqueria).subscribe(res => {
       this.peluqueria = res;
-      console.log(this.peluqueria)
       this.icono = document.getElementById("corazon");
     })
 
@@ -61,7 +60,6 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
         .subscribe(res => {
           favs = res;
           favs.forEach((fav: any) => {
-            console.log(fav)
             if (this.peluqueria.idPeluqueria == fav.peluqueria.idPeluqueria) {
               this.icono.classList.remove("fa-regular");
               this.icono.classList.add("fa-solid");
@@ -105,31 +103,23 @@ export class PeluqueriaComponent implements OnInit, AfterViewInit {
   }
 
   makeFav() {
-    console.log(this.peluqueria.idPeluqueria)
     if (this.icono.classList.contains("fa-regular")) {
       this.icono.classList.remove("fa-regular");
       this.icono.classList.add("fa-solid");
       this.clienteService.fav(Number.parseInt(this.coockieService.get('usuario')), this.peluqueria.idPeluqueria)
-        .subscribe(res => {
-          console.log(res)
-        });
+        .subscribe();
     } else {
       this.icono.classList.remove("fa-solid");
       this.icono.classList.add("fa-regular");
       this.clienteService.deleteFav(this.idPeluqueria, this.idCliente)
-        .subscribe(res => {
-          console.log(res)
-        });
+        .subscribe();
     }
   }
 
   pedirCita(){
-    console.log("entra")
     let contenedor = document.getElementById('contenedor') as HTMLElement;
-    console.log(contenedor.classList.value)
     contenedor.classList.remove('contenedor')
     contenedor.classList.add('animate');
-    console.log(contenedor.classList.value)
     setTimeout(()=>{
       this.router.navigate([('/home/peluquerias/cita/'+this.idPeluqueria)])
     },1000)

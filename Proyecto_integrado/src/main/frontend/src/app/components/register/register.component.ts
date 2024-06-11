@@ -1,16 +1,7 @@
 import {Component, OnInit} from '@angular/core';
-import {
-  AbstractControl,
-  FormBuilder,
-  FormControl,
-  FormGroup,
-  ReactiveFormsModule,
-  ValidatorFn,
-  Validators
-} from "@angular/forms";
+import {FormBuilder, FormControl, FormGroup, ReactiveFormsModule, Validators} from "@angular/forms";
 import {Router, RouterLink} from "@angular/router";
 import {ClientesService} from "../../services/clientes.service";
-import {CookieService} from "ngx-cookie-service";
 import {NgIf} from "@angular/common";
 import {Cliente} from "../../modelos/cliente";
 
@@ -74,8 +65,6 @@ export class RegisterComponent implements OnInit{
 
   submit() {
 
-    console.log(this.registerForm.value)
-
     if (!this.registerForm.get('username')?.value) {
       this.userNameError = true;
 
@@ -118,9 +107,7 @@ export class RegisterComponent implements OnInit{
         };
 
         this.clienteService.create(cliente)
-          .subscribe(res => {
-            console.log(res)
-          });
+          .subscribe();
 
         this.router.navigate(['login']);
         }, 1500)
@@ -139,7 +126,6 @@ export class RegisterComponent implements OnInit{
   }
 
   onInputChangeLastName() {
-    console.log(this.registerForm.get('lastName')?.value)
     this.lastNameError = !this.registerForm.get('lastName')?.value;
 
   }
