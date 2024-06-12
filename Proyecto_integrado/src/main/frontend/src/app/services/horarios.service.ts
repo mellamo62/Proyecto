@@ -20,12 +20,7 @@ export class HorariosService {
       );
   }
 
-  getCitasByPeluqueria(id:number){
-    return this.http.get<Cita>(`http://localhost:8080/citas/peluqueria/${id}`)
-      .pipe(
-        catchError(this.errorHandler)
-      );
-  }
+
 
   errorHandler(error: any) {
 

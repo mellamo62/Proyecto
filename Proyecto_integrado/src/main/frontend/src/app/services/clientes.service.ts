@@ -37,15 +37,6 @@ export class ClientesService {
       )
   }
 
-  createCita(info: RequestData){
-
-    let headers = new HttpHeaders({
-      'Content-Type': 'application/json'
-    })
-
-    return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
-  }
-
   fav(idCliente: number, idPeluqueria:number){
 
     return this.httpClient.post<Cliente>(this.apiURL+"fav/"+idCliente+"/"+idPeluqueria, null);

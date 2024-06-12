@@ -107,7 +107,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
         this.cliente = res;
       })
 
-    this.horariosService.getCitasByPeluqueria(this.idPeluqueria)
+    this.citasService.getCitasByPeluqueria(this.idPeluqueria)
       .subscribe(res => {
         this.citas = res;
 

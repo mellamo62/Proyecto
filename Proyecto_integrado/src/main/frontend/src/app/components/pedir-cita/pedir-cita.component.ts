@@ -10,6 +10,7 @@ import {PeluqueriaService} from "../../services/peluqueria.service";
 import {Cliente} from "../../modelos/cliente";
 import {Peluqueria} from "../../modelos/peluqueria";
 import {RequestData} from "../../modelos/RequestData";
+import {CitasService} from "../../services/citas.service";
 
 @Component({
   selector: 'app-pedir-cita',
@@ -41,6 +42,7 @@ export class PedirCitaComponent implements OnInit {
     private horariosService: HorariosService,
     private clientesService: ClientesService,
     private peluqueriaService: PeluqueriaService,
+    private citaService: CitasService,
     private cookieService: CookieService,
     private router: Router
   ) {
@@ -66,7 +68,7 @@ export class PedirCitaComponent implements OnInit {
       bloque.classList.remove('contenedor')
     }, 1500)
 
-    this.horariosService.getCitasByPeluqueria(this.id)
+    this.citaService.getCitasByPeluqueria(this.id)
       .subscribe(res => {
         this.citas = res;
         let pedirCita = document.getElementById('bloqueCita') as HTMLElement;
@@ -205,7 +207,7 @@ export class PedirCitaComponent implements OnInit {
   }
 
   submit() {
-    this.clientesService.createCita(this.cita)
+    this.citaService.createCita(this.cita)
       .subscribe(res => {
       });
   }
