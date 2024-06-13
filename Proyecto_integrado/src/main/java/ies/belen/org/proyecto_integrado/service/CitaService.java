@@ -51,17 +51,16 @@ public class CitaService {
     }
 
     public Citas newCita(Cliente cliente, Peluqueria peluqueria, String fecha, String hora) throws ParseException {
-        SimpleDateFormat formato = new SimpleDateFormat("dd-MM-yyyy");
-        Date fechaFormat = formato.parse(fecha);
         Citas cita = new Citas();
         cita.setCliente(cliente);
         cita.setPeluqueria(peluqueria);
-        cita.setFecha(fechaFormat);
+        cita.setFecha(fecha);
         cita.setHora(hora);
         return citaRepository.save(cita);
     }
 
     public Citas replace(Long id, Citas citas){
+
         return this.citaRepository.findById(id).map(p->(id.equals(citas.getId()) ? this.citaRepository.save(citas) : null))
                 .orElseThrow(() -> new ClienteNotFoundException(id));
     }

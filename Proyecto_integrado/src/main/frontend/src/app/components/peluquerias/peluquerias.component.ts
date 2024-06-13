@@ -68,7 +68,8 @@ export class PeluqueriasComponent implements OnInit {
     let citasPedidas = this.route.snapshot.url[0].path;
 
     if (citasPedidas != "citasPedidas"){
-      this.peluqueriaService.getAll().subscribe(res => {
+      this.peluqueriaService.getAll()
+        .subscribe(res => {
         this.name = this.route.snapshot.params['name'];
         this.fav = this.route.snapshot.params['idCliente'];
 
@@ -120,7 +121,6 @@ export class PeluqueriasComponent implements OnInit {
           }
           res.forEach((c:any)=>{
             c.peluqueria.id = c.id;
-            c.fecha = new Date(c.fecha).getFullYear()+"-"+ ((new Date(c.fecha).getMonth()+1 < 10) ? 0 : "") + (new Date(c.fecha).getMonth()+1)+"-"+new Date(c.fecha).getDate();
             this.peluquerias.push(c.peluqueria)
             let fecha = new Date(c.fecha)
             let fechaCita = fecha.getTime();

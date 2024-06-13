@@ -5,6 +5,6 @@ export interface Cita{
   id:number | undefined,
   cliente: Cliente | null,
   peluqueria: Peluqueria | null,
-  fecha:Date,
+  fecha:string,
   hora:string
 }

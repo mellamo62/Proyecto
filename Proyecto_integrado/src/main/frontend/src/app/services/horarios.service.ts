@@ -9,7 +9,7 @@ import {Cita} from "../modelos/cita";
 })
 export class HorariosService {
 
-  private apiURL = "http://localhost:8080/horarios/";
+  private apiURL = "http://83.60.88.29:8080/horarios/";
 
   constructor( private http: HttpClient ) {}
 

@@ -8,7 +8,7 @@ import {Peluqueria} from "../modelos/peluqueria";
 })
 export class PeluqueriaService {
 
-  private apiURL = "http://localhost:8080/peluquerias/";
+  private apiURL = "http://83.60.88.29:8080/peluquerias/";
 
   constructor(private httpClient: HttpClient) { }
 

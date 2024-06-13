@@ -10,7 +10,7 @@ import {RequestData} from "../modelos/RequestData";
 })
 export class CitasService {
 
-  private apiURL= "http://localhost:8080/citas/";
+  private apiURL= "http://83.60.88.29:8080/citas/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -20,10 +20,10 @@ export class CitasService {
       'Content-Type': 'application/json'
     })
 
-    return this.httpClient.post<any>(this.apiURL+"cita", info, {headers})
+    return this.httpClient.post<any>(this.apiURL, info, {headers})
   }
   getCitas(idCliente:number){
-    return this.httpClient.get<Cliente>(this.apiURL+idCliente)
+    return this.httpClient.get<Cliente>(this.apiURL+"cliente/"+idCliente)
   }
 
   getCita(idCita:number){
@@ -37,6 +37,7 @@ export class CitasService {
       );
   }
   edit(cita:Cita) {
+    console.log("llego aqui")
     return this.httpClient.put<Cita>(this.apiURL+cita.id, cita);
   }
 

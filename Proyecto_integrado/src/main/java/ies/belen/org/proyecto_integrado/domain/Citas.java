@@ -24,7 +24,7 @@ public class Citas {
     private Peluqueria peluqueria;
 
     @Column(name = "fecha")
-    private Date fecha;
+    private String fecha;
 
     @Column(name = "hora")
     private String hora;

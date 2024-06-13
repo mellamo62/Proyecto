@@ -13,7 +13,7 @@ import {Cita} from "../modelos/cita";
 })
 export class ClientesService {
 
-  private apiURL= "http://localhost:8080/clientes/";
+  private apiURL= "http://83.60.88.29:8080/clientes/";
 
   constructor(private httpClient: HttpClient) { }
 
@@ -27,7 +27,7 @@ export class ClientesService {
   }
 
   uploadFile(data:FormData){
-    return this.httpClient.post<any>("http://localhost:8080/file/uploadCliente", data);
+    return this.httpClient.post<any>("http://83.60.88.29:8080/file/uploadCliente", data);
   }
 
   get(id:number):Observable<Cliente>{

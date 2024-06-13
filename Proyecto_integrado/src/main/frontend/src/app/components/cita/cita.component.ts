@@ -72,7 +72,7 @@ export class CitaComponent implements OnInit, AfterViewInit {
       id: undefined,
       cliente: null,
       peluqueria: null,
-      fecha: new Date(),
+      fecha: "",
       hora: ""
     };
     this.cliente = {
@@ -201,10 +201,11 @@ export class CitaComponent implements OnInit, AfterViewInit {
       });
   }
 
-  formatTime(fecha: Date) {
-    const dia = fecha.getDate().toString().padStart(2, '0');
-    const mes = (fecha.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
-    const anio = fecha.getFullYear();
+  formatTime(fecha: any) {
+    const date = new Date(fecha);
+    const dia = date.getDate().toString().padStart(2, '0');
+    const mes = (date.getMonth() + 1).toString().padStart(2, '0'); // Los meses en JavaScript comienzan en 0
+    const anio = date.getFullYear();
     return `${dia}-${mes}-${anio}`;
   }
 
@@ -214,7 +215,9 @@ export class CitaComponent implements OnInit, AfterViewInit {
     this.citasService.getCita(this.citaId)
       .subscribe(res => {
         this.cita = res;
-        this.date = new Date(this.cita.fecha);
+
+        const [day, month, year] = this.cita.fecha.split('-');
+        this.date = new Date(`${year}-${month}-${day}`);
         this.fechaFormateada = this.formatTime(this.date);
         this.selectedHora = this.cita.hora
       })
