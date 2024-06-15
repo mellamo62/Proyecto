@@ -12,6 +12,7 @@ import {HorariosService} from "../../services/horarios.service";
 import {Cliente} from "../../modelos/cliente";
 import {Cita} from "../../modelos/cita";
 import {CitasService} from "../../services/citas.service";
+import {log} from "@angular-devkit/build-angular/src/builders/ssr-dev-server";
 
 @Component({
   selector: 'app-cita',
@@ -158,7 +159,8 @@ export class CitaComponent implements OnInit, AfterViewInit {
     if (this.horasIselected) {
       this.horasIselected = !this.horasIselected;
     }
-    this.fechaFormateada = event;
+    this.fechaFormateada = this.formatTime(event);
+    console.log(event)
     this.horas = true;
 
 
@@ -212,13 +214,17 @@ export class CitaComponent implements OnInit, AfterViewInit {
 
   ngAfterViewInit() {
 
+
     this.citasService.getCita(this.citaId)
       .subscribe(res => {
         this.cita = res;
-
+        console.log("hola")
+        console.log(this.cita.fecha)
         const [day, month, year] = this.cita.fecha.split('-');
+        console.log(day, month, year);
         this.date = new Date(`${year}-${month}-${day}`);
         this.fechaFormateada = this.formatTime(this.date);
+        console.log(this.fechaFormateada)
         this.selectedHora = this.cita.hora
       })
     this.horariosService.getOneByPeluqueria(this.idPeluqueria)
